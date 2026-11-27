@@ -1,6 +1,6 @@
 const scope=new URL(self.registration.scope);
 const prefix="leon-reader-lite:"+scope.pathname+":";
-const name=prefix+"092cb3c7f18813af";
+const name=prefix+"8ac7244b16a1f789";
 const files=["lite.html","covers/thumb-eed1482b536de0fa.webp","covers/thumb-3d63ba0cfebeaa78.webp","covers/thumb-9f786e14810bc682.webp"].map(p=>new URL(p,scope).href);
 self.addEventListener("install",e=>e.waitUntil((async()=>{
  const cache=await caches.open(name);
