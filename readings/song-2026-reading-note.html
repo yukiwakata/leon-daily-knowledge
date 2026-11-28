@@ -1,0 +1,151 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>凝结微滴长高、铺展和变圆，是同一个过程吗？ · 论文精读</title><style>*{box-sizing:border-box}html{color-scheme:light;scroll-padding-top:1rem}body{margin:0;background:#f4f6f8;color:#1b2d3c;font:1.05rem/1.86 system-ui,"Microsoft YaHei",sans-serif;overflow-wrap:anywhere}header{background:#173c58;color:white}header div,main{max-width:54rem;margin:auto;padding:0 clamp(1rem,4vw,2.6rem)}header div{display:flex;gap:1.6rem;align-items:center;padding-block:.68rem}header a{color:white}a{color:#155078;text-underline-offset:.2em}main{background:white;padding-block:1.4rem 3rem}h1,h2,h3,h4{line-height:1.45;text-wrap:pretty}h1{font-size:clamp(1.65rem,4vw,2.4rem);margin:.35rem 0 .6rem}h2{color:#193f58;font-size:1.4rem;margin:2.2rem 0 .6rem;border-top:1px solid #d7e1e8;padding-top:1.3rem}h3{font-size:1.13rem;margin:1.4rem 0 .3rem}p{margin:.7rem 0}.meta,figcaption,.credit{color:#506575;font-size:.91rem}.lead{border-left:3px solid #477b92;padding:.5rem .9rem;background:#f1f6f8}details{margin:1rem 0}summary{cursor:pointer;color:#155078;font-weight:650}ul,ol{padding-left:1.5em}li+li{margin-top:.28em}.scroll,pre,math[display=block]{max-width:100%;overflow-x:auto}.scroll{margin:.9rem 0}table{font-size:.94rem;border-collapse:collapse;text-align:left;width:100%;min-width:22rem}td,th{border-bottom:1px solid #d4e0e7;padding:.45rem .6rem;vertical-align:top}th{background:#eef4f6}figure{margin:1.4rem 0}figure>a{display:block}figure img{max-width:100%;height:auto;display:block;margin:auto}figure a span{display:block;text-align:center;font-size:.85rem}figcaption{margin-top:.4rem}code,pre{font-family:ui-monospace,monospace;background:#f2f5f6}pre{padding:.75rem}blockquote{margin-inline:0;padding-left:.85rem;border-left:3px solid #a6bac6}.source{margin-top:2.2rem;border-top:1px solid #cedbe3;padding-top:.8rem}a:focus-visible,summary:focus-visible{outline:3px solid #b77928;outline-offset:2px}@media(max-width:520px){body{font-size:1rem}h2{font-size:1.22rem}header div{gap:1.2rem}}</style></head><body><header><div><a href="../">每日知识</a><a href="./">论文精读目录</a></div></header><main><article><p class="meta">Song 等 · Experiments in Fluids · 2026</p><h1>凝结微滴长高、铺展和变圆，是同一个过程吗？</h1><p class="lead">数字全息把相位延迟换成高度场。由此得到的体积、高度和足迹显示，一个早期凝结微滴的三个几何量并不同步。</p><p><a href="https://doi.org/10.1007/s00348-026-04323-x">Time-resolved 3D reconstruction of an early-stage condensing microdroplet using digital holographic microscopy</a></p><details><summary>文章目录</summary><ol><li><a href="#s1">研究背景 · 为什么只看俯视直径不够</a></li><li><a href="#s2">研究方法：把光的相位延迟换成水滴高度</a></li><li><a href="#s3">检测阈值：首次看见不等于首次成核</a></li><li><a href="#s4">结果一：高度增长、横向扩展与体积累积不同步</a></li><li><a href="#s5">结果二：增长指数是分段描述，不是普适指数</a></li><li><a href="#s6">结果三：足迹变圆与形心移动不等于整滴滑动</a></li><li><a href="#s7">关键检验：球冠为什么不能同时满足三个几何量</a></li><li><a href="#s8">局限与证据等级</a></li></ol></details><section><h2 id="s1">研究背景 · 为什么只看俯视直径不够</h2><p>常见凝结成像可以告诉我们“水滴多大、长在哪、什么时候合并”，却未必同时测出水滴高度和真实体积。若只知道俯视面积，通常还要假定轴对称球冠或固定接触角，才能推算体积。这个捷径把未知形状藏进了公式；如果早期接触线不规则、不同方向增长不一致，推算误差就可能被误当成真实的传质变化。</p><p>本文不是先拟合一个球冠再绘图，而是先用透射式数字全息显微镜（DHM）测量光程变化，将它换成二维高度场h(x,y,t)，然后从同一高度场提取多种几何量。这些量还能反过来检验：<strong>一个球冠假设能否同时满足高度、足迹和体积？</strong></p></section><section><h2 id="s2">研究方法：把光的相位延迟换成水滴高度</h2><h3>实验边界和仪器指标</h3><p>样品为硅烷涂层玻璃，实验前按乙醇、去离子水、氮气干燥的顺序清洗。湿度腔中样品附近空气约23.0 °C、相对湿度60%，估算露点约15 °C；冷台设定10 °C以触发凝结。<strong>冷台设定值并不等同于已直接测量的每一点液滴界面温度。</strong></p><p>使用Lyncée Tec T-1000透射式DHM，20倍物镜，NA=0.40。记录速度15帧/s，时间间隔约66 ms；分析视场约285 μm×285 μm。横向像素间距0.286 μm/像素，而光学横向分辨率约0.83 μm，两个数字不能互换。放大一张图或插值到更多像素不会自动把光学分辨率变成0.286 μm。</p><p class="credit"><a href="https://doi.org/10.1007/s00348-026-04323-x">Figure 1：控温控湿环境中的透射式全息测量 · 原文</a></p><p><strong>Figure 1｜装置解决了什么问题</strong></p><ul>
+<li><strong>回答的问题：</strong> 怎样在不中断凝结、也不沿高度扫描的情况下记录透明微滴的三维形貌？</li>
+<li><strong>图中证据或方法：</strong> 透明硅烷玻璃置于带透光通道的冷台上，物光穿过微滴后由物镜收集；整个装置处在受控湿度腔中。</li>
+<li><strong>支撑的结论：</strong> 光程测量与控温凝结可以在同一装置中结合，提供时间连续的相位数据，而非依赖逐层机械扫描后拼成一帧。</li>
+<li><strong>局限与读图注意：</strong> 图是实验布置示意，不是测得的温度场或光学传递函数。方法依赖样品透明性以及物镜能接收界面折射后的光，不能直接覆盖不透明基底或很陡的液滴侧壁。</li>
+</ul><h3>相位到高度的核心关系</h3><p>物光穿过水滴时，相比同等距离的空气，额外光程约为 <code>(n_water−n_air)h</code>。相位相当于光程除以波长再乘2π，因此式(1)为：</p><p><strong>Δh = λΔφ / [2π(n<sub>water</sub> − n<sub>air</sub>)]</strong></p><p>本文取λ=666 nm、名义折射率n_water=1.333、n_air=1.000。它不是直接测量一个“几何顶点”，而是利用折射率已知且近似均匀这一条件，从光程恢复高度。作者报告用10 °C至23 °C对应的水折射率做边界敏感性比较时，各提取指标的最大绝对相对差异小于1.5%；完整比较位于未独立复核的补充图S1。</p><p>对多组分蒸发液膜尤其重要：如果组成与温度导致折射率变化，测得相位同时含厚度和折射率效应。未经校正，不能把相位随时间的全部变化都解释为膜厚变化。</p><h3>从一张高度场得到一组互相约束的量</h3><p>实验先稳定湿度5 min，然后记录30 s干表面，作为背景高度与整体倾斜的参考；t=30 s开始降温，继续记录100 s，总记录130 s。数值处理先去除基线与倾斜，再以局部高度高于h_thr=0.089 μm的像素定义可检测液滴区域。</p><p class="credit"><a href="https://doi.org/10.1007/s00348-026-04323-x">Figure 2：从高度场到体积、足迹和边界指标 · 原文</a></p><p><strong>Figure 2｜不是只有“直径”这一条曲线</strong></p><ul>
+<li><strong>回答的问题：</strong> 如何让高度、体积、横向尺寸与边界形状来自同一套数据，而不是不同假设的拼接？</li>
+<li><strong>图中证据或方法：</strong> 左侧从重建高度图得到阈值分割区域；右侧分别定义最大高度、等效直径、积分体积、足迹几何中心、圆度和长宽比。</li>
+<li><strong>支撑的结论：</strong> 先有实测高度场，再提取几何量，可以检查同一微滴竖直、横向和总体积增长是否同步，不必预设球冠。</li>
+<li><strong>局限与读图注意：</strong> 图中“centroid”是二维足迹几何中心，不是三维质量中心。阈值边界也是可检测高度轮廓，不应无条件等同于真正分子尺度接触线。</li>
+</ul><p>这些指标的定义决定了它们能回答什么：</p><div class="scroll"><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>定义与直觉</th>
+<th>易混淆点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>最大高度H_max</td>
+<td>检测区域内高度最大值</td>
+<td>对尖峰噪声、相位重建误差敏感</td>
+</tr>
+<tr>
+<td>等效直径D_eq</td>
+<td><code>D_eq=√(4A/π)</code>，把足迹面积A换成等面积圆直径</td>
+<td>不等于最大横向跨度，也不说明足迹本来就是圆</td>
+</tr>
+<tr>
+<td>体积V</td>
+<td><code>V=∬_A h(x,y)dA</code>，逐像素体积求和</td>
+<td>检测区域之外的薄缘未计入；并非球冠体积公式</td>
+</tr>
+<tr>
+<td>圆度C</td>
+<td><code>C=4πA/P²</code>，P为边界周长</td>
+<td>周长对像素化与轮廓提取方式敏感</td>
+</tr>
+<tr>
+<td>长宽比AR</td>
+<td>主成分分析得到的主轴长度比</td>
+<td>接近1不保证整个边界完全圆滑</td>
+</tr>
+<tr>
+<td>形心位移Δr_c</td>
+<td>足迹几何中心相对首次检测位置的平面距离</td>
+<td>可能由非对称增长引起，不直接等于整滴平移</td>
+</tr>
+</tbody>
+</table></div></section><section><h2 id="s3">检测阈值：首次看见不等于首次成核</h2><p class="credit"><a href="https://doi.org/10.1007/s00348-026-04323-x">Figure 3：最大高度信号相对于检测阈值的增长 · 原文</a></p><p><strong>Figure 3｜这条曲线把检测边界说清楚</strong></p><ul>
+<li><strong>回答的问题：</strong> 后续增长分析是否一直贴着噪声门槛，或者大部分数据已明显高于检测阈值？</li>
+<li><strong>图中证据或方法：</strong> 纵轴是最大高度信号除以检测阈值，采用对数刻度；虚线给出t=30 s开始冷却，之后信号越过1并显著增大。</li>
+<li><strong>支撑的结论：</strong> 只有最早可检测阶段靠近阈值，后续增长信号与阈值有较明显分离。</li>
+<li><strong>局限与读图注意：</strong> 阈值以下并不证明“没有水滴”，约在冷却开始8 s后首次检测也不是成核等待时间的直接测量。分割阈值决定起始时刻，影响后面的时间零点与早期拟合。</li>
+</ul></section><section><h2 id="s4">结果一：高度增长、横向扩展与体积累积不同步</h2><p class="credit"><a href="https://doi.org/10.1007/s00348-026-04323-x">Figure 4：一个代表性微滴的时序高度场 · 原文</a></p><p><strong>Figure 4｜真正被恢复的是高度分布</strong></p><ul>
+<li><strong>回答的问题：</strong> 早期微弱凸起能否持续追踪为同一滴的三维形貌演化？</li>
+<li><strong>图中证据或方法：</strong> 上排是40、50、70、80、100 s的高度图，下排是同一高度场的三维显示；视区为40 μm量级。主文说明该滴观测期内没有明显并合。</li>
+<li><strong>支撑的结论：</strong> 这组数据允许连续跟踪同一微滴从接近检测门槛到清楚三维结构的增长，而不是把不同时间的不同液滴拿来比较。</li>
+<li><strong>局限与读图注意：</strong> 各时刻颜色条和三维高度轴范围不同，红色不代表相同高度；必须读每一幅色标。三维渲染不是第二种独立测量，和上排来自相同高度场。</li>
+</ul><p class="credit"><a href="https://doi.org/10.1007/s00348-026-04323-x">Figure 5：高度、等效直径、体积及其变化率 · 原文</a></p><p><strong>Figure 5｜体积差不多线性增加，形状却没有等比例长大</strong></p><ul>
+<li><strong>回答的问题：</strong> 能否用一个单一尺寸的放大描述整个早期增长过程？</li>
+<li><strong>图中证据或方法：</strong> a至c分别给出最大高度、等效直径和积分体积；d至f为对应变化率。观测末期高度约13 μm、等效直径约29 μm、体积约4 pL。早期高度明显增加时，直径曾出现增长较缓的区间。</li>
+<li><strong>支撑的结论：</strong> 体积在大部分检测后时间内持续累积，但竖向增长和足迹扩张的时间变化并不同步，不能视为固定几何形状的自相似放大。</li>
+<li><strong>局限与读图注意：</strong> 导数曲线对帧间噪声、差分和后处理敏感；作者用它们比较相对趋势，不把每一个瞬时峰值当作可靠绝对生长速率。体积累积速率也不直接等于已测热流密度。</li>
+</ul><p>这里的关键不是“长高一定先于变宽”，而是<strong>在这一条轨迹中，两个方向的增长权重随时间改变</strong>。一个瞬间的直径相近，不意味着体积或高度不变；同样的体积增加也可能以不同形状变化实现。对形貌诊断而言，这比只拟合最终直径更有信息。</p></section><section><h2 id="s5">结果二：增长指数是分段描述，不是普适指数</h2><p class="credit"><a href="https://doi.org/10.1007/s00348-026-04323-x">Figure 6：以首次检测为零点的分段有效幂律拟合 · 原文</a></p><p><strong>Figure 6｜如何正确理解0.27与0.52</strong></p><ul>
+<li><strong>回答的问题：</strong> 检测后的直径和体积能否被一条固定指数的幂律描述？</li>
+<li><strong>图中证据或方法：</strong> 以τ=t−t_detect为时间轴，对<code>y=y₀+Kτ^m</code>在τ&lt;20 s及τ&gt;50 s两个区间拟合。D_eq的m由约0.27变为0.52；V的m由约2.17变为1.47。图内列出的早期拟合R²分别约0.76和0.91，晚期均四舍五入为1.00。</li>
+<li><strong>支撑的结论：</strong> 同一滴不同时间区间的有效增长描述不同，与图5显示的形状增长不同步一致。</li>
+<li><strong>局限与读图注意：</strong> 拟合含有偏置y₀，m不能直接当作原始log(y)-log(τ)曲线处处的局部斜率。拟合区间、检测零点和单滴选择都会影响结果；R²接近1不是某个传热/扩散机制已被唯一识别的证明。</li>
+</ul><p>本文没有据这些指数推导出新的普适凝结定律，也没有声称0.52就足以证明纯扩散控制。较小的早期直径指数与较大的体积指数相结合，描述的是“足迹增长较受限时，高度场内部仍在增加液体”；把这一描述升格成接触线钉扎的直接因果证据，还缺局部润湿与接触线约束的测量。</p></section><section><h2 id="s6">结果三：足迹变圆与形心移动不等于整滴滑动</h2><p class="credit"><a href="https://doi.org/10.1007/s00348-026-04323-x">Figure 7：边界轮廓、圆度和长宽比的演化 · 原文</a></p><p><strong>Figure 7｜面积变化小，不代表边界没有重组</strong></p><ul>
+<li><strong>回答的问题：</strong> 早期横向尺寸变化较小时，液滴足迹是否仍然在重排？</li>
+<li><strong>图中证据或方法：</strong> a叠加不同时刻阈值边界；b中圆度增长至约0.9；c中长宽比逐渐接近1，说明原先较不规则和拉长的足迹趋于规整。</li>
+<li><strong>支撑的结论：</strong> 单看等效直径会漏掉边界形状的变化；同样面积可以对应不同周长、长宽比和几何中心。</li>
+<li><strong>局限与读图注意：</strong> 最早液滴小、边界像素有限，圆度和周长容易受采样与阈值影响。图中是可检测足迹的外轮廓，不是已单独测量的真实接触角或局部润湿能。</li>
+</ul><p class="credit"><a href="https://doi.org/10.1007/s00348-026-04323-x">Figure 8：足迹几何中心的位移与平面轨迹 · 原文</a></p><p><strong>Figure 8｜“中心变了”和“整滴移动了”是两件事</strong></p><ul>
+<li><strong>回答的问题：</strong> 边界增长是否围绕一个固定位置对称展开？</li>
+<li><strong>图中证据或方法：</strong> a给出足迹形心相对首次检测的位置变化，早期增大后在约10至11 μm处趋于平台；b显示平面轨迹偏向一个方向，而不是纯粹随机逐帧抖动。</li>
+<li><strong>支撑的结论：</strong> 该检测足迹的演化不是围绕固定中心的完全均匀径向扩张，存在有方向性的几何重组。</li>
+<li><strong>局限与读图注意：</strong> 作者明确承认机械或光学漂移不能完全排除；形心可因一侧长得更快而移动，即使液体整体没有滑移。因而不能把这张图直接写成“液滴自驱动迁移”的证据。</li>
+</ul><p>作者讨论了局部表面异质性、钉扎和解钉扎可能的作用，但并未同时测量局部润湿分布。因此，较严格的表述是：观察到的非对称增长<strong>与不均匀接触线条件相容</strong>；具体驱动机制仍有待独立实验。</p></section><section><h2 id="s7">关键检验：球冠为什么不能同时满足三个几何量</h2><p>球冠模型一旦给定足迹半径a和高度h，就确定体积。反过来，给定体积和足迹，也确定高度。这意味着最大高度、足迹面积、体积三者不能独立变化；其中任意两个就可以预测第三个。</p><p>但作者不是直接把阈值以上的滴冠当成从零高度开始的球冠。令a=D_eq/2，h_cap=H_max−h_thr，式(6)使用与实测一致的高度参考：</p><p><strong>V<sub>SC</sub> = [πh<sub>cap</sub>/6](3a²+h<sub>cap</sub>²) + πa²h<sub>thr</sub></strong></p><p>第一项是检测平面以上的球冠体积；第二项把检测平面到干参考面之间那段高度补回。这个细节重要，因为实测体积积分使用的是相对干表面的完整h，而不是简单对h−h_thr求和。若两边参考面不同，会把人为定义误差混进形状差异。</p><p class="credit"><a href="https://doi.org/10.1007/s00348-026-04323-x">Figure 9：实测径向平均轮廓与阈值对齐球冠比较 · 原文</a></p><p><strong>Figure 9｜几何一致性检验，而非重新标定全息仪</strong></p><ul>
+<li><strong>回答的问题：</strong> 实测高度场的截面形状能否用同一球冠几何重现？</li>
+<li><strong>图中证据或方法：</strong> 45、55、100 s三个时刻，黑线是DHM高度场的径向平均轮廓，红虚线为使用测得最大高度及等效直径构造的阈值对齐球冠。中后期红线在较大径向范围内高于黑线。</li>
+<li><strong>支撑的结论：</strong> 即使球冠与实测使用相同高度参考并约束关键尺寸，整体轮廓仍有系统差异；同一球冠关系不足以同时描述该滴的高度、足迹和体积。</li>
+<li><strong>局限与读图注意：</strong> 黑线经过径向平均，会隐藏方位非对称性；定量误差表却使用完整检测足迹及高度积分，不能用一条平均曲线代替全部三维数据。DHM在这里是比较基准，不是通过独立标准验证后的绝对真值。</li>
+</ul><h3>表1逐项读：不是三个独立测量误差</h3><p>作者用两个实测量经球冠关系交叉估计第三个量，定义带符号相对差异为 <code>ε_X=(X_SC−X_DHM)/X_DHM×100%</code>。</p><div class="scroll"><table>
+<thead>
+<tr>
+<th>时刻</th>
+<th>由面积+体积估计高度的差异</th>
+<th>由高度+体积估计面积的差异</th>
+<th>由高度+面积估计体积的差异</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>45 s</td>
+<td>−10.47%</td>
+<td>−9.00%</td>
+<td>+9.84%</td>
+</tr>
+<tr>
+<td>55 s</td>
+<td>−17.29%</td>
+<td>−24.40%</td>
+<td>+26.34%</td>
+</tr>
+<tr>
+<td>100 s</td>
+<td>−17.07%</td>
+<td>−27.74%</td>
+<td>+28.53%</td>
+</tr>
+</tbody>
+</table></div><p>因此，“球冠体积高估约10%至29%”是这三个时刻、这一滴、这一阈值处理下相对DHM的差异，并非所有凝结水滴的通用误差条。三列也不是三项独立仪器误差：它们是同一个球冠几何约束不相容的三种表达，不能当作三次互相独立的验证来加强显著性。</p></section><section><h2 id="s8">局限与证据等级</h2><div class="scroll"><table>
+<thead>
+<tr>
+<th>已直接展示</th>
+<th>作者给出的可能解释</th>
+<th>仍未独立建立</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>高度、足迹、体积不同步增长</td>
+<td>接触线约束可能使横向与竖向发展权重改变</td>
+<td>各局部钉扎点的直接位置与力学作用</td>
+</tr>
+<tr>
+<td>阈值足迹变圆、形心有方向性变化</td>
+<td>表面异质性可能影响边界重组</td>
+<td>整滴真实平移、内部速度场或驱动力</td>
+</tr>
+<tr>
+<td>球冠交叉估计与DHM几何不一致</td>
+<td>早期形状不宜用固定球冠自相似放大</td>
+<td>适用于所有湿度、润湿性与材料的误差范围</td>
+</tr>
+<tr>
+<td>分段拟合指数发生变化</td>
+<td>不同阶段几何增长模式改变</td>
+<td>唯一的扩散/导热控制机理与普适指数</td>
+</tr>
+</tbody>
+</table></div><p>还需要特别保留以下边界：</p><ol>
+<li><strong>样本与重复性。</strong> 主文机制讨论和边界分析基于1滴；补充3滴来自同一次实验，不能替代跨实验重复与统计置信区间。</li>
+<li><strong>陡坡限制。</strong> 20倍DHM-T配置厂家给出最大可测斜率约60.4°，过陡界面可能使光线离开接收范围并出现暗区；这不是在所有样品上验证过的无偏几何测量保证。</li>
+<li><strong>阈值与体积。</strong> h_thr以下的薄缘不在积分区内；最早阶段受背景、阈值和首次检测时刻影响尤其大。</li>
+
+<li><strong>信息边界。</strong> 本文未直接测量凝结热通量、局部传质系数或滴内流场，不能把形状重建本身写成这些量的验证。</li>
+</ol></section><footer class="source"><p>Sangmin Song, Il Woong Park, Carlos Alberto Dorao, Maria Fernandino · <a href="https://doi.org/10.1007/s00348-026-04323-x">Time-resolved 3D reconstruction of an early-stage condensing microdroplet using digital holographic microscopy</a> · Experiments in Fluids · 2026</p><a href="./">返回论文精读目录</a></footer></article></main></body></html>

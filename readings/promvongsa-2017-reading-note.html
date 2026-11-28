@@ -1,0 +1,66 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>如何从一条彩虹散射信号读取燃料液滴的蒸发？ · 论文精读</title><style>*{box-sizing:border-box}html{color-scheme:light;scroll-padding-top:1rem}body{margin:0;background:#f4f6f8;color:#1b2d3c;font:1.05rem/1.86 system-ui,"Microsoft YaHei",sans-serif;overflow-wrap:anywhere}header{background:#173c58;color:white}header div,main{max-width:54rem;margin:auto;padding:0 clamp(1rem,4vw,2.6rem)}header div{display:flex;gap:1.6rem;align-items:center;padding-block:.68rem}header a{color:white}a{color:#155078;text-underline-offset:.2em}main{background:white;padding-block:1.4rem 3rem}h1,h2,h3,h4{line-height:1.45;text-wrap:pretty}h1{font-size:clamp(1.65rem,4vw,2.4rem);margin:.35rem 0 .6rem}h2{color:#193f58;font-size:1.4rem;margin:2.2rem 0 .6rem;border-top:1px solid #d7e1e8;padding-top:1.3rem}h3{font-size:1.13rem;margin:1.4rem 0 .3rem}p{margin:.7rem 0}.meta,figcaption,.credit{color:#506575;font-size:.91rem}.lead{border-left:3px solid #477b92;padding:.5rem .9rem;background:#f1f6f8}details{margin:1rem 0}summary{cursor:pointer;color:#155078;font-weight:650}ul,ol{padding-left:1.5em}li+li{margin-top:.28em}.scroll,pre,math[display=block]{max-width:100%;overflow-x:auto}.scroll{margin:.9rem 0}table{font-size:.94rem;border-collapse:collapse;text-align:left;width:100%;min-width:22rem}td,th{border-bottom:1px solid #d4e0e7;padding:.45rem .6rem;vertical-align:top}th{background:#eef4f6}figure{margin:1.4rem 0}figure>a{display:block}figure img{max-width:100%;height:auto;display:block;margin:auto}figure a span{display:block;text-align:center;font-size:.85rem}figcaption{margin-top:.4rem}code,pre{font-family:ui-monospace,monospace;background:#f2f5f6}pre{padding:.75rem}blockquote{margin-inline:0;padding-left:.85rem;border-left:3px solid #a6bac6}.source{margin-top:2.2rem;border-top:1px solid #cedbe3;padding-top:.8rem}a:focus-visible,summary:focus-visible{outline:3px solid #b77928;outline-offset:2px}@media(max-width:520px){body{font-size:1rem}h2{font-size:1.22rem}header div{gap:1.2rem}}</style></head><body><header><div><a href="../">每日知识</a><a href="./">论文精读目录</a></div></header><main><article><p class="meta">Promvongsa 等 · Proceedings of the Combustion Institute · 2017</p><h1>如何从一条彩虹散射信号读取燃料液滴的蒸发？</h1><p class="lead">一维全局彩虹技术同时反演折射率和微小的直径变化。两种信号合起来，可以跟踪运动中多组分液滴的蒸发。</p><p><a href="https://doi.org/10.1016/j.proci.2016.08.010">Multicomponent fuel droplet evaporation using 1D Global Rainbow Technique</a></p><details><summary>文章目录</summary><ol><li><a href="#s1">研究背景</a></li><li><a href="#s2">研究方法</a></li><li><a href="#s3">信号处理逻辑</a></li><li><a href="#s4">具体结果</a></li><li><a href="#s5">关键机制</a></li><li><a href="#s6">适用范围与局限</a></li></ol></details><section><h2 id="s1">研究背景</h2><p>液滴蒸发直接控制喷雾燃烧、内燃机、喷雾干燥和灭火等过程。单组分或悬挂液滴实验可相对容易地测量直径衰减，但真实燃料液滴通常是多组分且高速运动，蒸发过程中同时发生尺寸变化、温度变化和组分变化。若只测直径，就难以区分温度与组分对蒸发速率的影响；若只测温度或折射率，也不能得到局部质量损失。</p><p>彩虹技术的优势是可从彩虹角附近的散射光分布同时获得 droplet size 和 refractive index。Standard Rainbow Technique 依赖单个或相同粒子信号，会受到 ripple 结构干扰；Global Rainbow Technique 通过许多粒子信号叠加削弱 ripple，适合获得平均折射率/粒径分布。1D-GRT 则用 slit apertures 和 laser sheet，把原本点测量扩展为沿一条线的空间分布测量，适合追踪单分散液滴流在飞行路径上的连续演化。</p><p>本文的目标不是建立多组分蒸发模型，而是证明 1D-GRT 能从一张图像中提取 multicomponent droplet evaporation 所需的关键量：直径、折射率、组分/温度变化和局部蒸发率。</p></section><section><h2 id="s2">研究方法</h2><h3>1D-GRT 光学测量</h3><p>Figure 1（1D-GRT 光路）：</p><ul>
+<li>连续 532 nm 激光经光学系统变为竖直 laser sheet，与单分散液滴线重合。</li>
+<li>每个 CCD 水平行对应测量体中不同竖直位置的彩虹信号；因此单张图像可以同时记录多个空间位置上的 rainbow pattern。</li>
+<li>需要两类校准：y 方向的长度校准，把 CCD 垂直位置对应到液滴飞行路径；x 方向的角度校准，用旋转 goniometer 和反射镜把像素列对应到散射角。</li>
+<li>本实验测量体长度为 8 mm；每 1 mm 选一个 band，每个 band 含 21 rows 并沿列平均得到 intensity vector。</li>
+</ul><p>读图注意点：这不是普通成像测直径。直径和折射率来自散射光角分布与 Lorenz-Mie/Nussenzveig 理论的反演，因此对球形、单分散、光学均匀液滴的假设很强。</p><h3>液滴发生器和燃料</h3><p>Figure 2（液滴发生器与控温腔）：</p><ul>
+<li>TSI 3050 droplet generator 产生线性单分散液滴流，pinhole 直径 50 um，液体流量 0.6 mL/min，激励频率 18.3 kHz。</li>
+<li>这些条件下液滴直径约 100 um，速度约 5 m/s。</li>
+<li>喷嘴上方有 15 mm 高 cavity chamber，可控制空气温度 Ti；实验做了 Ti = 20 degC 和 40 degC 两组。</li>
+<li>测量位置从距 nozzle 23 mm 到 41 mm，以 5 mm increment 移动，并有 3 mm overlap。</li>
+</ul><p>燃料为汽油 surrogate，体积分数为：</p><ul>
+<li>n-pentane 36%</li>
+<li>iso-octane 46%</li>
+<li>n-undecane 18%</li>
+</ul><p>Table 1（燃料性质）：</p><ul>
+<li>密度 751.7 kg/m3 at 15 degC；</li>
+<li>vapor pressure 565 mbar；</li>
+<li>RON 95.5；</li>
+<li>C/H ratio 6.58% mass；</li>
+<li>initial boiling point 30 degC；</li>
+<li>5% vol distillation temperature 48 degC。</li>
+</ul><p>作者准备两瓶燃料：一瓶保持关闭，一瓶在室温开口放置。day 0 测初始燃料；day 2 测开瓶燃料；day 8 同时测开瓶和闭瓶燃料。每个测量记录 200 张图像。</p></section><section><h2 id="s3">信号处理逻辑</h2><h3>彩虹信号对直径和折射率的敏感性</h3><p>Figure 3（直径敏感性）：</p><ul>
+<li>Lorenz-Mie 模拟显示，当 n-heptane 液滴直径从 100 um 增加到 110 um 时，主峰变窄且强度明显变高。</li>
+<li>但直径只变 1 um 时，直接从主峰形状几乎看不出差别。</li>
+<li>ripple phase 对直径更敏感：99 -&gt; 100 um 可产生可测 phase shift，但 phase-diameter 关系有 2 pi ambiguity，必须沿轨迹连续测量，避免跳相。</li>
+</ul><p>Figure 4（折射率敏感性）：</p><ul>
+<li>折射率变化会移动主彩虹角位置，也会改变 ripple phase。</li>
+<li>对 100 um、n = 1.3850 的 n-heptane 液滴，折射率变化可检测到第四位小数。</li>
+<li>一个 ripple period 对应约 0.2 um 直径变化，或约 0.0041 折射率变化。</li>
+</ul><p>Figure 5（直径和折射率同时变化的 1D-GRT 图像）：</p><ul>
+<li>模拟图像中，每一列是散射角，每一行是液滴线上的空间位置。</li>
+<li>ripple phase 会同时受直径变化和折射率变化影响，但主彩虹角位置只依赖折射率。</li>
+<li>因此总相位变化可拆为：</li>
+</ul><pre><code>Delta phi = Delta phi_n + Delta phi_d
+</code></pre><p>其中 Delta phi_n 来自折射率变化，Delta phi_d 来自直径变化。只要先由主彩虹位置/反演得到折射率演化，就可以从总 ripple phase shift 中扣掉折射率贡献，得到纳米级直径变化。</p><h3>两步反演</h3><p>作者的处理流程是：</p><ol>
+<li>先用基于 Nussenzveig 理论的 inversion code 拟合 recorded/simulated signals，得到折射率和液滴尺寸。折射率精度可达第四位小数，尺寸精度约 0.2 um。</li>
+<li>再用 Cross Spectrum Density (CSD) 方法连续测量 ripple phase shift。由第一步的折射率和尺寸估算 Delta phi_n，从总 Delta phi 中扣除，得到 Delta phi_d，进而得到纳米级直径变化。</li>
+</ol><p>这一步是全文方法核心：普通反演只给微米级尺寸，而局部蒸发率需要在 100 um 液滴、5 m/s 运动速度下测到 20-70 nm/mm 量级的直径变化。</p></section><section><h2 id="s4">具体结果</h2><h3>结果 1：1D-GRT 图像能区分不同温度下的液滴演化</h3><p>Figure 6（20 degC 和 40 degC cavity 下的 1D-GRT 原始图像）：</p><ul>
+<li>图像包含一个强亮斑，对应 primary rainbow 的主峰；同时有倾斜条纹，对应 ripple。</li>
+<li>ripple fringe 倾角与液滴变化相关，包括尺寸和折射率变化。</li>
+<li>高温下 ripple phase change 更大，说明液滴性质沿飞行路径变化更强。</li>
+<li>主彩虹角的整体移动不易肉眼观察，但可通过提取每一空间位置的 light distribution 进行反演。</li>
+</ul><h3>结果 2：折射率沿飞行距离升高，开瓶时间越久折射率越高</h3><p>Figure 7（折射率提取结果）：</p><ul>
+<li>在 20 degC 和 40 degC 下，液滴折射率都随飞行距离增加而升高。</li>
+<li>同一温度下，开瓶 8 天燃料的折射率高于开瓶 2 天，高于 fresh/day0 燃料。</li>
+<li>作者解释为轻组分优先挥发：n-pentane 等更挥发组分先损失，剩余液体变“重”，密度增加，折射率上升。</li>
+<li>40 degC 下折射率值低于 20 degC，符合折射率随温度升高而降低的常识。</li>
+<li>闭瓶燃料 day 8 的折射率变化不明显，说明开瓶挥发而不是存放时间本身改变了组分。</li>
+</ul><p>读图注意点：折射率同时受温度和组分影响。作者用温度对折射率的已知趋势解释 20/40 degC 差异，用开瓶挥发解释 day 0/day 2/day 8 差异；但文中没有独立测量液滴内部温度或真实组成。</p><h3>结果 3：纳米级直径变化可转化为局部蒸发率</h3><p>Figure 8（归一化直径演化）：</p><ul>
+<li>作者先从总 phase shift 中扣除折射率贡献，再用 Lorenz-Mie 模拟相关式得到直径变化。</li>
+<li>对约 100 um 液滴，1 mm 飞行距离上的直径变化可小至 20-70 nm。</li>
+<li>将各 1 mm 段的直径变化累加，得到直径随飞行距离的演化曲线。</li>
+<li>曲线显示蒸发对液体组成非常敏感：fresh 燃料和开瓶老化燃料的直径衰减不同。</li>
+</ul><p>Table 2（17-18 mm 位置估算的蒸发率，速度取 5 m/s）：</p><ul>
+<li>20 degC, day 8：直径约 99.52 um，直径变化 0.30 um，蒸发率 1.7 ug/s；</li>
+<li>20 degC, day 0：直径约 99.27 um，直径变化 0.40 um，蒸发率 2.3 ug/s；</li>
+<li>40 degC, day 8：直径约 99.38 um，直径变化 0.30 um，蒸发率 1.7 ug/s；</li>
+<li>40 degC, day 0：直径约 99.17 um，直径变化 0.70 um，蒸发率 4.0 ug/s。</li>
+</ul><p>这里最直接的结论是：新鲜燃料在高温下蒸发最快；开瓶 8 天后的燃料即使在 40 degC 下，蒸发率也大幅降低，接近 20 degC day 8 的数值。原因是轻组分已经在瓶中优先损失，剩余液体挥发性降低。</p></section><section><h2 id="s5">关键机制</h2><h3>光学机制</h3><p>主彩虹角主要受折射率控制，ripple phase 同时受折射率和直径控制。因此可以先从主彩虹位置/整体信号拟合中得到折射率，再用相位分解把直径变化取出来：</p><pre><code>总 ripple phase shift -&gt; 扣除折射率贡献 -&gt; 直径贡献 -&gt; 纳米级直径变化 -&gt; 局部蒸发率
+</code></pre><p>这个机制的优势是空间同步：单张 1D 图像包含 8 mm 测量线上的多个位置，不需要逐点扫描同一个液滴。</p><h3>多组分蒸发机制</h3><p>汽油 surrogate 中 n-pentane 最轻且更易挥发，先被消耗；液滴沿飞行路径蒸发时，剩余液体中 iso-octane/n-undecane 相对比例增加，导致折射率上升、挥发性下降。开瓶老化燃料已在瓶中经历轻组分损失，因此初始折射率更高、后续蒸发率更低。</p></section><section><h2 id="s6">适用范围与局限</h2><ul>
+<li>折射率不是纯组成指标，也受温度影响。本文通过不同温度和开瓶时间的趋势解释温度/组分贡献，但没有独立测温或质谱/GC 组成验证。</li>
+<li>技术假设液滴近似球形、单分散、光学均匀；若液滴非球形、内部温度/组分梯度强或有振荡，彩虹反演会更复杂。</li>
+<li>直径变化依赖连续相位追踪，存在 2 pi ambiguity；如果空间采样间隔过大或变化太快，可能发生相位跳跃误判。</li>
+<li>Table 2 的蒸发率示例只用 17-18 mm 之间、速度 5 m/s 的局部估算，不代表完整飞行路径平均蒸发率。</li>
+<li>文章主要证明诊断技术可行，对多组分蒸发机理建模较少；它没有提供完整的热质传递模型来预测各组分分馏。</li>
+</ul></section><footer class="source"><p>Jantarat Promvongsa, Pumyos Vallikul, Bundit Fungtammasan, Annie Garo, Gerard Grehan, Sawitree Saengkaew · <a href="https://doi.org/10.1016/j.proci.2016.08.010">Multicomponent fuel droplet evaporation using 1D Global Rainbow Technique</a> · Proceedings of the Combustion Institute · 2017</p><a href="./">返回论文精读目录</a></footer></article></main></body></html>

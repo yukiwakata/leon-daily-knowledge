@@ -1,0 +1,87 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>致密喷雾为何不能用一颗液滴的蒸发寿命来描述？ · 论文精读</title><style>*{box-sizing:border-box}html{color-scheme:light;scroll-padding-top:1rem}body{margin:0;background:#f4f6f8;color:#1b2d3c;font:1.05rem/1.86 system-ui,"Microsoft YaHei",sans-serif;overflow-wrap:anywhere}header{background:#173c58;color:white}header div,main{max-width:54rem;margin:auto;padding:0 clamp(1rem,4vw,2.6rem)}header div{display:flex;gap:1.6rem;align-items:center;padding-block:.68rem}header a{color:white}a{color:#155078;text-underline-offset:.2em}main{background:white;padding-block:1.4rem 3rem}h1,h2,h3,h4{line-height:1.45;text-wrap:pretty}h1{font-size:clamp(1.65rem,4vw,2.4rem);margin:.35rem 0 .6rem}h2{color:#193f58;font-size:1.4rem;margin:2.2rem 0 .6rem;border-top:1px solid #d7e1e8;padding-top:1.3rem}h3{font-size:1.13rem;margin:1.4rem 0 .3rem}p{margin:.7rem 0}.meta,figcaption,.credit{color:#506575;font-size:.91rem}.lead{border-left:3px solid #477b92;padding:.5rem .9rem;background:#f1f6f8}details{margin:1rem 0}summary{cursor:pointer;color:#155078;font-weight:650}ul,ol{padding-left:1.5em}li+li{margin-top:.28em}.scroll,pre,math[display=block]{max-width:100%;overflow-x:auto}.scroll{margin:.9rem 0}table{font-size:.94rem;border-collapse:collapse;text-align:left;width:100%;min-width:22rem}td,th{border-bottom:1px solid #d4e0e7;padding:.45rem .6rem;vertical-align:top}th{background:#eef4f6}figure{margin:1.4rem 0}figure>a{display:block}figure img{max-width:100%;height:auto;display:block;margin:auto}figure a span{display:block;text-align:center;font-size:.85rem}figcaption{margin-top:.4rem}code,pre{font-family:ui-monospace,monospace;background:#f2f5f6}pre{padding:.75rem}blockquote{margin-inline:0;padding-left:.85rem;border-left:3px solid #a6bac6}.source{margin-top:2.2rem;border-top:1px solid #cedbe3;padding-top:.8rem}a:focus-visible,summary:focus-visible{outline:3px solid #b77928;outline-offset:2px}@media(max-width:520px){body{font-size:1rem}h2{font-size:1.22rem}header div{gap:1.2rem}}</style></head><body><header><div><a href="../">每日知识</a><a href="./">论文精读目录</a></div></header><main><article><p class="meta">Rotily 等 · Physical Review Fluids · 2026</p><h1>致密喷雾为何不能用一颗液滴的蒸发寿命来描述？</h1><p class="lead">液滴共享近饱和蒸气场，喷雾寿命受到拉伸和扩散混合的限制。实验里液滴数减少，而归一化粒径分布近似保持。</p><p><a href="https://doi.org/10.1103/ms1r-7jb9">Lifetime and droplets size distribution of dense sprays</a></p><details><summary>文章目录</summary><ol><li><a href="#s1">研究背景</a></li><li><a href="#s2">研究方法</a></li><li><a href="#s3">具体结果</a></li><li><a href="#s4">关键机制</a></li><li><a href="#s5">适用范围与局限</a></li></ol></details><section><h2 id="s1">研究背景</h2><ul>
+<li>单个孤立液滴在静止、均匀环境中通常服从 d² 定律：<code>d² = d0² - κt</code>。它预言小液滴更早消失，寿命强烈依赖初始直径和液体挥发性。</li>
+<li>实际喷雾中的液滴往往彼此接近。邻近液滴共同建立近饱和蒸气场，使喷雾内部液滴不能像孤立液滴那样持续蒸发。</li>
+<li>作者沿用其 2016、2017 年工作的核心观点：致密喷雾蒸发首先是蒸气标量场的混合问题。喷雾边界被拉伸，蒸气通过边界扩散离开；只有边界扫过某个液滴后，该液滴才在短时间内按 d² 定律消失。</li>
+<li>本文的新内容有两点：把原先的指数拉伸推广到较弱的线性/幂律拉伸；用 IPI 原位测量喷雾消失过程中液滴数目和粒径分布的演化。</li>
+</ul></section><section><h2 id="s2">研究方法</h2><h3>实验与诊断</h3><ul>
+<li>喷雾射流撞击约 <code>10°</code> 倾斜、厚 <code>0.1 mm</code> 的玻璃片，形成初始厚度 <code>s0 = 3 mm</code> 的喷雾薄层（lamella）。</li>
+<li>玻璃片以 <code>3 Hz</code>、振幅 <code>7 mm</code> 横向振荡；射流速度约 <code>0.1 m/s</code>。薄层物质线近似按
+<code>ℓ ≈ ℓ0(1 + σt)</code> 拉长，其中 <code>σ = 2αω/π</code>，局部拉伸率 <code>γ(t) = σ/(1 + σt)</code>。</li>
+<li>四种液体覆盖较宽挥发性范围：丙二醇、水、乙醇、丙酮。液体表面张力量级相近，蒸气在空气中的扩散系数也相近，主要差别是饱和蒸气压。</li>
+<li>相机 1 测量薄层厚度 <code>s(t)</code> 和波节间长度；相机 2 使用 Interferometric Particle Imaging（IPI）由干涉条纹反演液滴直径。</li>
+<li>IPI 可检测约 <code>2-3 μm</code> 至 <code>50 μm</code> 的液滴；每组通常分析数千个液滴，但只保留未被邻滴图样明显叠加的干涉图样。</li>
+</ul><h3>Figure 1（装置与双诊断）</h3><ul>
+<li>回答的问题：怎样同时测量喷雾薄层运动学和单滴粒径。</li>
+<li>左侧相机跟踪 <code>s(t)</code> 与驻留时间；右侧斜视相机通过条纹数测粒径。</li>
+<li>它建立了后续“薄层寿命”和“粒径 PDF”可以同步测量的证据基础。</li>
+<li>注意：IPI 在喷雾过密时无法可靠分辨所有液滴，因此粒径样本来自可识别子集。</li>
+</ul><h3>Figure 2（挥发性和薄层消失的直观比较）</h3><ul>
+<li>丙二醇/水、水、乙醇、丙酮的薄层持续长度依次缩短，与挥发性升高一致。</li>
+<li>水喷雾的拉格朗日图像显示薄层整体变薄，但拓扑形态一直保留到液滴完全消失。</li>
+<li>这支持“从边界向内部退缩”的薄层描述，而不是所有液滴同步连续缩小。</li>
+</ul><h3>理论模型</h3><p>喷雾薄层厚度满足</p><p><code>ds/dt = -γ(t)s - [(ρs - ρ∞)/ρ] [2D/η(t)]</code>。</p><ul>
+<li>第一项是流动拉伸造成的几何压缩。</li>
+<li>第二项是两侧边界上的蒸气扩散造成的“烧蚀”；<code>η(t)</code> 是蒸气浓度梯度厚度，即广义 Batchelor 尺度。</li>
+<li>对线性伸长，混合时间之后有
+<code>η(t) ≈ sqrt[D(t + σ^-1)/(1 + 2β)]</code>；本文线性情形对应 <code>β = 1</code>。</li>
+<li>定义 <code>S = s/s0</code>、<code>T = 1 + σt</code>、<code>Pe = σs0²/D</code> 和
+<code>φ = [(ρs - ρ∞)/ρ] 2/sqrt(Pe)</code>，可得
+<code>dS/dT = -S/T - φ/sqrt(T)</code>。</li>
+<li>线性伸长下，寿命近似满足
+<code>σt* ≈ (3/2φ)^(2/3)</code>（<code>φ &lt;&lt; 1</code>），因此 <code>t*</code> 主要由拉伸时间 <code>σ^-1</code> 控制，对饱和蒸气密度和扩散系数只呈弱幂律依赖，并且不依赖液滴直径。</li>
+</ul><p>这里需区分论文中的两个符号：<code>ϕ</code> 表示液相体积分数，<code>φ</code> 是把挥发性、湿度、密度和 Péclet 数合并后的无量纲参数。</p><h3>Figure 3（广义 Batchelor 尺度）</h3><ul>
+<li>展示不同幂律拉伸指数 <code>β</code> 下，压缩与扩散如何共同决定蒸气梯度厚度 <code>η(t)</code>。</li>
+<li><code>β &lt; 1</code> 时拉伸逐渐减弱，扩散最终占优，<code>η</code> 变宽；<code>β &gt; 1</code> 时压缩增强；<code>β = 1</code> 才形成恒定 Batchelor 尺度。</li>
+<li>本文的代数衰减拉伸最终给出 <code>η ~ sqrt(Dt)</code>，是寿命标度的关键中间环节。</li>
+</ul></section><section><h2 id="s3">具体结果</h2><h3>1. 致密喷雾寿命远长于单滴 d² 预期</h3><ul>
+<li>实测薄层寿命约 <code>0.3-3 s</code>。</li>
+<li>对约 <code>5 μm</code> 的孤立液滴，d² 定律给出的寿命仅约 <code>10^-2-10^-1 s</code>。</li>
+<li>致密薄层寿命随 <code>σ^-1</code> 变化，不依赖单滴直径；对饱和蒸气密度约为 <code>ρs^(-2/3)</code>，对扩散系数约为 <code>D^(-1/3)</code>，均弱于孤立液滴情形。</li>
+</ul><h3>Figure 4（寿命模型的核心验证）</h3><ul>
+<li>Figure 4(a)：四种液体的归一化薄层厚度 <code>S</code> 随 <code>σt</code> 衰减，Eq. (11) 的无自由参数曲线能描述实验数据。</li>
+<li>Figure 4(b)：不同液体和不同 <code>σ</code> 的寿命由单一参数 <code>φ</code> 归并到同一趋势，并与 Eq. (12) 符合。</li>
+<li>这是全文最关键的定量图：它表明改变挥发性后，寿命仍能用“拉伸-扩散混合”统一描述。</li>
+<li>Caveat：实验 <code>Pe</code> 仅约 <code>5-10</code>，理论要求的高 Pe/<code>φ &lt; 1</code> 条件只勉强满足；部分数据甚至 <code>φ &gt; 1</code>，拟合虽好，但属于对理论适用域的外推。</li>
+</ul><h3>2. 超线性拉伸会进一步加速蒸发</h3><ul>
+<li>薄层后期可能因卷起涡而出现 <code>ℓ/ℓ0 = (1 + σt)^β</code>、<code>β &gt; 1</code> 的超线性拉伸。</li>
+<li>此时寿命对热力学和扩散性质的依赖更弱；极限的指数拉伸给出 <code>γt* ~ -ln φ</code>。</li>
+</ul><h3>Figure 5（非线性拉伸实例）</h3><ul>
+<li>水薄层示例可由 <code>β = 1.3</code> 的超线性模型描述。</li>
+<li>乙醇薄层后期表现出近指数拉伸。</li>
+<li>图的作用是说明真实薄层并不总严格遵守线性运动学，局部拉伸历史会形成寿命分布。</li>
+</ul><h3>3. 单滴只在离开饱和喷雾核心后快速蒸发</h3><p>作者用“富集长度”</p><p><code>ℓe ~ d [ρl/(ρs - ρ∞)]^(1/3)</code></p><p>定义致密条件。常温水的 <code>ℓe</code> 约为初始液滴直径的 40 倍；本实验跨越薄层厚度约有 <code>N ~ 10^3</code> 个微米液滴，群蒸发数 <code>Nd/s0 &gt; 1</code>，明显处于致密极限。</p><h3>Figure 6（单滴拉格朗日证据）</h3><ul>
+<li>一个水滴在薄层核心中直径长期近似不变。</li>
+<li>离开喷雾核心后，其直径在约 <code>0.08 s</code> 内快速下降，与基于出口直径计算的 d² 时间尺度一致。</li>
+<li>因而 d² 定律不是完全失效，而是只适用于液滴暴露于未饱和环境之后的短末期。</li>
+<li>该图是单个轨迹，主要提供机制例证，不能单独代表整个液滴群体。</li>
+</ul><h3>4. 液滴数量下降，但归一化粒径分布近似不变</h3><ul>
+<li>稀喷雾/孤立液滴模型预言：小滴先消失，低粒径端逐渐形成 <code>p(d,t) ~ d</code> 的尾部。</li>
+<li>致密喷雾模型预言：边界扫过液滴的事件近似与液滴尺寸无关，因此
+<code>p(d,t) = p(d,0)</code>；变化的是各粒径组的总数 <code>n(d,t)</code>，不是归一化分布形状。</li>
+</ul><h3>Figure 7（粒径分布的决定性证据）</h3><ul>
+<li>Figure 7(a)：随时间增加，各直径组的液滴数整体下降。</li>
+<li>Figure 7(b,c)：归一化粒径 PDF 基本重合，平均直径保持约 <code>5 μm</code>。</li>
+<li>Figure 7(d)：若强制每个液滴按 d² 定律演化，会出现实验中没有看到的 <code>p ~ d</code> 小粒径尾部。</li>
+<li>因此，致密和稀疏喷雾可以通过粒径 PDF 是否变形来区分。</li>
+<li>表述应保持克制：论文说的是“closer to invariant”，不是数学意义上的严格不变。</li>
+</ul><h3>5. 从规则薄层推广到真实喷雾</h3><h3>Figure 8（真实喷雾的薄层结构）</h3><ul>
+<li>手持雾化器产生的瞬时水喷雾并非均匀团块，而是由许多厚薄和拉伸历史不同的稀疏薄层组成，薄层之间夹有干燥无滴区域。</li>
+<li>它支持把单个 lamella 当作复杂致密喷雾的基本单元。</li>
+<li>真实喷雾还需加入拉伸率分布；低拉伸率区域会控制长寿命尾部。</li>
+<li>相邻薄层的蒸气扩散边界若重叠，还会像液滴之间的集体屏蔽一样进一步延迟蒸发。</li>
+</ul></section><section><h2 id="s4">关键机制</h2><p>机制链条可以概括为：</p><ol>
+<li>高液滴数密度使喷雾内部蒸气浓度接近饱和。</li>
+<li>核心液滴缺少足够的蒸气浓度梯度，因而不按孤立 d² 速率持续缩小。</li>
+<li>外部流动拉伸喷雾薄层，蒸气通过厚度为 <code>η(t)</code> 的边界层扩散出去。</li>
+<li>饱和核心边界向内退缩，逐个暴露液滴。</li>
+<li>液滴一旦暴露，就在远短于整体混合时间的 d² 时间尺度上消失。</li>
+<li>因为“被边界命中”的概率近似与液滴尺寸无关，液滴总数下降，但归一化粒径 PDF 保持近似不变。</li>
+</ol><p>作者直接证明得较强的是薄层寿命归并、单滴末期快速蒸发和水喷雾 PDF 近似不变。把任意复杂湍流喷雾都分解成独立 lamella，并用拉伸率分布预测总体寿命，仍属于待验证的推广。</p></section><section><h2 id="s5">适用范围与局限</h2><ul>
+<li>粒径分布演化的核心实验主要针对水；四种液体都用于寿命比较，但不能据此断言所有液体或多组分液滴均保持相同 PDF。</li>
+<li><code>Pe ≈ 5-10</code> 只处于理论适用条件的边缘，且出现 <code>φ &gt; 1</code> 数据。模型在该区间的成功更像经验上稳健，而非严格渐近证明。</li>
+<li>IPI 的检测范围约为 <code>2-3 μm</code> 至 <code>50 μm</code>，并排除图样重叠严重的液滴；极小液滴和最致密区域可能存在选择偏差。</li>
+<li>PDF 由不同下游固定窗口映射为 <code>t = x/v</code>，依赖平流速度稳定和样本可比的假设。</li>
+<li>“边界命中与尺寸无关”依赖薄层内部没有明显粒径空间分选；论文将其作为一阶假设，未直接给出完整横向粒径场验证。</li>
+<li>多组分混合物仅通过 Raoult 定律估算有效饱和蒸气压，未处理优先挥发、组成随时间变化或内部传质。</li>
+<li>数据未公开，只能向作者合理索取，限制了独立复算 Figure 4 和 Figure 7。</li>
+</ul></section><footer class="source"><p>L. Rotily, E. Villermaux · <a href="https://doi.org/10.1103/ms1r-7jb9">Lifetime and droplets size distribution of dense sprays</a> · Physical Review Fluids · 2026</p><a href="./">返回论文精读目录</a></footer></article></main></body></html>

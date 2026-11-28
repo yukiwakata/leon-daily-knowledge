@@ -1,0 +1,53 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>相隔的过冷液滴为什么会接连冻结？ · 论文精读</title><style>*{box-sizing:border-box}html{color-scheme:light;scroll-padding-top:1rem}body{margin:0;background:#f4f6f8;color:#1b2d3c;font:1.05rem/1.86 system-ui,"Microsoft YaHei",sans-serif;overflow-wrap:anywhere}header{background:#173c58;color:white}header div,main{max-width:54rem;margin:auto;padding:0 clamp(1rem,4vw,2.6rem)}header div{display:flex;gap:1.6rem;align-items:center;padding-block:.68rem}header a{color:white}a{color:#155078;text-underline-offset:.2em}main{background:white;padding-block:1.4rem 3rem}h1,h2,h3,h4{line-height:1.45;text-wrap:pretty}h1{font-size:clamp(1.65rem,4vw,2.4rem);margin:.35rem 0 .6rem}h2{color:#193f58;font-size:1.4rem;margin:2.2rem 0 .6rem;border-top:1px solid #d7e1e8;padding-top:1.3rem}h3{font-size:1.13rem;margin:1.4rem 0 .3rem}p{margin:.7rem 0}.meta,figcaption,.credit{color:#506575;font-size:.91rem}.lead{border-left:3px solid #477b92;padding:.5rem .9rem;background:#f1f6f8}details{margin:1rem 0}summary{cursor:pointer;color:#155078;font-weight:650}ul,ol{padding-left:1.5em}li+li{margin-top:.28em}.scroll,pre,math[display=block]{max-width:100%;overflow-x:auto}.scroll{margin:.9rem 0}table{font-size:.94rem;border-collapse:collapse;text-align:left;width:100%;min-width:22rem}td,th{border-bottom:1px solid #d4e0e7;padding:.45rem .6rem;vertical-align:top}th{background:#eef4f6}figure{margin:1.4rem 0}figure>a{display:block}figure img{max-width:100%;height:auto;display:block;margin:auto}figure a span{display:block;text-align:center;font-size:.85rem}figcaption{margin-top:.4rem}code,pre{font-family:ui-monospace,monospace;background:#f2f5f6}pre{padding:.75rem}blockquote{margin-inline:0;padding-left:.85rem;border-left:3px solid #a6bac6}.source{margin-top:2.2rem;border-top:1px solid #cedbe3;padding-top:.8rem}a:focus-visible,summary:focus-visible{outline:3px solid #b77928;outline-offset:2px}@media(max-width:520px){body{font-size:1rem}h2{font-size:1.22rem}header div{gap:1.2rem}}</style></head><body><header><div><a href="../">每日知识</a><a href="./">论文精读目录</a></div></header><main><article><p class="meta">Hu 等 · Physical Review Letters · 2025</p><h1>相隔的过冷液滴为什么会接连冻结？</h1><p class="lead">在所研究的亲水基底上，连续吸附水膜为冰晶跨滴传播提供了路径。实验比较了润湿性、膜厚与级联冻结所用的时间。</p><p><a href="https://doi.org/10.1103/physrevlett.134.064001">Water Nanofilms Facilitate Ice Crystal Growth across Droplets</a></p><details><summary>文章目录</summary><ol><li><a href="#s1">研究问题</a></li><li><a href="#s2">实验设计和基础事实</a></li><li><a href="#s3">图表逐图解读</a></li><li><a href="#s4">核心机制链</a></li><li><a href="#s5">临界膜厚和润湿性</a></li><li><a href="#s6">与已有机制的区别</a></li><li><a href="#s7">局限与注意点</a></li><li><a href="#s8">可复用数字</a></li></ol></details><section><h2 id="s1">研究问题</h2><p>多个过冷水滴在冷表面上常发生 cascade freezing：一个液滴冻结后，附近液滴会在毫秒尺度内相继冻结。已有解释主要包括：</p><ul>
+<li>airborne vapor boluses：冻结释放的水汽/局部过饱和诱导邻滴结冰。</li>
+<li>ice bridges：液滴之间形成冰桥。</li>
+<li>frost halos：霜晕传播。</li>
+<li>exploding droplets/shattering：冻结壳破裂后喷射冰碎片。</li>
+</ul><p>这些机制多见于结构化超疏水表面或依赖气相传输、冰桥和飞溅碎片。本文关注的是 hydrophilic surfaces 上的液滴组，提出的关键问题是：如果表面比较亲水、液滴之间没有明显宏观液桥，是否仍能发生级联冻结？如果能，传播通道是什么？</p><p>作者的答案是：连续吸附的水纳米膜可以作为 freezing transmitter。它不是自己先随机成核的 activator，而是把先冻结大液滴中的冰晶生长前沿传到邻近液滴。</p></section><section><h2 id="s2">实验设计和基础事实</h2><p>作者制备了三类不同润湿性的基底，接触角分别为：</p><ul>
+<li><code>(17.5 ± 0.8)°</code></li>
+<li><code>(40.2 ± 0.6)°</code></li>
+<li><code>(98.1 ± 0.9)°</code></li>
+</ul><p>基底暴露在不同相对湿度下形成均匀吸附水膜，厚度范围约 <code>1.0-7.0 nm</code>。主文重点展示 <code>(17.5 ± 0.8)°</code> 的亲水基底和 <code>(7.0 ± 0.2) nm</code> 预吸附水膜。</p><p>冷却速率为 <code>0.15 K/s</code>。单滴冻结过程是典型两阶段过程：</p><ul>
+<li>快速 recalescence：约 <code>10 ms</code> 量级，液滴从透明变成不透明，释放潜热。</li>
+<li>慢速 solidification：数秒量级。</li>
+</ul><p>本文讨论的跨滴传播主要发生在 recalescence 阶段。</p></section><section><h2 id="s3">图表逐图解读</h2><h3>Fig. 1：单滴冻结温度受接触面积控制</h3><p>Fig. 1(a) 展示单个过冷液滴在 <code>(17.5 ± 0.8)°</code> 基底、<code>(7.0 ± 0.2) nm</code> 水膜上的 recalescence。液滴在 <code>256.8 K</code> 附近从边缘发生异质成核，红色虚线标出冰晶前沿；整个 recalescence 在 <code>12 ms</code> 内完成。</p><p>Fig. 1(b) 测量液滴-基底接触面积对冻结温度的影响。接触面积从 <code>1.9 mm2</code> 增至 <code>6.7 mm2</code> 时，冻结温度从 <code>253.6 K</code> 增至 <code>256.8 K</code>，增加 <code>3.2 K</code>。在 <code>0.15 K/s</code> 冷却速率下，如果两个不同大小液滴互相独立冻结，理论时间差约为：</p><pre><code>(256.8 K - 253.6 K) / (0.15 K/s) = 21.3 s
+</code></pre><p>这一步是全文的基准对照：如果后续观察到两个液滴只相差几十毫秒冻结，就不能解释为简单的独立异质成核。</p><h3>Fig. 2：干基底独立冻结，7 nm 纳米膜基底发生快速级联冻结</h3><p>Fig. 2(a) 是干基底上的两滴实验。大液滴和小液滴独立冻结，时间间隔为 <code>21966 ms</code>，约 <code>21.97 s</code>，与 Fig. 1(b) 的面积效应预测一致。</p><p>Fig. 2(b) 是同样大小的两滴放在 <code>(7.0 ± 0.2) nm</code> 水纳米膜上。大液滴先在 <code>14 ms</code> 内完成 recalescence；<code>18 ms</code> 后，小液滴在靠近大液滴的一侧开始成核，并在 <code>4 ms</code> 内完成 recalescence。两滴从起始到全部完成只需 <code>36 ms</code>。</p><p>Fig. 2(c) 和 Fig. 2(d) 用三滴排列测试传播方向：</p><ul>
+<li>最大液滴在左侧时，中间小滴先在靠近大滴的一侧成核，随后右侧小滴再成核。</li>
+<li>最大液滴在中间时，两侧小滴几乎同时在靠近大滴的位置成核。</li>
+</ul><p>这些空间位置证据支持“冻结从最大液滴向邻滴传播”，而不是纳米膜中某个随机位置先成核再同时触发所有液滴。</p><h3>Fig. 3：级联冻结温度由最大液滴决定</h3><p>Fig. 3 比较单滴冻结温度和两滴级联冻结温度。作者改变大液滴接触面积 <code>3.6-6.7 mm2</code>，小液滴接触面积保持 <code>1.9 mm2</code>。结果显示，两滴组的 sequential freezing temperature 与同面积大液滴的独立冻结温度接近。</p><p>这说明整个液滴组的冻结起点由最大液滴决定：最大液滴因为接触面积大，更可能先达到异质成核条件；随后冻结通过水纳米膜传递给小液滴。若纳米膜是 activator，则冻结温度不应如此贴近最大液滴的独立冻结温度。</p><h3>Fig. 4：纳米膜传播可用 Wilson-Frenkel 晶体生长模型描述</h3><p>Fig. 4 测量冰晶生长速率随冻结温度变化。温度从 <code>254.3 K</code> 增至 <code>257.2 K</code> 时：</p><ul>
+<li>液滴内部传播速度从 <code>0.22 m/s</code> 降至 <code>0.17 m/s</code>。</li>
+<li>水纳米膜内传播速度降低约 <code>0.02 m/s</code>。</li>
+<li>纳米膜内速度始终较慢，约为液滴内部速度的 <code>40%</code>。</li>
+</ul><p>作者用 Wilson-Frenkel 模型拟合：</p><pre><code>vg = (D / beta) * { 1 - exp[-DeltaG(T)/(kb T)] }
+</code></pre><p>其中：</p><ul>
+<li><code>D</code> 是自扩散系数。</li>
+<li><code>beta = 8.0 x 10^-10 m</code>，与分子尺度相关。</li>
+<li><code>DeltaG(T)</code> 是过冷水和冰之间的化学势差。</li>
+</ul><p>模型用于液滴和纳米膜时，主要差别在 <code>D</code>。拟合得到：</p><ul>
+<li>纳米膜中 <code>D ≈ 4.06 x 10^-10 m2/s</code>。</li>
+<li>液滴中 <code>D ≈ 9.98 x 10^-10 m2/s</code>。</li>
+</ul><p>也就是说，给定温度下，液滴中水的有效自扩散系数约为 <code>7 nm</code> 水膜中的 <code>2.5</code> 倍。按 Stokes-Einstein 关系，<code>D</code> 与黏度近似反比，因此作者推断 <code>7 nm</code> 水膜的有效黏度约为液滴中的 <code>2.5</code> 倍。</p><p>这个拟合结果是全文机制的动力学证据：纳米膜不是简单提供热传导通道或湿度通道，而是在膜内发生横向冰晶生长，只是由于受基底约束和有效黏度更高，生长速度低于液滴内部。</p></section><section><h2 id="s4">核心机制链</h2><h3>证据链 1：干基底上的冻结是独立的</h3><p>大小液滴的接触面积不同，异质成核温度不同。干基底实验中两滴冻结间隔约 <code>21.97 s</code>，与接触面积导致的冻结温度差相符。因此，大小液滴在没有连续水纳米膜时可以视为相互独立。</p><h3>证据链 2：连续纳米膜把独立冻结变成毫秒级传播</h3><p>当亲水基底上存在 <code>7.0 nm</code> 级水膜时，冻结间隔从秒级降到 <code>&lt;50 ms</code>。成核位置总是出现在靠近先冻大液滴的一侧，三滴排列实验进一步给出传播方向。这排除了“只是两个滴都碰巧在同一温度附近成核”的解释。</p><h3>证据链 3：最大液滴决定级联冻结温度</h3><p>两滴组的冻结温度跟随大液滴接触面积变化，而不是跟随小液滴或纳米膜随机事件。这支持大滴先成核，然后通过纳米膜传播。</p><h3>证据链 4：传播速率符合晶体生长动力学</h3><p>液滴内和纳米膜内传播速率都随冻结温度升高而降低，并能由 Wilson-Frenkel 模型拟合。纳米膜速度约为液滴内 <code>40%</code>，对应更低的扩散系数和更高的有效黏度。</p></section><section><h2 id="s5">临界膜厚和润湿性</h2><p>主文给出一个很重要但主要依赖补充材料的结果：在 <code>(17.5 ± 0.8)°</code> 的亲水基底上，只有当水纳米膜厚度 <code>&gt;= 4.5 nm</code> 时才观察到冻结传播。作者解释为：小于约 <code>4.5 nm</code> 的超薄吸附水层自由能较低，前几个分子层呈刚性、玻璃态、具有晶体取向有序性，表现为 “unfreezable water layer”，因此难以作为冰晶传播通道。</p><p>另外两个较大接触角的基底 <code>(40.2 ± 0.6)°</code> 和 <code>(98.1 ± 0.9)°</code> 即使在 <code>RH = 97%</code> 平衡下也不能传递冻结。主文解释是这些基底没有形成足够有效的连续可冻结水膜。这个结论提示：关键不是“湿度高”本身，而是是否形成了连续、厚度超过临界值、可冻结的吸附水膜。</p></section><section><h2 id="s6">与已有机制的区别</h2><p>这篇机制与 vapor bolus、frost halo、ice bridge、shattering 的区别在于：</p><ul>
+<li>传播介质是表面吸附水纳米膜，不是气相水汽团。</li>
+<li>不需要宏观可见液桥或冰桥。</li>
+<li>不依赖超疏水表面上的爆裂碎片。</li>
+<li>传播方向由先成核液滴和连续纳米膜几何决定。</li>
+</ul><p>因此它更适合解释亲水或非超疏水表面上液滴组的毫秒级顺序冻结。</p></section><section><h2 id="s7">局限与注意点</h2><ul>
+
+<li>作者用透明变不透明识别 recalescence 前沿，这对毫秒级传播足够直观，但不能直接解析纳米膜内冰晶结构。</li>
+<li>Wilson-Frenkel 模型拟合支持“晶体生长”解释，但 <code>D</code> 是有效参数，包含温度、膜厚、基底和近壁水结构影响。</li>
+<li>传播只在特定亲水基底和足够厚吸附水膜中观察到；不能泛化到所有湿表面。</li>
+<li>本文主要讨论 recalescence 前沿传播，不等同于后续数秒级完全凝固过程。</li>
+<li>热传导、气相湿度扰动和基底材料差异并非完全消失，只是作者的证据链表明它们不是主导传播机制。</li>
+</ul></section><section><h2 id="s8">可复用数字</h2><ul>
+<li>单滴 recalescence 时间：约 <code>12 ms</code>。</li>
+<li>冷却速率：<code>0.15 K/s</code>。</li>
+<li>接触面积 <code>1.9 -&gt; 6.7 mm2</code> 时，冻结温度 <code>253.6 -&gt; 256.8 K</code>。</li>
+<li>干基底两滴独立冻结间隔：<code>21966 ms</code>，约 <code>21.97 s</code>。</li>
+<li><code>7.0 ± 0.2 nm</code> 水膜上两滴级联冻结总时间：约 <code>36 ms</code>。</li>
+<li>级联冻结间隔：<code>&lt;50 ms</code>。</li>
+<li>可传播临界膜厚：约 <code>4.5 nm</code>。</li>
+<li>液滴内传播速度：<code>0.22 -&gt; 0.17 m/s</code>，对应 <code>254.3 -&gt; 257.2 K</code>。</li>
+<li>纳米膜传播速度：约为液滴内速度的 <code>40%</code>。</li>
+<li>拟合自扩散系数：纳米膜 <code>4.06 x 10^-10 m2/s</code>；液滴 <code>9.98 x 10^-10 m2/s</code>。</li>
+<li>推断有效黏度：<code>7 nm</code> 水膜约为液滴的 <code>2.5</code> 倍。</li>
+</ul></section><footer class="source"><p>Shaojie Hu, Ningning Zhao, Chao Zhang, Fuxiang Li, Renpeng Chen, Dani Or · <a href="https://doi.org/10.1103/physrevlett.134.064001">Water Nanofilms Facilitate Ice Crystal Growth across Droplets</a> · Physical Review Letters · 2025</p><a href="./">返回论文精读目录</a></footer></article></main></body></html>

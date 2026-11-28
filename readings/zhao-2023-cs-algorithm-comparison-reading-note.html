@@ -1,0 +1,65 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>单像素压缩成像里，采样矩阵和算法该怎样比较？ · 论文精读</title><style>*{box-sizing:border-box}html{color-scheme:light;scroll-padding-top:1rem}body{margin:0;background:#f4f6f8;color:#1b2d3c;font:1.05rem/1.86 system-ui,"Microsoft YaHei",sans-serif;overflow-wrap:anywhere}header{background:#173c58;color:white}header div,main{max-width:54rem;margin:auto;padding:0 clamp(1rem,4vw,2.6rem)}header div{display:flex;gap:1.6rem;align-items:center;padding-block:.68rem}header a{color:white}a{color:#155078;text-underline-offset:.2em}main{background:white;padding-block:1.4rem 3rem}h1,h2,h3,h4{line-height:1.45;text-wrap:pretty}h1{font-size:clamp(1.65rem,4vw,2.4rem);margin:.35rem 0 .6rem}h2{color:#193f58;font-size:1.4rem;margin:2.2rem 0 .6rem;border-top:1px solid #d7e1e8;padding-top:1.3rem}h3{font-size:1.13rem;margin:1.4rem 0 .3rem}p{margin:.7rem 0}.meta,figcaption,.credit{color:#506575;font-size:.91rem}.lead{border-left:3px solid #477b92;padding:.5rem .9rem;background:#f1f6f8}details{margin:1rem 0}summary{cursor:pointer;color:#155078;font-weight:650}ul,ol{padding-left:1.5em}li+li{margin-top:.28em}.scroll,pre,math[display=block]{max-width:100%;overflow-x:auto}.scroll{margin:.9rem 0}table{font-size:.94rem;border-collapse:collapse;text-align:left;width:100%;min-width:22rem}td,th{border-bottom:1px solid #d4e0e7;padding:.45rem .6rem;vertical-align:top}th{background:#eef4f6}figure{margin:1.4rem 0}figure>a{display:block}figure img{max-width:100%;height:auto;display:block;margin:auto}figure a span{display:block;text-align:center;font-size:.85rem}figcaption{margin-top:.4rem}code,pre{font-family:ui-monospace,monospace;background:#f2f5f6}pre{padding:.75rem}blockquote{margin-inline:0;padding-left:.85rem;border-left:3px solid #a6bac6}.source{margin-top:2.2rem;border-top:1px solid #cedbe3;padding-top:.8rem}a:focus-visible,summary:focus-visible{outline:3px solid #b77928;outline-offset:2px}@media(max-width:520px){body{font-size:1rem}h2{font-size:1.22rem}header div{gap:1.2rem}}</style></head><body><header><div><a href="../">每日知识</a><a href="./">论文精读目录</a></div></header><main><article><p class="meta">Zhao 等 · Sensors · 2023</p><h1>单像素压缩成像里，采样矩阵和算法该怎样比较？</h1><p class="lead">作者在相同的仿真及实验条件下对比重建质量、速度和噪声敏感性。不同场景下的排序有别，硬件可实现性也影响选择。</p><p><a href="https://doi.org/10.3390/s23104678">Comparison of Common Algorithms for Single-Pixel Imaging via Compressed Sensing</a></p><details><summary>文章目录</summary><ol><li><a href="#s1">比较框架</a></li><li><a href="#s2">研究问题拆解</a></li><li><a href="#s3">CSSPI 线性模型细读</a></li><li><a href="#s4">核心结果</a></li><li><a href="#s5">仿真和实验条件</a></li><li><a href="#s6">原文图表索引</a></li><li><a href="#s7">图表细读</a></li><li><a href="#s8">这篇文章的实用结论</a></li><li><a href="#s9">局限</a></li></ol></details><section><h2 id="s1">比较框架</h2><p>作者把 CSSPI 分成两个主要设计变量：</p><ul>
+<li>测量矩阵：Gaussian、Bernoulli、partial Fourier、partial Hadamard、Toeplitz、sparse random。</li>
+<li>重建算法：凸优化、贪婪算法、非凸优化、贝叶斯压缩感知、Bregman 方法和 TV 最小化。</li>
+</ul><p>仿真使用 64×64 <code>cameraman</code>，评价指标为 PSNR、SSIM 和运行时间。测量矩阵比较主要搭配 DCT 稀疏字典和 OMP；算法比较主要使用 Gaussian 随机矩阵。随机测试重复 10 次取平均。</p><p>实验系统使用 ACER V36X 投影图案、KG-PR-200K-A-FS 单像素探测器和 NI DAQ USB-6216。成像分辨率为 64×64，每个图案投影 0.3 s，并使用差分投影降低噪声。</p></section><section><h2 id="s2">研究问题拆解</h2><p>这篇文章不是提出新 SPI 硬件，而是回答传统 CSSPI 中最实际的两个问题：</p><ol>
+<li><strong>投什么图案？</strong> 也就是测量矩阵 <code>Phi</code> 怎么选。理论上随机矩阵有 RIP 友好性，但实验中要考虑二值可投影、存储、计算和光学实现。</li>
+<li><strong>怎么从欠定测量恢复图像？</strong> 也就是重建算法怎么选。不同算法的假设不同：有的假设信号在 DCT/小波下稀疏，有的假设图像梯度稀疏，有的显式处理噪声，有的追求速度。</li>
+</ol><p>作者的价值在于把许多常见选择放在同一套仿真和简单实验中比较。它不能给出所有系统的最终排名，但适合建立“默认基线”：Hadamard/随机矩阵 + OMP/TVAL3/BPDN 等。</p></section><section><h2 id="s3">CSSPI 线性模型细读</h2><p>标准模型是 <code>y = Phi x</code>。这里 <code>x</code> 是二维目标图像拉直后的向量，<code>Phi</code> 的每一行对应一个投影图案，<code>y</code> 是单像素探测器记录到的强度序列。因为测量数 <code>M</code> 通常小于像素数 <code>N</code>，直接求解欠定，需要引入稀疏性：</p><ul>
+<li>若 <code>x = Psi s</code>，且 <code>s</code> 稀疏，则 <code>y = Phi Psi s = A s</code>。</li>
+<li>传统压缩感知算法本质上是在找满足测量约束、同时足够稀疏或足够平滑的解。</li>
+<li>SPI 的特殊性在于 <code>Phi</code> 不只是数学矩阵，还必须能被投影仪、DMD 或其他 SLM 真实显示；所以硬件可实现性和矩阵理论性质同等重要。</li>
+</ul></section><section><h2 id="s4">核心结果</h2><h3>测量矩阵</h3><ul>
+<li>Gaussian、Bernoulli、sparse random 和 partial Hadamard 在多数无噪仿真条件下质量接近。</li>
+<li>partial Fourier 在欠采样时重建较差且计算最慢，但全采样时表现较好。</li>
+<li>Toeplitz 和 Fourier 在较低噪声下表现出较慢的质量退化。</li>
+<li>实验中 Hadamard 略优于 Bernoulli 和 sparse random；20% 采样时已经能辨认简单目标轮廓。</li>
+<li>工程上 Hadamard 的正交性、快速变换和二值实现使其仍是很强的默认选择。</li>
+</ul><p>更细地说：</p><ul>
+<li><strong>Gaussian/Bernoulli random</strong>：随机性强，理论上对很多稀疏基不相干；但 Gaussian 连续值难以直接投影，Bernoulli 更硬件友好。</li>
+<li><strong>partial Hadamard</strong>：二值、正交、可快速生成，是 DMD-SPI 中最常见的实用选择；限制是 Hadamard 阶数通常要求维度为 <code>2^n</code>。</li>
+<li><strong>partial Fourier</strong>：可利用 FFT，但对自然图像和空间域稀疏目标不一定友好，且本文中运行时间较长。</li>
+<li><strong>Toeplitz / sparse random</strong>：属于折中路线，试图减少存储或构造复杂度，但质量取决于目标和噪声。</li>
+</ul><h3>重建算法</h3><ul>
+<li>TV 类方法最适合自然图像的梯度稀疏结构；TVAL3 的综合质量和速度最好。</li>
+<li>凸优化通常比贪婪算法质量高，但耗时更长。</li>
+<li>OMP、IHT 等贪婪算法速度快，低采样率下 OMP 较有竞争力。</li>
+<li>强噪声下贪婪算法的轮廓退化相对缓慢，但其无噪重建上限未必最高。</li>
+<li>实验中复杂 <code>ladybug</code> 目标由 TVAL3 得到最好结果；Split Bregman 的实测表现不理想。</li>
+</ul><p>算法选择可以这样理解：</p><ul>
+<li><strong>OMP/IHT/CoSaMP/SP</strong>：逐步选取最匹配的稀疏原子，速度快、实现简单，但需要对稀疏度或迭代数有经验设定。适合快速预览和低算力场景。</li>
+<li><strong>BP/BPDN/LASSO/Dantzig selector</strong>：偏全局优化，理论干净，噪声模型更明确，但计算成本较高。</li>
+<li><strong>TVAL3/TV-QC/TV-DS</strong>：不要求图像本身在某个固定字典中稀疏，而是假设图像梯度稀疏，因此更适合边缘清楚的自然图像或目标轮廓。</li>
+<li><strong>BCS/Split Bregman/IRLS</strong>：可在特定采样率和噪声下有优势，但在本文实验硬件中并没有全面压倒 TVAL3。</li>
+</ul></section><section><h2 id="s5">仿真和实验条件</h2><ul>
+<li>仿真图像：<code>cameraman</code>，64×64。</li>
+<li>采样率：主要扫描 20%-100%。</li>
+<li>噪声：对测量加入不同 SNR 的 Gaussian 噪声，典型范围包括 35 dB 到 -5 dB。</li>
+<li>指标：PSNR、SSIM、running time。</li>
+<li>实验目标：简单的 <code>four bars</code> 和更复杂的 <code>ladybug</code>。</li>
+<li>实验硬件：投影仪而非高速 DMD；每图案 0.3 s，意味着高 SNR 但低速度。</li>
+<li>差分投影：所有矩阵在实验中都使用差分投影，以减少噪声和背景影响。</li>
+</ul></section><section><h2 id="s6">原文图表索引</h2><ul>
+<li><strong>Figure 1</strong>：标准 CSSPI 线性模型 <code>y = Φx</code> 与稀疏表示。</li>
+<li><strong>Figures 2-3</strong>：不同测量矩阵随采样率和噪声变化的 PSNR、SSIM、时间和图像质量。</li>
+<li><strong>Figures 4-7</strong>：代表性重建算法的采样率与抗噪比较。Figure 5 直观显示 TVAL3 在自然图像边缘恢复上的优势。</li>
+<li><strong>Figure 8</strong>：投影式实验系统。</li>
+<li><strong>Figures 9-10</strong>：真实采集数据验证。简单稀疏目标与细节丰富目标的排名不同，说明场景结构会改变最优方法。</li>
+</ul></section><section><h2 id="s7">图表细读</h2><ul>
+<li><strong>Figure 2</strong>：看测量矩阵。PSNR/SSIM 曲线随采样率升高整体变好，但不同矩阵的差别不只体现在质量，也体现在运行时间。Fourier 在某些高采样条件下质量不差，但时间成本高；Hadamard、Bernoulli、Gaussian、sparse random 更接近。</li>
+<li><strong>Figure 3</strong>：看抗噪。Toeplitz 和 Fourier 在低噪区退化较慢，但高噪或不同目标下并不一定保持优势。这提醒我们不能只用无噪仿真选矩阵。</li>
+<li><strong>Figure 4-5</strong>：看算法。TVAL3 的 PSNR/SSIM 曲线明显强，Figure 5 的视觉结果也最保边缘。OMP/IHT 速度优势明显，但图像更模糊或细节不足。</li>
+<li><strong>Figure 6-7</strong>：看噪声。强噪声下贪婪算法轮廓仍可见，但这并不等于它的图像质量最高；它更像“鲁棒地给出粗结构”。</li>
+<li><strong>Figure 8-10</strong>：实验系统与真实图像。<code>four bars</code> 稀疏简单，很多算法都能恢复；<code>ladybug</code> 细节更多，TVAL3 的梯度稀疏先验更合适。</li>
+</ul></section><section><h2 id="s8">这篇文章的实用结论</h2><p>若你要搭一个 DMD-SPI 原型，可以采用如下阶梯式方案：</p><ol>
+<li>用 Hadamard 或 Bernoulli 图案先跑通硬件，差分测量减少 DC 漂移。</li>
+<li>用 OMP/IHT 做快速预览，检查光路、同步和探测器动态范围。</li>
+<li>用 TVAL3 做离线高质量重建，作为传统算法上限基线。</li>
+<li>若存在明显噪声，加入 BPDN、TV-QC 或去噪先验，并用同一批 raw measurements 比较。</li>
+<li>若想上深度学习，不应只和 OMP 比，应至少和 TVAL3、BPDN、Hadamard 全采样低分辨基线比较。</li>
+</ol></section><section><h2 id="s9">局限</h2><ul>
+<li>各算法没有在完全统一、充分调参的条件下比较；某些算法天然要求不同矩阵或先验。</li>
+<li>仿真图像和实验目标数量很少，不能代表复杂动态场景、高光谱数据或低光子计数。</li>
+<li>实验每图案 0.3 s，测量 SNR 较高但速度极慢，结论不能直接外推到高速 DMD 系统。</li>
+<li>指标主要是 PSNR/SSIM，没有覆盖任务性能、伪影可靠性、光子效率或端到端延迟。</li>
+<li>论文以传统迭代算法为主，不能代表 2023 年后展开式网络、PnP、扩散先验或自监督重建的整体水平。</li>
+</ul></section><footer class="source"><p>Wenjing Zhao, Lei Gao, Aiping Zhai, Dong Wang · <a href="https://doi.org/10.3390/s23104678">Comparison of Common Algorithms for Single-Pixel Imaging via Compressed Sensing</a> · Sensors · 2023</p><a href="./">返回论文精读目录</a></footer></article></main></body></html>

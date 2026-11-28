@@ -1,0 +1,71 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>可变形液面上的对流怎样选择六边形、卷和方格？ · 论文精读</title><style>*{box-sizing:border-box}html{color-scheme:light;scroll-padding-top:1rem}body{margin:0;background:#f4f6f8;color:#1b2d3c;font:1.05rem/1.86 system-ui,"Microsoft YaHei",sans-serif;overflow-wrap:anywhere}header{background:#173c58;color:white}header div,main{max-width:54rem;margin:auto;padding:0 clamp(1rem,4vw,2.6rem)}header div{display:flex;gap:1.6rem;align-items:center;padding-block:.68rem}header a{color:white}a{color:#155078;text-underline-offset:.2em}main{background:white;padding-block:1.4rem 3rem}h1,h2,h3,h4{line-height:1.45;text-wrap:pretty}h1{font-size:clamp(1.65rem,4vw,2.4rem);margin:.35rem 0 .6rem}h2{color:#193f58;font-size:1.4rem;margin:2.2rem 0 .6rem;border-top:1px solid #d7e1e8;padding-top:1.3rem}h3{font-size:1.13rem;margin:1.4rem 0 .3rem}p{margin:.7rem 0}.meta,figcaption,.credit{color:#506575;font-size:.91rem}.lead{border-left:3px solid #477b92;padding:.5rem .9rem;background:#f1f6f8}details{margin:1rem 0}summary{cursor:pointer;color:#155078;font-weight:650}ul,ol{padding-left:1.5em}li+li{margin-top:.28em}.scroll,pre,math[display=block]{max-width:100%;overflow-x:auto}.scroll{margin:.9rem 0}table{font-size:.94rem;border-collapse:collapse;text-align:left;width:100%;min-width:22rem}td,th{border-bottom:1px solid #d4e0e7;padding:.45rem .6rem;vertical-align:top}th{background:#eef4f6}figure{margin:1.4rem 0}figure>a{display:block}figure img{max-width:100%;height:auto;display:block;margin:auto}figure a span{display:block;text-align:center;font-size:.85rem}figcaption{margin-top:.4rem}code,pre{font-family:ui-monospace,monospace;background:#f2f5f6}pre{padding:.75rem}blockquote{margin-inline:0;padding-left:.85rem;border-left:3px solid #a6bac6}.source{margin-top:2.2rem;border-top:1px solid #cedbe3;padding-top:.8rem}a:focus-visible,summary:focus-visible{outline:3px solid #b77928;outline-offset:2px}@media(max-width:520px){body{font-size:1rem}h2{font-size:1.22rem}header div{gap:1.2rem}}</style></head><body><header><div><a href="../">每日知识</a><a href="./">论文精读目录</a></div></header><main><article><p class="meta">GOLOVIN 等 · Journal of Fluid Mechanics · 1997</p><h1>可变形液面上的对流怎样选择六边形、卷和方格？</h1><p class="lead">三维两层模型将共振短波模态与长波界面变形耦合。作者考察了气隙和传热条件对图案选择及稳定窗口的影响。</p><p><a href="https://doi.org/10.1017/s0022112097005582">Nonlinear evolution and secondary instabilities 
+of Marangoni convection in a liquid–gas system 
+with deformable interface</a></p><details><summary>文章目录</summary><ol><li><a href="#s1">研究推进：相对前两篇新增了什么</a></li><li><a href="#s2">物理设定与适用范围</a></li><li><a href="#s3">核心演化方程与机制</a></li><li><a href="#s4">结果 1：气相传热改变六边形次临界性</a></li><li><a href="#s5">结果 2：Landau 系数选择六边形、卷或方格</a></li><li><a href="#s6">结果 3：短波六边形对长波变形存在稳定窗口</a></li><li><a href="#s7">证据链与边界</a></li><li><a href="#s8">适用范围与局限</a></li></ol></details><section><h2 id="s1">研究推进：相对前两篇新增了什么</h2><p>1994 年论文用一维短波卷振幅 <code>A</code> 与一维长波变形 <code>h</code> 建立最小耦合模型；1995 年侧带论文分析该模型的稳态/振荡边界。本篇进一步处理真实平面六边形：三支波矢满足 <code>k₁+k₂+k₃=0</code>，振幅 <code>A₁,A₂,A₃</code> 在二维慢变量上演化，并与二维界面变形 <code>H(X,Y,T)</code> 耦合。同时不再把气相只压缩成经验 Biot 数，而是求解液相和气相的速度、压力与温度扰动。</p></section><section><h2 id="s2">物理设定与适用范围</h2><ul>
+<li>两层液-气体系夹在恒温刚性上下板之间，由下加热；界面表面张力随温度线性变化。</li>
+<li>同时考虑液相、气相的运动和对流传热以及界面动力学；忽略浮力，假设 Rayleigh 数远低于阈值。</li>
+<li>短尺度六边形在 <code>Ma_s</code> 附近展开；长波变形阈值为 <code>Ma_l</code>。只有两阈值接近时，耦合项才与主要非线性同阶。</li>
+<li>采用 <code>G,Ca</code> 很大、短波界面形变可忽略而长波形变 <code>H=O(ε²)</code> 的近阈值尺度。强变形、破膜和干斑均不在直接适用域。</li>
+</ul><p class="credit"><a href="https://doi.org/10.1017/s0022112097005582">Figure 1：液层厚度和气隙对双阈值中性曲线的调控 · 原文</a></p><ul>
+<li><strong>回答的问题：</strong> 在同一硅油-空气体系里，怎样实验调节短波与长波阈值的相对位置？</li>
+<li><strong>图中证据或方法：</strong> 左图固定气液深度比、改变液层厚度；右图固定液层厚度、改变气液深度比 <code>a</code>。中性曲线同时具有有限波数与近零波数最小值。</li>
+<li><strong>支撑的结论：</strong> 几何参数可独立程度不同地移动 <code>Ma_s</code> 和 <code>Ma_l</code>，从而把系统调入仅短波失稳、两阈值接近或长波主导的区域。</li>
+<li><strong>局限与读图注意：</strong> 曲线针对 Van Hook 等的硅油-空气参数；改变几何也会联动 <code>G,Ca</code> 和部分非线性系数，并非真正单参数实验。</li>
+</ul></section><section><h2 id="s3">核心演化方程与机制</h2><p>三支短波振幅方程包含线性超临界度、各向异性扩散、六边形二次共振、振幅梯度二次项、自/交叉 Landau 饱和及 <code>A_n H</code> 耦合。界面方程包含长波重力项、四阶毛细项，以及由三支短波强度梯度产生的两类平均流/热通量项。计算得到界面隆起耦合系数为正，故隆起促进短波六边形；而短波强度不均匀相关的系数也为正，在本文符号下使界面趋平，因而抑制长波变形。</p></section><section><h2 id="s4">结果 1：气相传热改变六边形次临界性</h2><p class="credit"><a href="https://doi.org/10.1017/s0022112097005582">Figure 2：次临界区随气液深度比变化 · 原文</a></p><ul>
+<li><strong>回答的问题：</strong> 气隙厚度如何改变六边形出现前的亚临界范围？</li>
+<li><strong>图中证据或方法：</strong> 硅油、乙醇和水的计算曲线均在小气隙时次临界性增强，并在气隙超过液层深度后趋于平台。</li>
+<li><strong>支撑的结论：</strong> 不能总把气相视为固定 Biot 边界；特别是窄气隙会显著改变非线性阈值。</li>
+<li><strong>局限与读图注意：</strong> 纵轴是弱非线性模型的相对次临界度，数值通常约 0.5%-2%；它不是实验直接测得的滞后宽度。</li>
+</ul><p class="credit"><a href="https://doi.org/10.1017/s0022112097005582">Figure 3：次临界性随 Prandtl 数变化 · 原文</a></p><ul>
+<li><strong>回答的问题：</strong> 液体惯性-热扩散比怎样控制六边形二次共振？</li>
+<li><strong>图中证据或方法：</strong> 不同黏度/热导率模型液体的次临界度随 <code>Pr</code> 强烈变化，并在 <code>Pr_c≈0.22</code> 附近过零；不同曲线在高 <code>Pr</code> 处分离。</li>
+<li><strong>支撑的结论：</strong> <code>Pr</code> 是控制二次共振系数符号的重要量；<code>Pr&gt;Pr_c</code> 对应中心上升的 l-hexagons，<code>Pr&lt;Pr_c</code> 对应中心下降的 g-hexagons。</li>
+<li><strong>局限与读图注意：</strong> <code>Pr_c≈0.22</code> 是一组模型体系中近似稳定的结果，不是所有液-气体系的普适常数。</li>
+</ul><p class="credit"><a href="https://doi.org/10.1017/s0022112097005582">Figure 4：气液热导率比和热扩散率比的作用 · 原文</a></p><ul>
+<li><strong>回答的问题：</strong> 气相导热与气相对流传热分别怎样影响次临界区？</li>
+<li><strong>图中证据或方法：</strong> 增大热导率比 <code>κ</code> 或减小热扩散率比 <code>χ</code>（加强气相对流影响）都使次临界度增加；两组点在不同参数区出现峰值/平台。</li>
+<li><strong>支撑的结论：</strong> 导热和对流两条气相传热路径都可拓宽次临界区，作用强弱取决于液体热导率与热扩散率。</li>
+<li><strong>局限与读图注意：</strong> 图中分别改变 <code>κ</code> 或 <code>χ</code>、保持其他量固定，是理想化参数扫描；真实改变气压或气体种类会联动多个性质。</li>
+</ul></section><section><h2 id="s5">结果 2：Landau 系数选择六边形、卷或方格</h2><p class="credit"><a href="https://doi.org/10.1017/s0022112097005582">Figure 5：不同夹角模态的归一化 Landau 系数 · 原文</a></p><ul>
+<li><strong>回答的问题：</strong> 硅油-空气和水-空气为何在远离阈值后偏好不同平面图案？</li>
+<li><strong>图中证据或方法：</strong> <code>λ(φ)/λ₀</code> 随模态夹角变化；<code>φ=π/3,2π/3</code> 处因六边形二次共振出现不连续。硅油在 <code>π/2</code> 的相对系数支持方格，水更支持卷。</li>
+<li><strong>支撑的结论：</strong> 图案选择不是只由线性临界波数决定，而由不同方向模态的非线性交互系数竞争决定。</li>
+<li><strong>局限与读图注意：</strong> 系数在失稳起点计算；把它们用于高超临界度相图属于外推。</li>
+</ul><p class="credit"><a href="https://doi.org/10.1017/s0022112097005582">Figure 6：方格 Landau 系数随 Prandtl 数变化 · 原文</a></p><ul>
+<li><strong>回答的问题：</strong> <code>Pr</code> 和液体热导率怎样改变卷/方格竞争？</li>
+<li><strong>图中证据或方法：</strong> <code>λ(π/2)/λ₀</code> 随 <code>Pr</code> 从大于 1 降到小于 1；不同热导率曲线的过零/交叉位置不同。</li>
+<li><strong>支撑的结论：</strong> 较大 <code>Pr</code> 更易产生六边形→方格转变，较小 <code>Pr</code> 更倾向六边形→卷。</li>
+<li><strong>局限与读图注意：</strong> 曲线基于假想液体分别固定热导率、改变黏度；趋势不能替代具体材料的完整系数计算。</li>
+</ul><p class="credit"><a href="https://doi.org/10.1017/s0022112097005582">Figure 7：气相热导率控制卷/方格选择 · 原文</a></p><ul>
+<li><strong>回答的问题：</strong> 仅改变气相导热强度能否跨越卷/方格边界？</li>
+<li><strong>图中证据或方法：</strong> 硅油体系的 <code>λ(π/2)/λ₀</code> 随气液热导率比跨过 1，并在更强导热时变为负值；图中标明 rolls/squares 区域。</li>
+<li><strong>支撑的结论：</strong> 气相导热不仅改阈值，也可改变最终平面图案，理论上甚至允许次临界方格。</li>
+<li><strong>局限与读图注意：</strong> 大范围独立改变热导率比是理想化计算；实际换气体会同时改变密度、黏度与热扩散率。</li>
+</ul><p class="credit"><a href="https://doi.org/10.1017/s0022112097005582">Figure 8：气隙几何控制乙醇/硅油的卷-方格选择 · 原文</a></p><ul>
+<li><strong>回答的问题：</strong> 只调气隙能否让同一液体在卷和方格之间切换？</li>
+<li><strong>图中证据或方法：</strong> 乙醇与硅油的 <code>λ(π/2)/λ₀</code> 均随气液深度比跨越 1，但窗口结构不同；硅油出现 squares-rolls-squares 的窄区序列。</li>
+<li><strong>支撑的结论：</strong> 几何可成为图案选择旋钮，而且效果依赖材料输运性质。</li>
+<li><strong>局限与读图注意：</strong> 硅油曲线偏离 1 仅约百分之一，实验误差、非理想边界和空间调制可能移动狭窄窗口。</li>
+</ul><p class="credit"><a href="https://doi.org/10.1017/s0022112097005582">Figure 9：硅油体系的平面图案相图 · 原文</a></p><ul>
+<li><strong>回答的问题：</strong> 超临界度与气液深度比共同决定什么图案及哪些双稳态区？</li>
+<li><strong>图中证据或方法：</strong> 相图标出静止、六边形、卷、方格及六边形-卷/六边形-方格双稳态；星号为 Nitschke &amp; Thess 的六边形→方格实验点。</li>
+<li><strong>支撑的结论：</strong> 理论定性再现实验转变趋势，并明确一阶转变的双稳态和 Maxwell 线含义。</li>
+<li><strong>局限与读图注意：</strong> 作者明确指出 <code>ε&gt;1</code> 区域超出弱非线性适用域；相图还固定在带中心波数，侧带/相位不稳定会改变边界，因此星号相符只能算定性支持。</li>
+</ul></section><section><h2 id="s6">结果 3：短波六边形对长波变形存在稳定窗口</h2><p class="credit"><a href="https://doi.org/10.1017/s0022112097005582">Figure 10：六边形图案的二次变形失稳边界 · 原文</a></p><ul>
+<li><strong>回答的问题：</strong> 改液层厚度或温差时，二次变形失稳是单调还是振荡？</li>
+<li><strong>图中证据或方法：</strong> 实线为单调边界、点线为振荡边界、虚线为实际 <code>μ</code>；左图调液层厚度，右图调温差/六边形振幅。</li>
+<li><strong>支撑的结论：</strong> 短波振幅较小时无法抑制长波变形；中等振幅可稳定；继续增大后又可能发生长波单调或振荡二次失稳，稳定性对振幅是非单调的。</li>
+<li><strong>局限与读图注意：</strong> 这是线性化振幅方程的边界；“最危险波沿六边形波矢 ±π/6”是特定硅油参数下的模型预测。</li>
+</ul><p class="credit"><a href="https://doi.org/10.1017/s0022112097005582">Figure 11：温差-气隙平面的稳定六边形窗口 · 原文</a></p><ul>
+<li><strong>回答的问题：</strong> 在 Van Hook 硅油-空气体系中，稳定六边形、变形失稳与静止区如何分布？</li>
+<li><strong>图中证据或方法：</strong> 虚线是长波变形线性阈值，点线是短波六边形次临界边界，实线围出短波对流压制长波变形的有限稳定窗；星号是实验观察两模态共存的参数点。</li>
+<li><strong>支撑的结论：</strong> 当气隙大于约 0.022 cm 时，模型预测存在有限温差窗可稳定六边形；窗的下边界对应有限 <code>q</code> 振荡变形波，上边界对应 <code>q=0</code> 或更长尺度失稳。</li>
+<li><strong>局限与读图注意：</strong> 星号处观察到“大、近干斑被隆起处六边形稳定”，作者称其“最可能”属于另一类相互作用；这只是机制归因，不是模型直接模拟干斑的验证。文中还提及初步数值模拟形成超结构，但未给数据或收敛证据。</li>
+</ul></section><section><h2 id="s7">证据链与边界</h2><p>强证据是：从两层流体与传热方程系统地推导三振幅-界面演化方程，系数按具体液-气材料和几何计算，并能在 Figure 9 上定性对上已有图案转变实验。</p><p>中等证据是：Figure 10-11 的二次失稳和稳定窗口来自明确线性稳定性计算，也与两模态共存实验参数相邻，但没有逐点测得的增长率/频率来验证边界。</p><p>弱证据是：把星号处近干斑解释为“长波变形激发短波、短波再稳定变形”，以及声称初步数值模拟形成时空超结构；论文没有展示对应数值图、实验时序或干斑物理闭合。</p></section><section><h2 id="s8">适用范围与局限</h2><ul>
+<li>体系由下加热、忽略浮力、物性常数且表面张力线性依温度；与蒸发多组分薄膜的能量/质量边界并不相同。</li>
+<li>短波形变被 <code>G,Ca</code> 很大的假设消去，只保留 <code>H=O(ε²)</code> 长波界面变形；不能描述强变形或破膜。</li>
+<li>六边形相图中的高超临界区超出展开域，且没有包含带中心以外的相位不稳定。</li>
+<li>与 Nitschke &amp; Thess 的比较主要是图案类别和转变趋势，不是系数、增长率或完整边界的定量验证。</li>
+<li>Figure 11 星号的近干斑解释依赖 1994 年截断模型和机制推断，论文自己没有模拟干斑。</li>
+</ul></section><footer class="source"><p>A. A. GOLOVIN, A. A. NEPOMNYASHCHY, L. M. PISMEN · <a href="https://doi.org/10.1017/s0022112097005582">Nonlinear evolution and secondary instabilities 
+of Marangoni convection in a liquid–gas system 
+with deformable interface</a> · Journal of Fluid Mechanics · 1997</p><a href="./">返回论文精读目录</a></footer></article></main></body></html>

@@ -1,0 +1,63 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>两个液滴刚接触时，液桥按什么规律长大？ · 论文精读</title><style>*{box-sizing:border-box}html{color-scheme:light;scroll-padding-top:1rem}body{margin:0;background:#f4f6f8;color:#1b2d3c;font:1.05rem/1.86 system-ui,"Microsoft YaHei",sans-serif;overflow-wrap:anywhere}header{background:#173c58;color:white}header div,main{max-width:54rem;margin:auto;padding:0 clamp(1rem,4vw,2.6rem)}header div{display:flex;gap:1.6rem;align-items:center;padding-block:.68rem}header a{color:white}a{color:#155078;text-underline-offset:.2em}main{background:white;padding-block:1.4rem 3rem}h1,h2,h3,h4{line-height:1.45;text-wrap:pretty}h1{font-size:clamp(1.65rem,4vw,2.4rem);margin:.35rem 0 .6rem}h2{color:#193f58;font-size:1.4rem;margin:2.2rem 0 .6rem;border-top:1px solid #d7e1e8;padding-top:1.3rem}h3{font-size:1.13rem;margin:1.4rem 0 .3rem}p{margin:.7rem 0}.meta,figcaption,.credit{color:#506575;font-size:.91rem}.lead{border-left:3px solid #477b92;padding:.5rem .9rem;background:#f1f6f8}details{margin:1rem 0}summary{cursor:pointer;color:#155078;font-weight:650}ul,ol{padding-left:1.5em}li+li{margin-top:.28em}.scroll,pre,math[display=block]{max-width:100%;overflow-x:auto}.scroll{margin:.9rem 0}table{font-size:.94rem;border-collapse:collapse;text-align:left;width:100%;min-width:22rem}td,th{border-bottom:1px solid #d4e0e7;padding:.45rem .6rem;vertical-align:top}th{background:#eef4f6}figure{margin:1.4rem 0}figure>a{display:block}figure img{max-width:100%;height:auto;display:block;margin:auto}figure a span{display:block;text-align:center;font-size:.85rem}figcaption{margin-top:.4rem}code,pre{font-family:ui-monospace,monospace;background:#f2f5f6}pre{padding:.75rem}blockquote{margin-inline:0;padding-left:.85rem;border-left:3px solid #a6bac6}.source{margin-top:2.2rem;border-top:1px solid #cedbe3;padding-top:.8rem}a:focus-visible,summary:focus-visible{outline:3px solid #b77928;outline-offset:2px}@media(max-width:520px){body{font-size:1rem}h2{font-size:1.22rem}header div{gap:1.2rem}}</style></head><body><header><div><a href="../">每日知识</a><a href="./">论文精读目录</a></div></header><main><article><p class="meta">Deblais 等 · Physical Review Fluids · 2025</p><h1>两个液滴刚接触时，液桥按什么规律长大？</h1><p class="lead">控制电荷和初始形变后，两滴并合的早期液桥符合惯性标度。液滴与液池接触时，排气和界面形变改变了最初的过程。</p><p><a href="https://doi.org/10.1103/physrevfluids.10.l042001">Early stages of drop coalescence</a></p><details><summary>文章目录</summary><ol><li><a href="#s1">研究背景</a></li><li><a href="#s2">研究方法</a></li><li><a href="#s3">核心结果</a></li><li><a href="#s4">机制与证据</a></li><li><a href="#s5">适用范围与局限</a></li></ol></details><section><h2 id="s1">研究背景</h2><p>液滴合并影响雨滴尺寸、病毒气溶胶、喷墨打印、喷雾、海雾和气液交换等过程。经典问题是两个液体体积接触后，液桥 neck radius <code>R(t)</code> 如何随时间增长。</p><p>已有理论把合并早期分为两类阻力：</p><ul>
+<li>黏性主导：capillary force 与 liquid viscosity 平衡，简单量纲给出 capillary velocity <code>U_cap ~ gamma/eta</code>，更细分析有对数修正，<code>R ~ tau log tau</code>。</li>
+<li>惯性主导：对低黏液体，局部 Reynolds number 很快超过 1，合并基本进入惯性毛细 regime。</li>
+</ul><p>对水滴而言，<code>gamma ~ 70 mN/m</code>、<code>eta ~ 1 mPa s</code>，<code>U_cap ~ 70 m/s</code>，因此 viscous regime 极难直接观察。经典惯性标度为</p><pre><code>R(tau) = A (gamma R0 / rho)^{1/4} tau^{1/2}
+</code></pre><p>其中 <code>R0</code> 是液滴半径，<code>tau = t - t0</code> 是从初始接触开始的时间。实验 prefactor <code>A</code> 常在 <code>1-1.25</code>，数值模拟约 <code>1.62</code>。争议点在于：经典理论通常假设两个静止、未变形、球形液滴已经由一个无穷小液桥连接，但真实液滴在接触前必须排开空气，并可能被 van der Waals force 拉入 jump-to-contact。</p></section><section><h2 id="s2">研究方法</h2><h3>双几何：drop-drop 与 drop-bath</h3><p>作者同时研究两种几何：</p><ul>
+<li>drop-drop：两个电极各承载一个液滴，通过电测法推断液桥电阻，从而得到 neck radius。</li>
+<li>drop-bath：针头上的液滴缓慢长大并接触下方液池，从液池下方高速成像，直接观察 neck opening 和界面波/air pocket。</li>
+</ul><p>这两个几何的意义不同。drop-drop 接近传统两滴合并问题，能用电学方法达到极高时间分辨；drop-bath 更适合光学直接观察 precontact 与 postcontact 的界面形变，但几何上更容易受空气膜导致的液池表面形变影响。</p><h3>drop-drop 电测法</h3><p>实验使用高导电 NaCl 盐水，电导率约 <code>30 mS/cm</code>。上电极缓慢下移，使两个液滴接触。作者强调了两个控制点：</p><ul>
+<li>空间分辨率可达 micron 量级。</li>
+<li>时间分辨率约 <code>100 ns</code>。</li>
+</ul><p>他们尽量降低外加电压和不希望的表面电荷，因为电荷会把液滴界面拉成 conical-like deformation，改变后续 neck-opening dynamics。</p><p>从电阻到 neck radius 的换算采用文献公式：</p><pre><code>R = 2 [ 3.62 sigma (Omega - 1/(pi R0 sigma)) ]^{-1}
+</code></pre><p>其中 <code>Omega</code> 是电阻，<code>sigma</code> 是液体电导率。主文称这个换算也通过模拟验证。</p><p>Figure 1(a) 展示电阻随时间下降，实验与 Basilisk simulation 相符。Figure 1(b) 把电阻换算为 <code>R/R0</code> 随 <code>tau</code> 的变化，并与 Paulsen et al. 2011 数据比较。作者的数据恢复 <code>alpha = 0.5</code>，即惯性 <code>t^{1/2}</code> 标度。</p><h3>drop-bath 高速底视成像</h3><p>为了避免 side imaging 在 cusp 区域造成虚假指数，drop-bath 实验从液池下方观察。实验条件：</p><ul>
+<li>针头尖端为 millimetric。</li>
+<li>液滴缓慢增长，速度 <code>&lt;= 20 um/s</code>，以减小空气排液扰动。</li>
+<li>室温 <code>22 ± 1 °C</code>、常压。</li>
+<li>高速相机最高 <code>1,000,000 fps</code>。</li>
+<li>典型空间分辨率 <code>0.9 um/pix</code>。</li>
+</ul><p>Figure 3(a) 是底视高速图像序列。Figure 3(b) 是时空平均强度图，黑点为追踪到的 neck diameter，红虚线为 Basilisk simulation。底视强度变化不仅标记 neck opening，还显示 neck 前方有同心环状强度纹，作者解释为界面波折射光造成的信号。</p><h3>数值模型</h3><p>作者使用两类数值工具：</p><ul>
+<li>Basilisk volume-of-fluid simulation：用于 postcontact neck opening 和界面形状演化。</li>
+<li>bespoke finite-element simulation：用于 precontact approach，包含气体相、微尺度气膜的 kinetic corrections、以及 van der Waals force/disjoining pressure。</li>
+</ul><p>重要的是，他们不把初始条件设成两个完美球/平面加无穷小液桥，而是先计算接触前空气膜排液和界面形变，再把这些形变作为合并初始状态。</p></section><section><h2 id="s3">核心结果</h2><h3>1. 控制电荷后，drop-drop 合并直接回到惯性 <code>t^{1/2}</code> 标度</h3><p>Figure 1(b) 的核心信息是：作者的低黏盐水 drop-drop 数据与 Basilisk 模拟一致，并遵循 <code>R ~ tau^{1/2}</code>。他们把 Paulsen et al. 2011 中早期不同斜率归因于两类因素：</p><ul>
+<li>液体电导率较低或电测条件导致更强 surface charge。</li>
+<li>不希望的电荷使界面在接触前发生 conical-like deformation。</li>
+</ul><p>作者补充做了预充电实验：存在电荷时，side-view images 显示锥形界面形变，并导致标度从 <code>t^{1/2}</code> 偏到约 <code>t^{2/3}</code>。这说明所谓“新 early regime”可能不是普适 hydrodynamic regime，而是初始形变/电荷扰动造成的表观动力学。</p><p>对低黏合并实验来说，这是一个很强的警告：如果没有控制初始电荷和界面形状，最早期指数可能不是流体本征标度。</p><h3>2. drop-drop 接触前也存在空气膜与 jump-to-contact，但形变较小</h3><p>Figure 2 是 drop-drop 接触前的 finite-element 计算。上方液滴以 <code>5 um/s</code> 接近另一液滴，图中显示接触前最后阶段的界面轮廓。作者的结论：</p><ul>
+<li>对他们的 slow approach speed，gas lubrication 造成的界面变形相对较小。</li>
+<li>两个界面在 <code>r=0</code> 处相遇，因此没有 entrapped bubble。</li>
+<li>当液滴间距约 <code>30 nm</code> 时，van der Waals force 触发 jump-to-contact。</li>
+<li>jump-to-contact 时间尺度约 <code>0.1 ms</code>。</li>
+</ul><p>这说明 drop-drop 几何里，空气膜和 van der Waals force 仍决定“真正接触如何发生”，但其造成的宏观初始形变不足以破坏后续惯性 <code>t^{1/2}</code> 标度，前提是电荷扰动被控制。</p><h3>3. drop-bath 中直接看到 air pocket 和 capillary waves</h3><p>Figure 3 是全文最关键的直接可视证据：</p><ul>
+<li>Figure 3(a) 底视高速图像显示液滴与液池刚合并后的强度突变和同心环。</li>
+<li>Figure 3(b) 的时空图把 neck front 与前方强度波纹展示在同一图上；黑点是实验追踪的 neck，红虚线是 Basilisk simulation。</li>
+<li>Figure 3(c) 给出 <code>tau = 64 us</code> 时的模拟界面剖面，显示 neck 前方有 air pocket 和 capillary waves。</li>
+<li>Figure 3(d) 用 <code>dz/dr</code> 的正负区间定义不同长度 <code>Lambda_i</code>，解释为什么底视成像会出现强度环。</li>
+<li>Figure 3(e)(f) 显示第一个长度 <code>Lambda_1</code>，即 air pocket size，随时间和 <code>R/R0</code> 的变化。</li>
+</ul><p>作者指出，air pocket 线性随时间增长，并按 <code>R^{3/2}</code> 随 neck radius 增长，这与 Eggers/Lister/Stone 1999 的理论预测一致。实验和模拟在不同黏度流体中都吻合，测试黏度范围为 <code>1 mPa s</code> 到 <code>11.5 mPa s</code>。</p><p>这部分的贡献是把过去理论和模拟中提出的“inertial coalescence driving wave formation + gas lubrication preventing toroidal bubble pinch-off”用高速底视实验直接可视化。</p><h3>4. drop-bath 最早期 neck opening 低于惯性 <code>t^{1/2}</code> 预测</h3><p>Figure 4 将 drop-bath 不同液体、不同半径的数据与 drop-drop 数据一起无量纲化：</p><ul>
+<li>后期所有几何都回到 inertial-capillary <code>R ~ tau^{1/2}</code>。</li>
+<li>早期 drop-bath 数据低于惯性预测，说明有额外机制拖慢 neck opening。</li>
+<li>使用 inertial time 缩放后，不同黏度流体早期曲线能 collapse，说明这个拖慢不是液体黏性控制。</li>
+</ul><p>作者进一步把原因指向接触前空气膜。实验在合并前最后几帧中观察到 interference fringes，说明两界面之间存在薄空气膜。空气膜持续变薄，足够薄时两界面 jump into contact。这个 jump-to-contact 和接触前界面形变为后续 neck opening 设定了非理想初始条件。</p><h3>5. drop-bath 几何中空气膜造成的初始形变更重要</h3><p>Figure 5 是 drop-bath 接触前的 finite-element 计算，类似 Figure 2，但几何换成液滴接近液池：</p><ul>
+<li>接近速度仍为 <code>5 um/s</code>。</li>
+<li>液池表面在接触前被空气膜向下推约 <code>30 nm</code>。</li>
+<li>变形径向范围约 <code>mm</code>。</li>
+<li>jump-to-contact 发生在约 <code>3 um</code> 的径向范围内、时间约 <code>0.1 ms</code>。</li>
+</ul><p>与 drop-drop 相比，drop-bath 中液池界面可被空气膜整体下压，几何形变更明显。因此作者认为 initial deformation 会改变液桥最初 opening dynamics，并且这个效应在 drop-bath 中比 drop-drop 中更强。</p><p>Basilisk 对 water drop-bath 的模拟能定性再现偏离 <code>t^{1/2}</code> 的行为。用 finite-element 计算出的 deformed final profiles 作为初始条件，比 undeformed case 更接近实验。但作者也诚实指出，为了和实验对齐，deformed/undeformed 两种情况下都需要把初始 neck diameter 平移约 <code>50 um</code>；这个 spatial shift 的物理原因仍是开放问题。</p></section><section><h2 id="s4">机制与证据</h2><h3>drop-drop：电荷扰动与真实初始接触要分开</h3><p>机制链条是：</p><pre><code>外加电压/表面电荷 -&gt; 接触前界面锥形形变
+-&gt; 初始 neck geometry 非球形
+-&gt; 表观开口指数偏离 t^{1/2}，可接近 t^{2/3}
+</code></pre><p>若电荷和初始形变被控制：</p><pre><code>慢速接近 -&gt; 空气膜引起小形变
+-&gt; van der Waals 在约 30 nm 间距触发 jump-to-contact
+-&gt; 无气泡夹带，后续直接进入 inertial R ~ t^{1/2}
+</code></pre><h3>drop-bath：空气膜改变初始条件</h3><p>drop-bath 的机制链条是：</p><pre><code>液滴靠近液池 -&gt; 空气膜润滑排液
+-&gt; 液池表面被微小但大尺度地下压
+-&gt; 间距到纳米级后 van der Waals jump-to-contact
+-&gt; 接触后形成 air pocket + capillary waves
+-&gt; 最早期 neck opening 低于简单 inertial-capillary t^{1/2}
+-&gt; 晚期回到 R ~ t^{1/2}
+</code></pre><p>这里的“空气影响”不是只在接触前延迟接触；它还通过 postcontact air pocket 和 wave-like deformation 影响最初的 neck radius measurement。</p></section><section><h2 id="s5">适用范围与局限</h2><ul>
+<li>Supplementary Material 包含方法、设置和模拟细节，但本轮只核对了主 PDF；笔记中不把 supplement 细节当作已独立验证内容。</li>
+<li>drop-drop 的最早期依赖电测法和电阻到 neck radius 的模型换算，虽然主文用模拟支持该换算，但不是直接光学观察。</li>
+<li>drop-bath 底视成像避免了 side imaging 的 cusp 假象，但强度环需要借助模拟界面斜率解释，不是直接测量界面高度。</li>
+<li>Basilisk 模拟对 drop-bath 需要时间对齐和约 <code>50 um</code> 的初始 neck diameter 空间平移；作者也把其物理原因列为 open question。</li>
+<li>van der Waals jump-to-contact、气体 kinetic correction 和气膜模型都依赖微尺度/纳米尺度物理参数；这些参数如果变化，初始接触细节可能改变。</li>
+
+</ul></section><footer class="source"><p>Antoine Deblais, Kaili Xie, Peter Lewin-Jones, Dirk Aarts, Miguel A. Herrada, Jens Eggers, James E. Sprittles, Daniel Bonn · <a href="https://doi.org/10.1103/physrevfluids.10.l042001">Early stages of drop coalescence</a> · Physical Review Fluids · 2025</p><a href="./">返回论文精读目录</a></footer></article></main></body></html>

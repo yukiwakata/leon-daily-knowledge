@@ -1,0 +1,58 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>表面活性剂何时能稳定竖直纤维上的液膜？ · 论文精读</title><style>*{box-sizing:border-box}html{color-scheme:light;scroll-padding-top:1rem}body{margin:0;background:#f4f6f8;color:#1b2d3c;font:1.05rem/1.86 system-ui,"Microsoft YaHei",sans-serif;overflow-wrap:anywhere}header{background:#173c58;color:white}header div,main{max-width:54rem;margin:auto;padding:0 clamp(1rem,4vw,2.6rem)}header div{display:flex;gap:1.6rem;align-items:center;padding-block:.68rem}header a{color:white}a{color:#155078;text-underline-offset:.2em}main{background:white;padding-block:1.4rem 3rem}h1,h2,h3,h4{line-height:1.45;text-wrap:pretty}h1{font-size:clamp(1.65rem,4vw,2.4rem);margin:.35rem 0 .6rem}h2{color:#193f58;font-size:1.4rem;margin:2.2rem 0 .6rem;border-top:1px solid #d7e1e8;padding-top:1.3rem}h3{font-size:1.13rem;margin:1.4rem 0 .3rem}p{margin:.7rem 0}.meta,figcaption,.credit{color:#506575;font-size:.91rem}.lead{border-left:3px solid #477b92;padding:.5rem .9rem;background:#f1f6f8}details{margin:1rem 0}summary{cursor:pointer;color:#155078;font-weight:650}ul,ol{padding-left:1.5em}li+li{margin-top:.28em}.scroll,pre,math[display=block]{max-width:100%;overflow-x:auto}.scroll{margin:.9rem 0}table{font-size:.94rem;border-collapse:collapse;text-align:left;width:100%;min-width:22rem}td,th{border-bottom:1px solid #d4e0e7;padding:.45rem .6rem;vertical-align:top}th{background:#eef4f6}figure{margin:1.4rem 0}figure>a{display:block}figure img{max-width:100%;height:auto;display:block;margin:auto}figure a span{display:block;text-align:center;font-size:.85rem}figcaption{margin-top:.4rem}code,pre{font-family:ui-monospace,monospace;background:#f2f5f6}pre{padding:.75rem}blockquote{margin-inline:0;padding-left:.85rem;border-left:3px solid #a6bac6}.source{margin-top:2.2rem;border-top:1px solid #cedbe3;padding-top:.8rem}a:focus-visible,summary:focus-visible{outline:3px solid #b77928;outline-offset:2px}@media(max-width:520px){body{font-size:1rem}h2{font-size:1.22rem}header div{gap:1.2rem}}</style></head><body><header><div><a href="../">每日知识</a><a href="./">论文精读目录</a></div></header><main><article><p class="meta">Gao 等 · Physical Review Fluids · 2026</p><h1>表面活性剂何时能稳定竖直纤维上的液膜？</h1><p class="lead">沿纤维下流的厚液膜随 Marangoni 数出现不同稳定区间。中等强度下的稳定窗口，连接了低强度与高强度下不同的扰动行为。</p><p><a href="https://doi.org/10.1103/bs53-4r3q">Dynamics of viscous beads on vertical fibers with insoluble surfactants</a></p><details><summary>文章目录</summary><ol><li><a href="#s1">研究背景</a></li><li><a href="#s2">研究方法</a></li><li><a href="#s3">具体结果</a></li><li><a href="#s4">关键机制</a></li><li><a href="#s5">适用范围与局限</a></li></ol></details><section><h2 id="s1">研究背景</h2><p>作者从应用问题切入：纤维涂覆希望液膜均匀，避免短路和干斑；海水淡化等场景反而可能希望液膜破碎成均匀液滴，提高收集效率。因此，理解和控制纤维外液膜稳定性本身就是目标。</p><p>已有干净界面的 falling film on vertical fiber 工作比较多，包括 Rayleigh-Plateau 不稳定、厚液膜实验、绝对/对流不稳定转变、超声/入口振动/电场/滑移等控制因素。表面活性剂方面，已有研究更多集中在平板、斜面、管内或线性稳定性。对纤维外液膜，已有工作指出表活液膜存在 RP mode 和 Marangoni mode，但主要停留在线性稳定性，难以解释后期液珠动力学和真实物理机制。</p><p>本文要补的缺口是：在厚液膜、竖直纤维、不溶性表活的设定下，<code>Ma</code> 如何通过表面张力梯度、表活输运和界面运动共同决定稳定性。</p></section><section><h2 id="s2">研究方法</h2><p>这是一篇理论 + 数值论文，不是实验论文。主线是从二维轴对称模型出发，经长波近似降维，再结合线性稳定性、非线性演化和行波解解释机制。</p><ul>
+<li>
+<p>物理模型：Newtonian fluid 沿竖直圆柱纤维下流，界面含不溶性表面活性剂；坐标为 <code>(r, z)</code>，假设轴对称。</p>
+</li>
+<li>
+<p>控制方程：连续方程、径向/轴向动量方程、纤维壁面 no-slip/no-penetration、自由界面运动学条件、法向/切向应力平衡。</p>
+</li>
+<li>
+<p>表面张力：用 Langmuir equation of state，把表面张力 <code>gamma</code> 与表活浓度 <code>Gamma</code> 联系起来；浓度超过上限时表面张力设为 <code>gamma_m</code>，本文取 <code>gamma_m = 0.1</code>。</p>
+</li>
+<li>
+<p>表活输运：界面上对流-扩散方程，包含切向速度、法向运动和表面扩散。</p>
+</li>
+<li>
+<p>降维：在长波近似下把二维模型降成一维模型，耦合液膜厚度/界面位置与表活浓度。</p>
+</li>
+<li>
+<p>参数：<code>alpha = 0.2856</code>, <code>epsilon = 0.233</code>, <code>Pe = 10^3</code>, <code>Bo = epsilon</code>, <code>Ma</code> 在 0 到 1 之间变化。非线性模拟采用周期边界、<code>kappa = 1/sqrt(2)</code>、256 个 Fourier modes，时间上用隐式多步和自适应步长，Newton 迭代相对误差阈值 <code>10^-10</code>。</p>
+</li>
+<li>
+<p>Table I（方法参数）：列出黏度、表面张力、密度、温度、最大表活浓度、表面扩散系数、纤维半径和流量。它的作用是把模型参数落到前人厚膜实验和表活物性范围上。</p>
+</li>
+<li>
+<p>Figure 1（几何和变量定义）：展示含不溶性表活的 Newtonian 液膜沿纤维下流。它不是结果图，而是定义纤维半径、液膜界面、坐标和表活分布的物理场景。</p>
+</li>
+</ul><p>方法可信度主要由附录图支撑：</p><ul>
+<li>Figure 15（非线性数值方法验证）：无表活情况下复现 Ding et al. 的 <code>r_max(t)</code>，并复现 Craster-Matar 的单液珠行波解；作用是说明非线性演化和行波求解可信。</li>
+<li>Figure 16（一维模型验证）：比较一维模型与原二维线性化模型的 dispersion relation；长波区域吻合较好，支撑后文用一维模型研究机制。</li>
+<li>Figure 17（模式识别验证）：在 <code>kappa = 0.001</code> 下比较任意波数解与长波渐近解，用来区分 Marangoni mode 与 RP mode。</li>
+</ul></section><section><h2 id="s3">具体结果</h2><h3>结果 1：线性稳定性给出三段式 <code>Ma</code> 机制</h3><p>长波渐近分析得到两个分支：Marangoni mode 和 RP mode。Marangoni mode 在长波极限下稳定；RP mode 由表面张力主导，<code>Ma</code> 对它起稳定作用。长波极限下临界值约为 <code>Ma_c = 0.3346</code>；任意波数线性分析给出相近临界值 <code>Ma_c = 0.335</code>。</p><ul>
+<li>Figure 2（RP mode 增长率）：画 <code>omega_r</code> 随波数 <code>kappa</code> 和 <code>Ma</code> 的变化。图中 <code>Ma</code> 增大时，RP mode 的最大增长率、最不稳定波数和 cutoff wave number 都下降；足够大时全波数增长率为负。它支撑“表活在 RP mode 中稳定液膜”。</li>
+<li>Figure 3（Marangoni mode 增长率）：低 <code>Ma</code> 时 Marangoni mode 全波数稳定；高 <code>Ma</code> 时出现正增长区。最大增长率随 <code>Ma</code> 非单调，峰值出现在约 <code>Ma = 0.5-0.9</code>。它支撑“高 Ma 会触发表活自身相关的 Marangoni instability”。</li>
+<li>Figure 4（<code>Ma-kappa</code> 中性稳定图）：把参数平面分成三块：低 <code>Ma</code> 下方为 RP unstable，中间为 stable region，高 <code>Ma</code> 上方为 unstable Marangoni mode。它是全文最核心的稳定性地图。</li>
+</ul><h3>结果 2：非线性演化验证线性稳定性，并给出最终波形</h3><p>线性分析只适合小扰动早期，作者进一步做非线性演化，看扰动最终回到基态还是形成 steady traveling wave。</p><ul>
+<li>Figure 5（<code>r_max(t)</code>）：<code>Ma = 0.3</code> 时扰动最终衰减回 undisturbed state；其他 <code>Ma</code> 值形成稳态行波。它把线性稳定/不稳定与后期动力学联系起来。</li>
+<li>Figure 6（不同 <code>Ma</code> 的最终形状）：<code>Ma = 0.3</code> 基本平直；低 <code>Ma</code> 的 RP 主导形态液珠更大；高 <code>Ma</code> 的 Marangoni 主导形态仍不稳定，但幅度较小并呈非单调。它说明 <code>r_max</code> 与线性增长率有对应关系。</li>
+</ul><h3>结果 3：低 <code>Ma</code> 时 Marangoni 对流抑制 RP 不稳定</h3><p>作者选 <code>Ma = 0.1</code> 代表 RP mode 主导的低 <code>Ma</code> 区间，观察界面位置和表活浓度的相位关系，再用行波坐标解释流向。</p><ul>
+<li>Figure 7（低 <code>Ma</code> 下界面与浓度相位）：在 <code>Ma = 0.1</code>，<code>t = 10</code> 和 <code>t = 40</code> 下，界面位置与表活浓度在峰值附近有相位差，但在 trough 附近基本同相。作者解释为 Marangoni 对流倾向于向 trough 补充流体，从而抑制 RP instability。</li>
+<li>Figure 9（无表活基准行波）：干净界面下 hump 区有明显回流，<code>c_w</code> 在 trough 附近最大。它说明 RP 机制通过曲率压力差导致 fluid 从 trough 流向 hump，促成液珠形成。</li>
+<li>Figure 10（低 <code>Ma</code> 下流线和 Marangoni stress）：与无表活相比，hump 处回流几乎消失。图中 Marangoni stress 的符号和相位说明 Marangoni 对流会削弱 hump 回流并向 trough 供液，因此起稳定作用。</li>
+<li>Figure 11（低 <code>Ma</code> 下 Marangoni stress 和 <code>c_w</code> 扫描）：<code>Ma</code> 增大时 Marangoni stress 增强，但 <code>c_w</code> 逐渐降低。它解释中等 <code>Ma</code> 稳定带的来源：Marangoni convection 和相对界面速度 <code>c_w</code> 的强度变得可比，扰动被压住。</li>
+</ul><h3>结果 4：高 <code>Ma</code> 时 Marangoni 对流转而触发 Marangoni instability</h3><p>作者用 <code>Ma = 0.7</code> 代表高 <code>Ma</code>、Marangoni mode 主导区间。</p><ul>
+<li>Figure 8（高 <code>Ma</code> 下界面与浓度相位）：在 <code>t = 40</code> 和 <code>t = 200</code> 都存在稳定相位差，说明这不是短暂过渡，而是 Marangoni mode 后期形态的一部分。</li>
+<li>Figure 12（高 <code>Ma</code> 下流线和 Marangoni stress）：Marangoni stress 最大值与界面 trough 对齐，意味着更多流体从界面最低处被抽走，从而增强不稳定。这与低 <code>Ma</code> 的稳定作用相反。</li>
+<li>Figure 13（高 <code>Ma</code> 下表面张力和 <code>c_w</code>）：随 <code>Ma</code> 增加，表面张力和 <code>c_w</code> 都降低，且量级小于低 <code>Ma</code> 情形。它说明高 <code>Ma</code> 下 <code>c_w</code> 无法压住 Marangoni convection。</li>
+<li>Figure 14（高 <code>Ma</code> 非单调机制）：Marangoni stress 由 <code>Ma</code> 和表活浓度梯度相关项共同决定。随着 <code>Ma</code> 增大，界面刚性增强，表活浓度分布反而不容易被扰动，所以 Marangoni stress 最大值出现在 <code>Ma = 0.6-0.9</code> 附近。这解释了 Marangoni instability 的非单调强度。</li>
+</ul></section><section><h2 id="s4">关键机制</h2><p>全文机制可以压成一条竞争关系：</p><p><code>Ma</code> 改变表面张力梯度和 Marangoni convection；界面行波运动又引入相对界面速度 <code>c_w</code>。稳定性取决于这两者谁主导。</p><ul>
+<li>低 <code>Ma</code>：<code>c_w</code> 很强，尤其在 trough 处大于 Marangoni convection。表活被相对界面运动扫向 hump，Marangoni 对流主要削弱 hump 回流、向 trough 补液，因此抑制 RP instability。</li>
+<li>中等 <code>Ma</code>：Marangoni stress 增强、<code>c_w</code> 降低，两者竞争后扰动衰减，液膜稳定。</li>
+<li>高 <code>Ma</code>：Marangoni convection 强于 <code>c_w</code>，表活浓度与界面位置出现固定相位差，Marangoni stress 在 trough 附近抽流，触发 Marangoni instability。</li>
+<li>更高 <code>Ma</code>：界面刚性增强，表活浓度分布对界面相对运动不再那么敏感，所以 Marangoni mode 的不稳定强度非单调，而不是随 <code>Ma</code> 一直增强。</li>
+</ul></section><section><h2 id="s5">适用范围与局限</h2><ul>
+<li>这篇文章的核心证据是长波一维模型和数值模拟，不是直接实验观测。</li>
+<li><code>epsilon = 0.233</code> 虽然被用作长波小参数，但它对应厚液膜语境；外推到极薄膜、不同纤维半径或强三维扰动时需要谨慎。</li>
+<li>表面张力采用 Langmuir equation of state，并对高浓度区做 <code>gamma_m = 0.1</code> 截断；强表活或浓度接近极限时，具体定量结果可能依赖状态方程选择。</li>
+<li>非线性模拟在表面张力达到 <code>gamma_m</code> 时停止，这对极端 <code>Ma</code> 或极端浓度聚集情形是一个边界。</li>
+<li>文章解释机制时大量依赖 <code>c_w</code>、行波框架和相位关系；如果真实系统中入口扰动、纤维粗糙、蒸发、可溶性表活或三维扰动显著，机制需要重新核验。</li>
+</ul></section><footer class="source"><p>Jun Gao, Xiaocong Yang, Senlin Zhu, Qingfei Fu, Lijun Yang · <a href="https://doi.org/10.1103/bs53-4r3q">Dynamics of viscous beads on vertical fibers with insoluble surfactants</a> · Physical Review Fluids · 2026</p><a href="./">返回论文精读目录</a></footer></article></main></body></html>

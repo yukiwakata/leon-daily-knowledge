@@ -1,0 +1,262 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>怎样用傅里叶条纹和一个探测器恢复图像？ · 论文精读</title><style>*{box-sizing:border-box}html{color-scheme:light;scroll-padding-top:1rem}body{margin:0;background:#f4f6f8;color:#1b2d3c;font:1.05rem/1.86 system-ui,"Microsoft YaHei",sans-serif;overflow-wrap:anywhere}header{background:#173c58;color:white}header div,main{max-width:54rem;margin:auto;padding:0 clamp(1rem,4vw,2.6rem)}header div{display:flex;gap:1.6rem;align-items:center;padding-block:.68rem}header a{color:white}a{color:#155078;text-underline-offset:.2em}main{background:white;padding-block:1.4rem 3rem}h1,h2,h3,h4{line-height:1.45;text-wrap:pretty}h1{font-size:clamp(1.65rem,4vw,2.4rem);margin:.35rem 0 .6rem}h2{color:#193f58;font-size:1.4rem;margin:2.2rem 0 .6rem;border-top:1px solid #d7e1e8;padding-top:1.3rem}h3{font-size:1.13rem;margin:1.4rem 0 .3rem}p{margin:.7rem 0}.meta,figcaption,.credit{color:#506575;font-size:.91rem}.lead{border-left:3px solid #477b92;padding:.5rem .9rem;background:#f1f6f8}details{margin:1rem 0}summary{cursor:pointer;color:#155078;font-weight:650}ul,ol{padding-left:1.5em}li+li{margin-top:.28em}.scroll,pre,math[display=block]{max-width:100%;overflow-x:auto}.scroll{margin:.9rem 0}table{font-size:.94rem;border-collapse:collapse;text-align:left;width:100%;min-width:22rem}td,th{border-bottom:1px solid #d4e0e7;padding:.45rem .6rem;vertical-align:top}th{background:#eef4f6}figure{margin:1.4rem 0}figure>a{display:block}figure img{max-width:100%;height:auto;display:block;margin:auto}figure a span{display:block;text-align:center;font-size:.85rem}figcaption{margin-top:.4rem}code,pre{font-family:ui-monospace,monospace;background:#f2f5f6}pre{padding:.75rem}blockquote{margin-inline:0;padding-left:.85rem;border-left:3px solid #a6bac6}.source{margin-top:2.2rem;border-top:1px solid #cedbe3;padding-top:.8rem}a:focus-visible,summary:focus-visible{outline:3px solid #b77928;outline-offset:2px}@media(max-width:520px){body{font-size:1rem}h2{font-size:1.22rem}header div{gap:1.2rem}}</style></head><body><header><div><a href="../">每日知识</a><a href="./">论文精读目录</a></div></header><main><article><p class="meta">Zhang 等 · Nature Communications · 2015</p><h1>怎样用傅里叶条纹和一个探测器恢复图像？</h1><p class="lead">四步相移将强度测量组合成复数傅里叶系数。低频优先采样能较早恢复轮廓，所需曝光数还取决于每个频率的相移步数。</p><p><a href="https://doi.org/10.1038/ncomms7225">Single-pixel imaging by means of Fourier spectrum acquisition</a></p><details><summary>文章目录</summary><ol><li><a href="#s1">1. 先把研究问题说准确</a></li><li><a href="#s2">2. 核心原理：光学测量怎样变成傅里叶系数</a></li><li><a href="#s3">3. 光路与硬件：论文实际做了什么</a></li><li><a href="#s4">4. 采样效率：频谱覆盖率和曝光数必须分开</a></li><li><a href="#s5">6. 强背景成像：−22.8 dB 到底表示什么</a></li><li><a href="#s6">7. 彩色扩展：能推广到哪些维度</a></li><li><a href="#s7">8. 和 Hadamard 路线放在同一张表里理解</a></li><li><a href="#s8">9. 原理走向实验：建议怎样复现</a></li><li><a href="#s9">10. 哪些结论已经成立，哪些还需要验证</a></li><li><a href="#s10">11. 带着这五个问题检查是否读懂</a></li></ol></details><section><h2 id="s1">1. 先把研究问题说准确</h2><p>通常的相机用像素阵列区分光来自哪里。这里把空间选择放到照明端：每次向物体投射一个已知空间图案，探测器将响应积分，经过多次测量再恢复空间分布。</p><p>作者特别关注探测器无法直接观察场景的情况：一条通道隔着毛玻璃接收光，另一条通道背对场景、接收白纸散射回来的光。探测端不需要保留清晰的像，但<strong>投影端仍须把有空间分辨率的条纹投到目标上</strong>。因此本实验没有展示光源和探测器同时绕过障碍物的任意“隔墙成像”。</p><h3>补充图 1：直接光与间接光</h3><p class="credit"><a href="https://doi.org/10.1038/ncomms7225">补充图1：直接和间接传播路径 · 原文</a></p><ul>
+<li><strong>回答的问题：</strong>散射后的光为什么仍可能携带可用信息？</li>
+<li><strong>图中证据或方法：</strong>示意图对比场景到探测器的直接路径，以及经过散射介质的间接路径；来源为补充 PDF 第 1 页。</li>
+<li><strong>支撑的结论：</strong>只要图案先在场景上编码，后续稳定的传播路径仍可把调制信号送入积分探测器。</li>
+<li><strong>局限与读图注意：</strong>这是传播示意，并非新的实测图。图中 direct/indirect 按作者的场景后传播约定理解；不能据此断言不同路径具有相同效率或相同空间权重。</li>
+</ul></section><section><h2 id="s2">2. 核心原理：光学测量怎样变成傅里叶系数</h2><h3>2.1 一张条纹测的是加权总和</h3><p>按主文公式（1）—（3），令 θ = 2π(f<sub>x</sub>x + f<sub>y</sub>y)，则</p><p>P<sub>φ</sub>(x,y) = a + b cos(θ + φ)</p><p>D<sub>φ</sub> = D<sub>n</sub> + k ∬<sub>Ω</sub> R(x,y) P<sub>φ</sub>(x,y) dxdy</p><p>R 是场景反射率分布，Ω 是照明区域，D 是测得的响应，D<sub>n</sub> 是背景响应，k 是作者简化模型中的收光系数。a 是图案的均匀偏置，b 是调制幅度；严格说无量纲条纹对比度应写成 b/a。取 a ≥ |b|，才不会要求负光强。</p><p>对于离散图像，更适合编程的写法是 θ = 2π(ux/N<sub>x</sub> + vy/N<sub>y</sub>)，其中 x、y 为整数像素坐标，u、v 为整数频率索引。例如 32 像素宽度上的 u = 3 表示横向有 3 个周期，而不是 3 Hz；物理空间频率还要除以实际视场宽度。</p><h3>2.2 四步相移分别测到余弦和正弦权重</h3><p>对同一个频率，依次投射 φ = 0、π/2、π、3π/2 四张图案。令 A = ∬R cosθ，B = ∬R sinθ，且 Q = D<sub>n</sub> + ak∬R，则</p><div class="scroll"><table>
+<thead>
+<tr>
+<th>相位</th>
+<th>响应</th>
+<th>物理含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Q + bkA</td>
+<td>正的余弦投影</td>
+</tr>
+<tr>
+<td>π/2</td>
+<td>Q − bkB</td>
+<td>负的正弦投影</td>
+</tr>
+<tr>
+<td>π</td>
+<td>Q − bkA</td>
+<td>负的余弦投影</td>
+</tr>
+<tr>
+<td>3π/2</td>
+<td>Q + bkB</td>
+<td>正的正弦投影</td>
+</tr>
+</tbody>
+</table></div><p>于是原文公式（4）等价于</p><p>C̃(u,v) = [D<sub>0</sub> − D<sub>π</sub>] + i[D<sub>π/2</sub> − D<sub>3π/2</sub>] = 2bk(A − iB) = 2bk F{R}(u,v)</p><p>这里采用正向傅里叶核 exp(−iθ)。<strong>虚部的差分顺序不可随意调换</strong>，否则与 FFT 约定不一致，会造成镜像等错误。四个响应中的公共偏置 Q 被消掉，但真实图像的零频系数 C(0,0) 并没有因此消失：零频图案要单独正确处理，不能直接删掉图像平均亮度。</p><h3>2.3 重建不需要迭代寻找一张“最像”的图</h3><p>把测得的 C̃ 放到对应频率格点，按实值图像的共轭对称性补齐另一半，再计算 IFFT；在 k、b 为常数的理想模型下得到 2bkR。若只测低频，则未测部分置零后再 IFFT，得到的是经过频谱截断的近似图像。它可能有模糊和振铃，不能凭空补回未测高频。</p><h3>补充图 2：图像是不同条纹的加权合成</h3><p class="credit"><a href="https://doi.org/10.1038/ncomms7225">补充图2：二维傅里叶分解示意 · 原文</a></p><ul>
+<li><strong>回答的问题：</strong>为什么一串与图像位置没有直接对应关系的总光强，也能重建物体？</li>
+<li><strong>图中证据或方法：</strong>用不同二维条纹及其系数的加权求和示意图像合成；来源为补充 PDF 第 1 页。</li>
+<li><strong>支撑的结论：</strong>已知一组完整基底上的系数，就可逆变换恢复图像；单像素探测器负责测这些系数。</li>
+<li><strong>局限与读图注意：</strong>图是直观示意。完整傅里叶描述含复数系数或成对的正弦、余弦分量，不能用一张实值条纹的一次响应代替一个任意复数系数。</li>
+</ul></section><section><h2 id="s3">3. 光路与硬件：论文实际做了什么</h2><h3>Figure 1：两种间接探测通道</h3><p class="credit"><a href="https://doi.org/10.1038/ncomms7225">Figure 1：投影照明与两种光电探测配置 · 原文</a></p><ul>
+<li><strong>回答的问题：</strong>不在探测器上形成清晰的像，能否完成空间成像？</li>
+<li><strong>图中证据或方法：</strong>TOSHIBA Tp-95 投影仪依次显示四步相移正弦图案，Hamamatsu S1227-1010BR 光电二极管经放大电路输出信号；探测器 1 前放毛玻璃，探测器 2 背对场景并通过 A4 白纸收集散射光。来源为主文第 3 页。</li>
+<li><strong>支撑的结论：</strong>空间编码在照明端完成，探测器无需成像镜头；两条通道提供不同传播与收光条件下的检验。</li>
+<li><strong>局限与读图注意：</strong>探测器 1 的信号含直接和间接成分，探测器 2 才是作者所称主要间接光配置。投影仪仍直接照明物体。图中场景标注 20.4 cm × 20.4 cm，正文另报照明区域 16 cm × 16 cm；两者不能直接合并成同一视场参数，复现时应重新量定有效编码区域。</li>
+</ul><div class="scroll"><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>论文给出的值</th>
+<th>复现时怎样使用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>场景</td>
+<td>玩具与放大的 1951 USAF 测试图</td>
+<td>既观察轮廓，也检查细条纹；不是随机场景集合</td>
+</tr>
+<tr>
+<td>编码网格</td>
+<td>245 × 245，256 灰度级</td>
+<td>图案数值网格不等于实测空间分辨率</td>
+</tr>
+<tr>
+<td>图案切换间隔</td>
+<td>0.15 s</td>
+<td>约 6.67 幅图案/s；不能当作重建帧率</td>
+</tr>
+<tr>
+<td>投影仪刷新率</td>
+<td>60 Hz，见补充方法</td>
+<td>一次图案驻留跨越多个刷新周期；探测积分窗口需另标定</td>
+</tr>
+<tr>
+<td>毛玻璃厚度</td>
+<td>5.1 mm</td>
+<td>厚度本身不足以刻画散射强度，还需透过率等条件</td>
+</tr>
+<tr>
+<td>背景光</td>
+<td>100 Hz 闪烁的荧光灯</td>
+<td>特定周期背景测试，不代表全部照明噪声</td>
+</tr>
+</tbody>
+</table></div><p>正文给出了光电二极管型号和使用放大电路，但没有完整放大器、ADC、采样触发与积分窗口的电路级参数。因此可以据此搭原理实验，尚不能逐项照抄成等性能装置。</p></section><section><h2 id="s4">4. 采样效率：频谱覆盖率和曝光数必须分开</h2><h3>Figure 2：先测低频，先出现轮廓</h3><p class="credit"><a href="https://doi.org/10.1038/ncomms7225">Figure 2：频谱覆盖1%至100%与两探测器重建 · 原文</a></p><ul>
+<li><strong>回答的问题：</strong>需要测多少频率，才可辨认这一场景？</li>
+<li><strong>图中证据或方法：</strong>上半部 a—h 给出两探测器在 1%、10%、25%、100% 覆盖率下的频谱显示，下半部 i—p 给出相应 IFFT 图像；图中列出实际测量次数。来源为主文第 4 页，比例尺 2 cm。</li>
+<li><strong>支撑的结论：</strong>该场景 1% 覆盖时已可辨认大轮廓，10% 明显改善，25% 与 100% 的视觉差别较小；仅收间接光的探测器 2 结果更噪。</li>
+<li><strong>局限与读图注意：</strong>“差别较小”是展示场景的视觉判断，不能证明高频误差为零或普适最优。图注明确未做后处理。频谱显示为增强可见性使用了对数尺度；虽然色条写 normalized power spectral density，图注描述的是频谱绝对值的对数显示，不应用此图直接计算能量比例。</li>
+</ul><p>定义 N = 245² = 60,025 为图像像素数，S 为图示的全频谱覆盖比例，m 为单次探测曝光数。实值图像的共轭对称性约节省一半频率，但四步相移又使每个独立频率消耗四次曝光，所以<strong>m ≈ 2SN</strong>，而非 m = SN。</p><div class="scroll"><table>
+<thead>
+<tr>
+<th>频谱覆盖 S</th>
+<th>图中测量次数 m</th>
+<th>m/N</th>
+<th>按每次 0.15 s 换算的采集时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1%</td>
+<td>1,200</td>
+<td>约 2%</td>
+<td>180 s，3 min</td>
+</tr>
+<tr>
+<td>10%</td>
+<td>12,004</td>
+<td>约 20%</td>
+<td>1,800.6 s，约 30 min</td>
+</tr>
+<tr>
+<td>25%</td>
+<td>30,012</td>
+<td>约 50%</td>
+<td>4,501.8 s，约 75 min</td>
+</tr>
+<tr>
+<td>100%</td>
+<td>120,052</td>
+<td>约 200%</td>
+<td>18,007.8 s，约 5.00 h</td>
+</tr>
+</tbody>
+</table></div><p>表中时间由论文 m × 0.15 s 换算，未另计控制和传输开销；主文报告全帧超过 5 h。245 为奇数，除 DC 外的频率成共轭对，共有 (60,025 + 1)/2 = 30,013 个独立位置，每个四次即 120,052 次，和原文吻合。</p><p>本文称这种方法为“compressive sampling like”：利用自然场景低频占优，有目的地少测高频，再直接逆变换。<strong>这并非随机测量加稀疏优化的通用精确恢复保证。</strong>测试图中的细线、小颗粒或陡峭界面若落在未采高频内，就可能丢失；“自然图像在傅里叶域稀疏”更稳妥地理解为部分图像可压缩，而非所有图像严格稀疏。</p></section><section><h2 id="s5">6. 强背景成像：−22.8 dB 到底表示什么</h2><h3>Figure 4：背景存在时图像仍可辨认</h3><p class="credit"><a href="https://doi.org/10.1038/ncomms7225">Figure 4：三种背景与探测条件下的重建 · 原文</a></p><ul>
+<li><strong>回答的问题：</strong>荧光灯背景强于目标相关响应时，还能否成像？</li>
+<li><strong>图中证据或方法：</strong>a 为探测器 2 加背景光，标注 −22.8 dB；b 为探测器 1 加背景光，−8.5 dB；c 为探测器 1 无环境照明，64.2 dB。来源为主文第 5 页，比例尺 2 cm，三幅均进行了周期噪声处理。</li>
+<li><strong>支撑的结论：</strong>在所用背景、时序和静态场景条件下，差分后仍能辨认目标；背景最强的 a 明显更噪。</li>
+<li><strong>局限与读图注意：</strong>三图同时改变背景或探测通道，不能把差异完全归因于单一参数。SNR 是采集电压的特定口径，不是重建图像 PSNR，也不是残余随机噪声功率比。</li>
+</ul><h3>补充图 4：作者测量的信号和背景电压</h3><p class="credit"><a href="https://doi.org/10.1038/ncomms7225">补充图4：目标相关电压与荧光灯背景波形 · 原文</a></p><ul>
+<li><strong>回答的问题：</strong>文中 SNR 的分子和分母实际如何获得？</li>
+<li><strong>图中证据或方法：</strong>a 为只开投影仪时探测器 2 的电压波形，b 为只开荧光灯时的背景波形，横轴显示 0—0.1 s；补充方法规定取一秒采样的平均电压计算 SNR。来源为补充 PDF 第 3、8 页。</li>
+<li><strong>支撑的结论：</strong>作者用独立照明条件下的平均响应量化信号与背景的相对强度，且背景存在 100 Hz 周期变化。</li>
+
+</ul><p>补充公式（9）为</p><p>SNR = 10 log<sub>10</sub>[(V̄<sub>signal</sub>/V̄<sub>noise</sub>)²] = 20 log<sub>10</sub>|V̄<sub>signal</sub>/V̄<sub>noise</sub>|</p><p>信号由投影仪开、荧光灯关时测得，且投射零频零相位图案；背景由投影仪关、荧光灯开时测得。−22.8 dB 对应平均电压比约 0.072，亦即背景平均响应约为信号的 13.8 倍。此换算并不表示随机噪声的标准差大 13.8 倍。</p><p>四步法严格消除的是四次测量共同的背景分量。如果背景随相位测量时刻变化，则残留为</p><p>ε<sub>bg</sub> = (D<sub>n,0</sub> − D<sub>n,π</sub>) + i(D<sub>n,π/2</sub> − D<sub>n,3π/2</sub>)</p><p>因此背景抵消依赖时序、积分平均和稳定性；采样快于或慢于闪烁频率本身不足以保证抵消。背景光子产生的散粒噪声不会因减去均值而消失，探测器在相减前也必须保持不饱和、近似线性。</p></section><section><h2 id="s6">7. 彩色扩展：能推广到哪些维度</h2><h3>补充图 5：三个滤色探测通道合成 RGB</h3><p class="credit"><a href="https://doi.org/10.1038/ncomms7225">补充图5：三光电二极管实现RGB重建 · 原文</a></p><ul>
+<li><strong>回答的问题：</strong>同一空间编码能否同时用于多个颜色通道？</li>
+<li><strong>图中证据或方法：</strong>a 展示三个分别带红、绿、蓝滤光片、并经毛玻璃收光的光电二极管；b—d 为三色子图，e 为合成结果。来源为补充 PDF 第 4 页，比例尺 2 cm。</li>
+<li><strong>支撑的结论：</strong>作者完成了无环境照明条件下的 RGB 多通道实测，并对图像做了周期噪声处理。</li>
+<li><strong>局限与读图注意：</strong>这里使用三个单点探测通道，不是一个探测器同时分辨三种颜色。RGB 展示不等于高光谱定量标定，更不构成中红外气体吸收或局部浓度的验证。</li>
+</ul></section><section><h2 id="s7">8. 和 Hadamard 路线放在同一张表里理解</h2><p>以下是基于测量方程的教学比较，并非本文提供的同装置性能基准实验。</p><div class="scroll"><table>
+<thead>
+<tr>
+<th>方面</th>
+<th>本文四步 Fourier 路线</th>
+<th>互补差分 Hadamard 路线</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>空间基底</td>
+<td>灰度正弦；频率和相位可明确解释</td>
+<td>±1 正交基，通常用两幅互补 0/1 图案实现</td>
+</tr>
+<tr>
+<td>一组输出</td>
+<td>四次响应组成一个复系数</td>
+<td>两次响应相减得到一个实系数</td>
+</tr>
+<tr>
+<td>完整重建曝光量级</td>
+<td>利用共轭对称后约 2N；特殊频点另处理</td>
+<td>完整 N 个系数通常 2N 次曝光</td>
+</tr>
+<tr>
+<td>重建计算</td>
+<td>IFFT</td>
+<td>逆 Hadamard 变换</td>
+</tr>
+<tr>
+<td>欠采样选择</td>
+<td>低频优先有直观尺度含义</td>
+<td>依赖基底排序与所采用的先验</td>
+</tr>
+<tr>
+<td>DMD 实现</td>
+<td>原生二值图案需灰度时间调制或空间滤波等处理</td>
+<td>互补二值图案可直接映射微镜状态</td>
+</tr>
+<tr>
+<td>实验误差重点</td>
+<td>相移、灰度非线性、频率相关对比度、同步</td>
+<td>互补平衡、时序、二值光路对比度、同步</td>
+</tr>
+</tbody>
+</table></div><p>不能仅因“Fourier 是四张、Hadamard 是两张”就判定前者整帧慢两倍，前者还利用了共轭对称；也不能仅据 Figure 2 认定 Fourier 对所有目标都更快或更准。公平比较应固定曝光数、光子预算、时间、有效分辨率和处理流程。</p></section><section><h2 id="s8">9. 原理走向实验：建议怎样复现</h2><ol>
+<li><strong>固定空间网格和坐标。</strong>先用小网格生成水平、竖直与斜向单频条纹，逐一验证频率索引、相位方向、FFT 符号和图像朝向；对偶数网格特别处理 DC 与 Nyquist 自共轭频点，避免重复或漏测。</li>
+<li><strong>标定真正投到靶上的图案。</strong>测量输入灰度到照度的映射，以及 b(u,v) 随频率的衰减。二值 DMD 加离焦或空间滤波是论文讨论的生成办法，本文主实验用的仍是商用灰度投影仪；不能把器件二值刷新率直接当作灰度有效采样率。</li>
+<li><strong>验证探测器与时间窗。</strong>记录四步原始响应，测背景、暗噪声、放大器线性范围和稳定时间；明确切换后等待多久、积分多久。改变图案切换间隔，检查系数是否收敛到稳定值。</li>
+<li><strong>先完成完整频谱重建。</strong>用均匀靶检查零频与伪峰，用已知单频靶检查频谱位置与串扰，用非对称靶检查镜像，再用 USAF 图检查细节。先保留无掩模的结果，确认原始测量链成立。</li>
+<li><strong>在相同基准上逐级欠采样。</strong>按低频优先顺序取子集，同时报告 S、m、m/N 和实际总时间；相对独立参考图计算误差，并用细线对比度或边缘宽度检验空间细节损失。重复采集以估计漂移与不确定度，不只给最好的一帧。</li>
+<li><strong>分别加入背景和散射。</strong>固定探测几何增加背景，再固定背景切换收光路径，避免同时改多个因素。报告平均背景、差分残余标准差及图像误差，区分偏置抵消和随机噪声变化。</li>
+</ol><p>若要进入动态成像，先检查四次曝光期间目标是否近似静止，再检查整个采集序列期间是否近似静止。这是两个不同时间尺度：相移组内变化会污染同一系数，整帧变化会让不同频率属于不同时间。本文明确承认当时仅适用于静态测量，并未验证动态运动补偿。</p><p>若再进入中红外气体方向，空间编码后恢复的可能是透射强度 T(x,y)，经过参考归一化和光谱标定才可能解释为吸收。即使获得吸收图，也通常约束视线积分；局部浓度还需光程、吸收系数、温压和反演条件。本文的可见光反射实验没有验证这些环节。</p></section><section><h2 id="s9">10. 哪些结论已经成立，哪些还需要验证</h2><div class="scroll"><table>
+<thead>
+<tr>
+<th>层级</th>
+<th>可以保留的认识</th>
+<th>不应延伸成的结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数学推导</td>
+<td>线性、稳定、已知正弦图案下，四步差分得到复频谱</td>
+<td>任意非线性或动态场景都能精确恢复</td>
+</tr>
+<tr>
+<td>实验观察</td>
+<td>所示静态场景可通过两种间接收光配置重建</td>
+<td>任意遮挡、任意散射强度均可成像</td>
+</tr>
+<tr>
+<td>欠采样结果</td>
+<td>该场景低频优先能较快呈现主要结构</td>
+<td>25% 频谱保留了全部细节或具有普适恢复保证</td>
+</tr>
+<tr>
+<td>背景结果</td>
+<td>特定 100 Hz 背景下差分后仍可辨认目标</td>
+<td>对所有负 SNR 随机噪声具有同等稳健性</td>
+</tr>
+<tr>
+<td>后处理结果</td>
+<td>指定异常频点修正减弱周期网格</td>
+<td>所有可疑高频都可安全去除</td>
+</tr>
+<tr>
+<td>扩展验证</td>
+<td>三个滤色探测通道完成 RGB 成像</td>
+<td>已实现单探测器高光谱、动态中红外或气体浓度成像</td>
+</tr>
+</tbody>
+</table></div><p>论文没有在展示结果中提供系统性的独立重复次数、误差条或与 Hadamard 同预算的基准比较。将这些结果用于选型时，应保留“方法可行性展示”这一证据尺度。</p></section><section><h2 id="s10">11. 带着这五个问题检查是否读懂</h2><div class="scroll"><table>
+<thead>
+<tr>
+<th>问题</th>
+<th>应能给出的答案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>探测器没有像素，位置从哪里来？</td>
+<td>来自已知照明图案的空间编码，以及响应与图案索引的一一对应。</td>
+</tr>
+<tr>
+<td>为什么要四张，而不是只照一张条纹？</td>
+<td>一个任意复系数含余弦与正弦两分量；成对相减测出两分量并抵消公共背景。</td>
+</tr>
+<tr>
+<td>25% 频谱覆盖等于25%曝光吗？</td>
+<td>本文不等于：m≈2SN，对应约50%像素数的曝光量。</td>
+</tr>
+<tr>
+<td>消除 DC 是否把图像平均亮度也删了？</td>
+<td>消除的是四步中的公共响应偏置；图像零频系数应按零频图案正确测量和保留。</td>
+</tr>
+<tr>
+<td>为什么背景强很多还看得见，但仍有噪声？</td>
+<td>稳定背景均值可差分抵消，背景波动、散粒噪声和其他误差仍可能保留。</td>
+</tr>
+</tbody>
+</table></div></section><footer class="source"><p>Zibang Zhang, Xiao Ma, Jingang Zhong · <a href="https://doi.org/10.1038/ncomms7225">Single-pixel imaging by means of Fourier spectrum acquisition</a> · Nature Communications · 2015</p><a href="./">返回论文精读目录</a></footer></article></main></body></html>

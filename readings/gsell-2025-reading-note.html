@@ -1,0 +1,94 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>类器官里的组织回流如何放大前后轴的不对称？ · 论文精读</title><style>*{box-sizing:border-box}html{color-scheme:light;scroll-padding-top:1rem}body{margin:0;background:#f4f6f8;color:#1b2d3c;font:1.05rem/1.86 system-ui,"Microsoft YaHei",sans-serif;overflow-wrap:anywhere}header{background:#173c58;color:white}header div,main{max-width:54rem;margin:auto;padding:0 clamp(1rem,4vw,2.6rem)}header div{display:flex;gap:1.6rem;align-items:center;padding-block:.68rem}header a{color:white}a{color:#155078;text-underline-offset:.2em}main{background:white;padding-block:1.4rem 3rem}h1,h2,h3,h4{line-height:1.45;text-wrap:pretty}h1{font-size:clamp(1.65rem,4vw,2.4rem);margin:.35rem 0 .6rem}h2{color:#193f58;font-size:1.4rem;margin:2.2rem 0 .6rem;border-top:1px solid #d7e1e8;padding-top:1.3rem}h3{font-size:1.13rem;margin:1.4rem 0 .3rem}p{margin:.7rem 0}.meta,figcaption,.credit{color:#506575;font-size:.91rem}.lead{border-left:3px solid #477b92;padding:.5rem .9rem;background:#f1f6f8}details{margin:1rem 0}summary{cursor:pointer;color:#155078;font-weight:650}ul,ol{padding-left:1.5em}li+li{margin-top:.28em}.scroll,pre,math[display=block]{max-width:100%;overflow-x:auto}.scroll{margin:.9rem 0}table{font-size:.94rem;border-collapse:collapse;text-align:left;width:100%;min-width:22rem}td,th{border-bottom:1px solid #d4e0e7;padding:.45rem .6rem;vertical-align:top}th{background:#eef4f6}figure{margin:1.4rem 0}figure>a{display:block}figure img{max-width:100%;height:auto;display:block;margin:auto}figure a span{display:block;text-align:center;font-size:.85rem}figcaption{margin-top:.4rem}code,pre{font-family:ui-monospace,monospace;background:#f2f5f6}pre{padding:.75rem}blockquote{margin-inline:0;padding-left:.85rem;border-left:3px solid #a6bac6}.source{margin-top:2.2rem;border-top:1px solid #cedbe3;padding-top:.8rem}a:focus-visible,summary:focus-visible{outline:3px solid #b77928;outline-offset:2px}@media(max-width:520px){body{font-size:1rem}h2{font-size:1.22rem}header div{gap:1.2rem}}</style></head><body><header><div><a href="../">每日知识</a><a href="./">论文精读目录</a></div></header><main><article><p class="meta">Gsell 等 · Nature Physics · 2025</p><h1>类器官里的组织回流如何放大前后轴的不对称？</h1><p class="lead">小鼠类胚体中出现大尺度组织回流。测量和模型把这种回流与前后区域的有效表面张力差相联系。</p><p><a href="https://doi.org/10.1038/s41567-025-02802-2">Marangoni-like tissue flows enhance symmetry breaking of embryonic organoids</a></p><details><summary>文章目录</summary><ol><li><a href="#s1">研究背景</a></li><li><a href="#s2">研究方法</a></li><li><a href="#s3">核心结果</a></li><li><a href="#s4">机制与证据</a></li><li><a href="#s5">适用范围与局限</a></li></ol></details><section><h2 id="s1">研究背景</h2><p>早期多细胞动物发育需要建立身体轴，例如 head-to-tail 或 anteroposterior axis。经典解释主要强调 conserved morphogens，包括 Wnt、BMP、Activin/Nodal 和 FGF 等信号通路。但作者指出，早期发育中的 tissue mechanics 和 tissue flows 也可能对轴形成有重要作用，尤其是在 mammalian systems 中仍不清楚。</p><p>本文使用的模型系统是 mouse embryonic stem cells 形成的 gastruloids。这类三维 embryonic organoids 能在体外发生 symmetry breaking，并产生与早期胚胎相似的轴向组织和基因表达格局。作者关注的标记包括：</p><ul>
+<li>T/Brachyury, 简写 T/Bra：posterior pole 高表达，用于标记前后轴极化。</li>
+<li>E-cadherin, 简写 E-cad：与 epithelial 状态相关，和 T/Bra 的空间模式一起用于分析极化。</li>
+<li>Snail：用于提示 epithelial-to-mesenchymal transition 相关变化。</li>
+</ul><p>论文的核心问题有三个：</p><ul>
+<li>组织流动是否只是伴随极化出现，还是定量上参与了极化增长？</li>
+<li>组织流动的主导结构是什么，是否有可重复的大尺度模式？</li>
+<li>这些流动是否能由 patterning-induced effective tissue tensions 解释，并通过独立实验验证？</li>
+</ul></section><section><h2 id="s2">研究方法</h2><h3>Gastruloid 形成与成像</h3><p>实验 protocol 从 mouse embryonic stem cells 开始。细胞被接种到低黏附 microwells 中，数小时后形成 3D aggregates。48 hAAF 时加入 Wnt agonist Chiron 刺激分化，24 h 后洗去。72 hAAF 结束 Chiron exposure 时，gastruloids 仍近似球形并整体表达 T/Bra；72-96 hAAF 期间，它们逐渐拉长并形成 AP-graded T/Bra 和 E-cad expression patterns，posterior 端表达更高。</p><p>Methods 中给出的关键条件：</p><ul>
+<li>起始细胞数：100-200 个 pluripotent mouse embryonic stem cells。</li>
+<li>成像环境：37 °C, 5% CO2。</li>
+<li>成像方式：two-photon microscopy, Zeiss 510 NLO, 40x/1.2C Apochromat objective。</li>
+<li>中平面子体积：60 um 厚 z stacks，12-30 slices，层间距 2-5 um。</li>
+<li>成像时长：10-24 h。</li>
+<li>时间间隔：3-10 min。</li>
+<li>记录通道：T/Bra 或 E-cad live reporters、cell membranes、extra-cellular space；红色通道用于 optical flow。</li>
+</ul><p>Figure 1 的作用：</p><ul>
+<li>Fig. 1(a) 展示从 0 h 到 90 h 的 workflow：细胞接种、48-72 h Wnt pathway activation、72-96 h 的 T/Bra patterning 和 elongation。</li>
+<li>Fig. 1(b) 说明只成像 gastruloid 中平面附近的 60 um 子体积，这是后续 2D flow/polarization 分析的基础。</li>
+<li>Fig. 1(c) 把 time-averaged tissue collective flows 和 T/Bra pattern 放在一起，直观显示组织流方向与 posterior 高 T/Bra 区域相关。</li>
+<li>Fig. 1(d) 显示 E-cad 和 Snail immunostaining pattern，支持这个 system 中的 epithelial-to-mesenchymal transition 相关空间异质性。</li>
+</ul><h3>极化度量</h3><p>作者用 T/Bra 或 E-cad 的二维 fluorescence intensity field ϕ(r,t) 定义 dipole moment P(t)：</p><p>P(t) = ∫_Ω ϕ(r,t) [r - c(t)] dS</p><p>其中 Ω 是 aggregate 的 2D cross-section，c(t) 是 barycentre。P 的方向指向 T/Bra 或 E-cad 强度最高的一侧，|P| 表示极化程度。作者还用 P0(t) 对 |P| 归一化，P0 与 ϕ 的 spatial standard deviation 和 aggregate 横截面积有关。</p><p>Fig. 2(a-c) 的主要证据是：</p><ul>
+<li>单个 gastruloid 中，T/Bra dipole moment 随时间逐渐增大。</li>
+<li>多个样品中，T/Bra 和 E-cad 的 normalized polarization 都在 76-96 hAAF 期间上升。</li>
+<li>dipole direction 随时间变化不大，说明轴向方向很早已被定义，后续主要是极化幅度增强。</li>
+</ul><h3>极化变化分解</h3><p>作者把 dP/dt 分解为：</p><p>dP/dt = R + A + G + Q3D</p><p>含义是：</p><ul>
+<li>R：reaction-diffusion contribution，包括空间异质性细胞分化和 individual cell motion 的合并效应。</li>
+<li>A：advection contribution，即 T/Bra 或 E-cad 被 tissue flows 搬运。</li>
+<li>G：growth contribution，包括 differential volume growth，例如 cell division 和 apoptosis。</li>
+<li>Q3D：3D motion of the aggregate 造成的几何项。</li>
+</ul><p>这个分解的好处是，在无法可靠做 cell nuclei segmentation/tracking 的情况下，仍可用 coarse-grained optical flow 和 fluorescence data 区分几个大类贡献。</p><p>Fig. 2(d-f) 的核心结论：</p><ul>
+<li>reaction-diffusion 是最大贡献项。</li>
+<li>advection 不是小修正，约贡献总极化的三分之一。</li>
+<li>growth 在示例和总体统计中贡献较小，有时接近零或为负。</li>
+<li>N = 6 的统计中，T/Bra 和 E-cad 都显示 advection 有正贡献。</li>
+</ul><h3>Tissue flow 的模式分解</h3><p>由于 tissue flows 有明显时空波动，作者没有直接逐像素比较每个样本，而是把 velocity field 分解到圆盘内的 radial component vr 和 angular component vθ，再进一步分解为 angular Fourier modes 和 radial polynomial modes。模式写作 vr/θ_{n,p}，对应角向 mode index n 和径向 mode index p。低 index 模式代表大尺度结构。</p><p>Fig. 3 是方法图：</p><ul>
+<li>Fig. 3(a) 说明分析区域是以 aggregate barycentre 为中心的圆盘。</li>
+<li>Fig. 3(b) 把 velocity v 分解成 radial 和 angular components。</li>
+<li>Fig. 3(c,d) 展示不同 n,p 的基函数和对应 velocity fields。</li>
+</ul><p>Fig. 4 是结果图：</p><ul>
+<li>分析对象为 14 个 gastruloids，成像窗口 78-88 hAAF。</li>
+<li>约 50% 的 tissue flow field variance 由 5 个 low-index modes 提供，说明大尺度结构在样本之间可重复。</li>
+<li>前 3 个最高振幅模式合计约贡献 40% flow field，并叠加形成 large-scale recirculating pattern。</li>
+<li>下一个重要模式 vr_{2,0} 主要对应 gastruloid elongation，即沿一个轴伸长并沿垂直轴收缩。</li>
+<li>recirculation mode angle 与 dipole angle 相关，Pearson correlation coefficient 约 58%。这说明 flow direction 与 T/Bra/E-cad polarization direction 同向耦合，但不能仅凭相关性判断因果方向。</li>
+</ul><h3>有效张力模型</h3><p>作者提出一个 minimal effective continuum model。它把 AP patterning genes 合并成一个有效 expression field ϕ(r)，范围从 -1 到 +1，分别代表 anterior-most 和 posterior-most。组织被视为不可压缩连续介质，满足 Stokes-type equations：</p><p>0 = ∇·v</p><p>0 = -∇Π + η∇²v + ∇·(σi + σs)</p><p>其中 Π 是 hydrodynamic pressure，η 是 effective tissue viscosity，σi 是由 expression pattern 内部产生的应力，σs 是 aggregate surface tension 相关应力。</p><p>内部应力取 leading-order form：</p><p>σi = -κi[(∇ϕ) ∘ (∇ϕ) - 1/2(∇ϕ)^2 I]</p><p>这个张量与 ϕ 的梯度对齐，梯度越强，应力越大。在 high-ϕ 和 low-ϕ 域之间，它对应一个 effective interfacial tension γi。</p><p>表面张力项用第二个 scalar field ψ(r) 描述 aggregate surface，ψ 在组织内部为 1、外部为 0。表面应力强度 κs 依赖局部 ϕ，在 T/Bra-/E-cad- 和 T/Bra+/E-cad+ 区域分别取 κs- 和 κs+。</p><p>模型的两个关键无量纲参数是：</p><ul>
+<li>surface stress difference: Δκs = (κs+ - κs-) / κi。</li>
+<li>interface-to-surface stress ratio: r = 2κi / (κs+ + κs-)。</li>
+</ul><p>当 Δκs &lt; 0 时，表示 anterior-like 区域的表面张力更高，即 κs- &gt; κs+。模型显示这种表面张力差可以产生 recirculating tissue flow，机制类似 Marangoni effect：表面张力梯度驱动表面流动。</p><p>Fig. 5 的主要信息：</p><ul>
+<li>Fig. 5(a-c) 解释 ϕ 梯度如何产生 interface tension，ψ 梯度如何产生 aggregate surface tension。</li>
+<li>Fig. 5(d) 显示改变 Δκs 和 r 时，模拟流场方向与结构显著变化；Δκs &lt; 0 时表面流指向 anterior pole，和实验更相似。</li>
+<li>Fig. 5(e) 给出对应的实验 velocity field。</li>
+<li>Fig. 5(f) 显示 full flow residual 和 recirculation-mode residual。full-flow residual 仍很大，约 85% 量级，说明模型不能解释所有细节；只比较 recirculation modes 时，residual 降至约 40-50%，说明模型较好捕捉了主导回流而不是小尺度波动。</li>
+<li>Fig. 5(g,h) 显示当 r = 0.9, Δκs = -0.2 时，模拟的 recirculation mode 与实验回流结构相符。</li>
+</ul><h3>融合实验</h3><p>为了独立验证 tissue type-dependent tensions，作者做了 gastruloid fusion experiments。思路是让 posterior-like T/Bra+ tissue 与 anterior-like T/Bra- tissue 接触，观察融合角度和界面长度如何演化。</p><p>设计：</p><ul>
+<li>72 hAAF gastruloids 几乎整体 T/Bra+。</li>
+<li>84 hAAF gastruloids 已极化，同时包含 T/Bra+ 和 T/Bra- 区域。</li>
+<li>将 72 hAAF gastruloid 与 84 hAAF gastruloid 接触，形成 heterotypical +− contact。</li>
+<li>对照组是两个 72 hAAF T/Bra+ aggregates 的 homotypical ++ fusion。</li>
+<li>融合实验总时长 600 min，跟踪外角 θ1 和内角 θ2、θ3。</li>
+</ul><p>Fig. 6 的结论：</p><ul>
+<li>homotypical ++ fusion 中，外角 θ1 饱和到 180°，内角 θ2 和 θ3 饱和到约 90°。这与无界面张力差的模型一致。</li>
+<li>heterotypical +− fusion 中，外角 θ1 饱和到约 140°，低于 180°，说明 T/Bra+ 与 T/Bra- 之间存在有限 interfacial tension。</li>
+<li>heterotypical 情况下，T/Bra+ tissue 内角 θ2 小于 T/Bra- tissue 内角 θ3，支持 T/Bra- tissue 表面张力高于 T/Bra+ tissue。</li>
+<li>用 r = 0.8, Δκs = -0.2 的模拟可以定量复现这些角度趋势。</li>
+<li>hybrid fusion 中，homotypic ++ interface length 增长，而 heterotypic +− interface length 略缩短，进一步支持 T/Bra+ 与 T/Bra- 之间亲和性较低或有效界面张力存在。</li>
+</ul><p>作者还用融合时间尺度估计回流速度量级。droplet fusion timescale tF ≈ Rη/γs，实验估计 tF ≈ 1 h。Marangoni-like recirculation timescale tM ≈ Rη/|γs+ - γs-| ≈ tF/(r|Δκs|)。用 Δκs = -0.2 和 r = 0.8 得到 tM ≈ 6 h，与 gastruloid symmetry breaking timescale tSB ≈ 10 h 接近。因此，融合实验测得的差异张力量级足以驱动观察到的回流。</p></section><section><h2 id="s3">核心结果</h2><h3>结果 1：组织流对极化有实质量级贡献</h3><p>作者的分解显示，reaction-diffusion 是 gastruloid polarization 的最大贡献，但 tissue-flow advection 贡献约三分之一。这个结果的意义在于，它把组织流从“伴随现象”提升为“可量化贡献项”。如果没有流动搬运，T/Bra/E-cad 极化仍会发生，但增长幅度会显著减小。</p><p>需要注意的是，作者的 R 项不是严格化学 reaction-diffusion 方程里的 reaction 和 diffusion，而是 coarse-grained 层面把 cell differentiation 和 individual cell motion 合并命名为 reaction-diffusion。因此读这篇时不要把 R 直接当作分子扩散系数控制的经典 RD 模型。</p><h3>结果 2：主导组织流是大尺度 recirculation</h3><p>在 14 个 gastruloids 中，五个低阶模态贡献约一半 flow variance，前三个模态构成 recirculating pattern。这说明 tissue flow 不是完全随机的局部 rearrangements，而有稳健的大尺度组织。</p><p>recirculation direction 与 T/Bra dipole direction 的 PCC 约 58%，说明二者方向相关。作者进一步提出一个正反馈解释：</p><ol>
+<li>很早期的小极化先造成不同组织区域的有效张力差。</li>
+<li>张力差驱动 Marangoni-like recirculating flow。</li>
+<li>回流通过 advection 进一步搬运 T/Bra/E-cad pattern。</li>
+<li>极化被放大并稳定。</li>
+</ol><h3>结果 3：张力差模型能解释回流主模态，但不能解释所有流场细节</h3><p>模型将 patterning-induced effective stresses 写成 ϕ 和 ψ 的梯度函数。只要 Δκs &lt; 0，即 anterior-like T/Bra-/E-cad- 区域表面张力高于 posterior-like T/Bra+/E-cad+ 区域，就能产生方向与实验一致的 recirculation。</p><p>但模型并不是完整拟合：</p><ul>
+<li>full flow residual 约 85%，说明实验中有大量小尺度、时变或未建模机制。</li>
+<li>recirculation-mode residual 降到约 40-50%，说明模型捕捉的是主导回流模式，而不是完整速度场。</li>
+</ul><p>这点很重要：论文的强结论是“surface tension difference 足以解释并驱动 observed recirculation modes”，不是“模型完整复现了 tissue flow”。</p><h3>结果 4：融合实验独立验证 tissue-type-dependent tensions</h3><p>融合实验是这篇最强的独立证据。它不依赖 optical flow，也不依赖极化分解，而是直接通过组织团融合角度读出有效张力关系。</p><p>关键现象：</p><ul>
+<li>同型 ++ 融合像普通同质液滴融合，外角趋近 180°，内角约 90°。</li>
+<li>异型 +− 融合外角只到约 140°，说明两类组织之间有有限界面张力。</li>
+<li>异型融合中 T/Bra+ 侧内角小于 T/Bra- 侧内角，说明 T/Bra- 区域表面张力更高。</li>
+<li>r = 0.8, Δκs = -0.2 的模拟能复现实验角度趋势。</li>
+</ul><p>这使得 Marangoni-like 解释不只停留在“速度场看起来像”，而是有 tissue tension 的独立实验支撑。</p></section><section><h2 id="s4">机制与证据</h2><h3>链条 1：早期 biochemical patterning 产生组织状态差异</h3><p>Wnt/Chiron protocol 让 gastruloids 在 72-96 hAAF 形成 T/Bra/E-cad AP gradient。这个 gradient 不只是 marker，而被作者视为 tissue state 的 coarse-grained proxy。T/Bra+ 和 T/Bra- 区域对应不同的细胞状态、adhesion profile 和 effective tension。</p><h3>链条 2：组织状态差异产生 effective surface/interfacial tensions</h3><p>ϕ 的梯度代表从 anterior-like 到 posterior-like tissue state 的过渡。模型中，ϕ 的梯度产生内部应力 σi，并在不同 tissue domains 之间形成 effective interfacial tension γi。ψ 的梯度代表 aggregate surface，κs 随 ϕ 改变，使前后表面张力不同。</p><p>融合实验支持：</p><ul>
+<li>T/Bra- tissue surface tension 更高。</li>
+<li>T/Bra+ 和 T/Bra- tissue 之间存在 finite interfacial tension。</li>
+</ul><h3>链条 3：表面张力差驱动 Marangoni-like recirculating flow</h3><p>在传统 Marangoni flow 中，表面张力梯度驱动界面切向流。这里的“界面”是组织团表面，驱动力是 tissue surface tension difference。模型显示当 anterior-like region surface tension 更高时，aggregate surface 上的流动方向与实验回流一致。</p><p>类比的边界：</p><ul>
+<li>这里不是分子尺度 surfactant gradient，而是 tissue state-dependent effective tension。</li>
+<li>流体不是牛顿液滴，而是细胞组织的有效粘性连续介质。</li>
+<li>Marangoni-like 的核心在于“表面张力差驱动表面流”，不是化学表面活性剂机制。</li>
+</ul><h3>链条 4：回流通过 advection 放大极化</h3><p>recirculating flow 把 T/Bra/E-cad pattern 进一步搬运，使 dipole magnitude 增大。极化方向已经较早确定，后续回流主要增强极化程度，而不是随机选择新方向。这个反馈解释了为什么 advection 贡献可达总极化的约三分之一。</p></section><section><h2 id="s5">适用范围与局限</h2><ul>
+<li>这篇的 flow field 是 2D midplane optical flow，不是完整 3D tissue velocity。作者也指出 out-of-plane polarization 过高的 aggregates 被过滤，未来需要 light-scattering 更低的 live imaging 才能得到完整 3D 表达和流场。</li>
+<li>optical flow 是 coarse-grained 方法，不能分辨 cell differentiation、individual cell motion、cell division/apoptosis 的全部细胞级细节。因此 R/A/G 分解是有效分解，不等同于逐细胞因果追踪。</li>
+<li>full flow residual 高达约 85%，说明 effective tension model 只解释主导 recirculation，不解释全部小尺度流动。</li>
+<li>advection 贡献约三分之一的结论基于 N = 6 的极化分解样本；mode decomposition 使用 N = 14；融合实验同型 N = 12、异型 N = 8。样本量不算大，但在活体 organoid 成像中属于有价值的定量证据。</li>
+<li>Marangoni-like 类比应谨慎使用。它不是 surfactant-laden liquid interface，而是 tissue state-dependent effective surface tension。适合类比“张力梯度驱动表面/界面流”，不适合直接套用液滴 Marangoni 的材料参数。</li>
+<li>论文聚焦 recirculating flows 对 symmetry breaking 的放大作用，没有解决 gastruloid elongation 的完整机制。作者指出 elongation 可能还需要额外 mechanical or gene-regulatory information。</li>
+</ul></section><footer class="source"><p>Simon Gsell, Sham Tlili, Matthias Merkel, Pierre-François Lenne · <a href="https://doi.org/10.1038/s41567-025-02802-2">Marangoni-like tissue flows enhance symmetry breaking of embryonic organoids</a> · Nature Physics · 2025</p><a href="./">返回论文精读目录</a></footer></article></main></body></html>

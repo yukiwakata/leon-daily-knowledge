@@ -1,0 +1,173 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>冰里的气泡为什么会留下尖头或长柱状的孔？ · 论文精读</title><style>*{box-sizing:border-box}html{color-scheme:light;scroll-padding-top:1rem}body{margin:0;background:#f4f6f8;color:#1b2d3c;font:1.05rem/1.86 system-ui,"Microsoft YaHei",sans-serif;overflow-wrap:anywhere}header{background:#173c58;color:white}header div,main{max-width:54rem;margin:auto;padding:0 clamp(1rem,4vw,2.6rem)}header div{display:flex;gap:1.6rem;align-items:center;padding-block:.68rem}header a{color:white}a{color:#155078;text-underline-offset:.2em}main{background:white;padding-block:1.4rem 3rem}h1,h2,h3,h4{line-height:1.45;text-wrap:pretty}h1{font-size:clamp(1.65rem,4vw,2.4rem);margin:.35rem 0 .6rem}h2{color:#193f58;font-size:1.4rem;margin:2.2rem 0 .6rem;border-top:1px solid #d7e1e8;padding-top:1.3rem}h3{font-size:1.13rem;margin:1.4rem 0 .3rem}p{margin:.7rem 0}.meta,figcaption,.credit{color:#506575;font-size:.91rem}.lead{border-left:3px solid #477b92;padding:.5rem .9rem;background:#f1f6f8}details{margin:1rem 0}summary{cursor:pointer;color:#155078;font-weight:650}ul,ol{padding-left:1.5em}li+li{margin-top:.28em}.scroll,pre,math[display=block]{max-width:100%;overflow-x:auto}.scroll{margin:.9rem 0}table{font-size:.94rem;border-collapse:collapse;text-align:left;width:100%;min-width:22rem}td,th{border-bottom:1px solid #d4e0e7;padding:.45rem .6rem;vertical-align:top}th{background:#eef4f6}figure{margin:1.4rem 0}figure>a{display:block}figure img{max-width:100%;height:auto;display:block;margin:auto}figure a span{display:block;text-align:center;font-size:.85rem}figcaption{margin-top:.4rem}code,pre{font-family:ui-monospace,monospace;background:#f2f5f6}pre{padding:.75rem}blockquote{margin-inline:0;padding-left:.85rem;border-left:3px solid #a6bac6}.source{margin-top:2.2rem;border-top:1px solid #cedbe3;padding-top:.8rem}a:focus-visible,summary:focus-visible{outline:3px solid #b77928;outline-offset:2px}@media(max-width:520px){body{font-size:1rem}h2{font-size:1.22rem}header div{gap:1.2rem}}</style></head><body><header><div><a href="../">每日知识</a><a href="./">论文精读目录</a></div></header><main><article><p class="meta">Thiévenaz 等 · PNAS · 2025</p><h1>冰里的气泡为什么会留下尖头或长柱状的孔？</h1><p class="lead">模型让界面冻结、气体扩散和 Laplace 压力共同决定孔形。孔端标度可与实验比较，而溶解气体浓度由模型反演。</p><p><a href="https://doi.org/10.1073/pnas.2415027122">On the shape of air bubbles trapped in ice</a></p><details><summary>文章目录</summary><ol><li><a href="#s1">研究背景</a></li><li><a href="#s2">研究方法</a></li><li><a href="#s3">具体结果</a></li><li><a href="#s4">关键机制与公式复核</a></li><li><a href="#s5">局限与阅读边界</a></li></ol></details><section><h2 id="s1">研究背景</h2><p>水冻结时，原先溶解在液体中的气体被排入剩余液体；气体在冰水前沿附近成核、生长并被冰包埋。自由气泡因表面张力常接近球形，但冰中孔隙通常沿冻结方向拉长，而且上下不对称。慢冻结时还会出现细长柱状孔隙，作者称为 worm bubbles（虫状气泡）。</p><p>过去已有孔隙生长与冻结捕获模型，涉及传热、相变、扩散和成核，参数与机制较多。本文试图回答：在限定实验条件下，能否把这些过程压缩为一条可解释、可拟合的半径演化方程？它能否同时说明一般孔形、封口形状和长柱状孔隙？</p><p>这里有一项主动取舍：<strong>不求解气泡如何成核和最初如何被捕获，而把这些过程留在初始条件中。</strong> 因此，本文并没有建立完整的成核动力学理论，也没有证明仅凭冻结速度就能唯一决定孔形。</p></section><section><h2 id="s2">研究方法</h2><h3>实验：原位记录局部冻结速度与轮廓</h3><div class="scroll"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>主装置</th>
+<th>慢冻结装置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>样品</td>
+<td>与空气接触数日的去离子水</td>
+<td>相近方案的水样</td>
+</tr>
+<tr>
+<td>可视化容器</td>
+<td>矩形玻璃毛细管：6 mm × 300 μm 或 2 mm × 100 μm 内截面</td>
+<td>两片亚克力板，间距 1 mm</td>
+</tr>
+<tr>
+<td>冷却条件</td>
+<td>循环冷油冷却铜板，恒温端 −25 °C</td>
+<td>冷台上结霜基底，本文使用 −7.5 °C</td>
+</tr>
+<tr>
+<td>冻结速度</td>
+<td>12–263 μm/s；单个气泡生成期间波动为数 μm/s</td>
+<td>4–17 μm/s；稳定性约数十分之一 μm/s</td>
+</tr>
+<tr>
+<td>光学记录</td>
+<td>Nikon D5600、200 mm 微距镜头与 Mitutoyo 显微镜头；背光板</td>
+<td>Nikon D850、Thorlabs MVL12X12Z 长工作距镜头；漫射冷白 LED</td>
+</tr>
+<tr>
+<td>用途</td>
+<td>一般封闭孔隙、速度变化与轮廓拟合</td>
+<td>长柱状气泡</td>
+</tr>
+</tbody>
+</table></div><p>冻结速度取自<strong>每个气泡旁的局部冰水前沿运动</strong>。冷端温度是边界条件，不能直接替代前沿速度。正文未给出拍摄帧率、完整空间标定误差和统一图像分割参数；不应为复现实验自行补成“作者参数”。</p><p>实验前，在 21 °C 测得溶解氧 6.7 mg/L，作者根据溶解度关系估算氮气 11.6 mg/L，总空气浓度 18.3 mg/L。模型中的冻结前沿有效浓度可能远高于这一初始体相值，二者不能混用。</p><p class="credit"><a href="https://doi.org/10.1073/pnas.2415027122">Figure 1：装置、气泡形成过程与不同孔形 · 原文</a></p><ul>
+<li><strong>回答的问题：</strong> 冰中孔隙实际怎样形成，冻结速度和成核位置分别伴随怎样的形状变化？</li>
+<li><strong>图中证据或方法：</strong> A 为装置；B 在 54 μm/s 下追踪气泡从成核、生长到约 2 s 后封闭，最终约长 154 μm、宽 64 μm。C 为 133 μm/s 下较密集的小孔；D 为 46 μm/s 下较稀疏的大长孔。E/F 在约 90 μm/s 下显示有尾和无尾形态。G/H 在约 20 μm/s 下，气泡分别在距前沿约 35 和 100 μm 处成核，最终形状明显不同。I/J 展示虫状气泡。</li>
+<li><strong>支撑的结论：</strong> 孔形是“气泡仍在与液体交换气体”和“冻结前沿不断前进”共同作用的结果；相近冻结速度并不保证相同孔形，初始生长历史必须进入模型。</li>
+<li><strong>局限与读图注意：</strong> 这些是实验图像和代表性序列，不是控制全部因素的独立因果实验。作者将 E 的尾部解释为晶界约束，并将前沿前方成核与微小杂质联系起来；这些属于解释。C/D 不能单独证明冻结速度是孔数和孔径变化的唯一原因。不同面板比例尺不同，未观看原文所提视频。</li>
+</ul><h3>从半球几何到质量守恒</h3><p>气体分为上部与水接触的“活动半球”和下部已进入冰中的孔隙。模型令活动半球半径为 R(t)，冻结前沿位置为 Z(t)。随着前沿上移，接触线留下的轨迹就是孔隙轮廓。<strong>整个孔并不是球；近似半球的是当时尚暴露在液体中的那一部分。</strong></p><p class="credit"><a href="https://doi.org/10.1073/pnas.2415027122">Figure 2：半球气泡、冻结前沿与扩散通量 · 原文</a></p><ul>
+<li><strong>回答的问题：</strong> 如何用一个半径变量替代完整移动界面问题？</li>
+<li><strong>图中证据或方法：</strong> 左侧示意热流绕过低导热气体，支持冰水界面与气泡表面近似正交；小于水的毛细长度 2.7 mm 时，作者再用近似均匀曲率将液侧气泡写成半球。右侧给出气体扩散、远场浓度与冰面零法向扩散通量假设。</li>
+<li><strong>支撑的结论：</strong> 在近 90° 接触角、半球界面和近恒定局部冻结速度条件下，求解 R(t) 并令 dZ/dt=v，就能构造孔形 R(Z)。</li>
+<li><strong>局限与读图注意：</strong> 这是建模示意，不是测得的热流或浓度场。真实冻结前沿会排出气体，模型却把其浓度梯度吸收到有效远场浓度中；零通量平面是求扩散场的近似边界，不意味着真实前沿不排气。慢冻结、强润湿、邻近气泡或较强限制空间可能破坏这些假设。</li>
+</ul><p>下面暂用 <strong>R、Z 表示有量纲长度</strong>。作者把空气视作单一气体，采用 D=2×10⁻⁹ m²/s、ρ=1.2 kg/m³、γ=75 mN/m、k<sub>H</sub>=2.95×10⁻⁵ kg·Pa⁻¹·m⁻³。</p><ol>
+<li><strong>扩散供气（式 5）。</strong> Epstein–Plesset 型通量为 j=D(c₀−c<sub>R</sub>)[1/R+1/√(πDt)]。第一项反映球面扩散几何，第二项保留扩散启动后的瞬态。时间零点与成核/扩散开始相联系，不能任意在拟合区间起点重新归零。</li>
+<li><strong>毛细压力改变溶解平衡（式 6）。</strong> Laplace 压差为 2γ/R；结合 Henry 定律，c₀−c<sub>R</sub>=Δc−2γk<sub>H</sub>/R。小泡内部压力高，界面平衡溶解浓度高，因而可能向水中失气。</li>
+<li><strong>半球质量守恒（式 7）。</strong> d[(2π/3)ρR³]/dt=2πR²j−πR²ρv。左边是液侧气体质量变化；右边第一项为从水中获得的气体，第二项是前沿推进时转入冰孔部分的气体。冻结并未“消灭气体”。</li>
+<li><strong>合并后（式 8、9）。</strong> dR/dt=(D/ρ)(Δc−2γk<sub>H</sub>/R)[1/R+1/√(πDt)]−v/2，同时 dZ/dt=v。</li>
+</ol><p>可把半径方程理解为：<strong>扩散贡献 − 冻结的几何消耗</strong>；毛细效应通过扩散驱动力改变供气方向，而不是另外再加一个机械收缩速度。</p><h3>无量纲方程：每个符号在控制什么</h3><p>定义临界溶解半径 R<sub>c</sub>=2γk<sub>H</sub>/Δc。它表示无冻结条件下扩散驱动力变号的尺度：R&gt;R<sub>c</sub> 才可能净吸气，但有冻结时这一条件不足以保证半径增大。不要把拟合得到的 R<sub>c</sub> 自动视作直接观测到的成核半径。</p><p>为避免原文重复使用 R、Z，以下写 <strong>r=R/R<sub>c</sub>，z=Z/R<sub>c</sub></strong>：</p><div>
+dr/dz = (δ/ζ)(1 − 1/r)[1/r + √(ζ/(πz))] − 1/2<br>
+δ = Δc/ρ；ζ = vR<sub>c</sub>/D；初始条件 r(z₀)=r₀
+</div><p>这是原文式（10）。δ 表示浓度过饱和相对气体密度的大小；ζ 是扩散时间 R<sub>c</sub>²/D 与冻结时间 R<sub>c</sub>/v 的比，即 t<sub>diff</sub>/t<sub>freeze</sub>。ζ 越大，冻结相对扩散越快。给定 δ、ζ 后仍需 r₀、z₀ 才能得到唯一轮廓；由于方程显含 z，初始扩散历史很重要。</p></section><section><h2 id="s3">具体结果</h2><h3>结果 1：很快冻结时近锥形，最后封口时遵循三分之一次幂</h3><p class="credit"><a href="https://doi.org/10.1073/pnas.2415027122">Figure 3：快速冻结极限与近端部标度 · 原文</a></p><ul>
+<li><strong>回答的问题：</strong> 能否从同一方程解释快速冻结下的近锥形和实际封闭端的圆钝外观？</li>
+<li><strong>图中证据或方法：</strong> A 是固定 δ=1、增大 ζ 的理论解，逐渐趋向 dr/dz=−1/2 的锥形上部，锥半角约 26.5°、顶角约 53°。B 是选取不同冻结速度（12–263 μm/s）的实测轮廓，逐条拟合前因子 β，再按立方根关系变换坐标；靠近端点的数据接近斜率 −1 的虚线。</li>
+<li><strong>支撑的结论：</strong> 理想无扩散极限和有限扩散下的极小半径闭合区由不同主导平衡控制。在小半径区，R³≈β(Z<sub>max</sub>−Z)，β=3δR<sub>c</sub>²/ζ=6γk<sub>H</sub>D/(ρv)，因此该领先阶系数不依赖 Δc。</li>
+<li><strong>局限与读图注意：</strong> A 为模型，B 才含实验轮廓；B 的 β 逐条拟合，因此不能称为“无参数预测”。标度只描述端部，不能覆盖整个气泡。图中远离端点的偏离很明显。极限 r→0 与 ζ→∞ 的先后顺序不同，不应要求全部孔在最后一个像素仍具有锥尖。分辨率、气体可压缩性及连续模型失效会限制真正的极小尺度外推。</li>
+</ul><p><strong>推导要点：</strong> r 很小时，式（10）领先项为 dr/dz≈−δ/(ζr²)，积分即得 r³≈3δ(z<sub>max</sub>−z)/ζ。所谓“圆钝”是作者对轮廓的描述；它不是球形圆帽，更不意味着已经测得端部有限曲率。</p><h3>结果 2：增长后封闭，还是维持长柱，取决于竞争与初值</h3><p class="credit"><a href="https://doi.org/10.1073/pnas.2415027122">Figure 4：增长收缩方向场与长气泡分支 · 原文</a></p><ul>
+<li><strong>回答的问题：</strong> 为什么有的气泡先长后缩，有的直接收缩，有的能长期保持宽度？</li>
+<li><strong>图中证据或方法：</strong> A 给出 δ=1、ζ=0.7 的模型方向场，不同初值产生不同轨迹；蓝虚线是 dr/dz=0 的零增长曲线。B 展示改变 ζ 后该曲线和轨迹的变化，作者据此讨论 δ=2ζ 的分岔。</li>
+<li><strong>支撑的结论：</strong> 初始条件会改变孔形；长期扩散供气若能平衡冻结消耗，模型允许持续推进的长孔隙。由式（10）的长期极限独立求判别式，同样可得到 δ/ζ=2 的阈值。</li>
+<li><strong>局限与读图注意：</strong> 这是理论相图，非实验轨迹。原文称“separatrix”的虚线首先是零增长曲线，不应不加区别地当作所有有限时间初值的严格吸引域边界。B 中 ζ=0.5、δ=1 正好在临界点；临界平衡的稳定性和有限 z 瞬态需单独处理。具体平衡分支还受到下述式（15）一致性问题影响。</li>
+</ul><h3>结果 3：完整轮廓大多可匹配，初始部分存在系统失配</h3><p class="credit"><a href="https://doi.org/10.1073/pnas.2415027122">Figure 5：相图与六种实测轮廓拟合 · 原文</a></p><ul>
+<li><strong>回答的问题：</strong> 最小模型能否解释真实孔隙，而不只是画出类似的形状？</li>
+<li><strong>图中证据或方法：</strong> A 将轮廓拟合得到的 δ、ζ 放进相图，虚线为 δ=2ζ。B–G 是六个代表性轮廓：黑点为实验边界，彩色实线为解，圆形虚线为球形初始构造，端部粗虚线为局部立方根拟合。B、D、E 匹配较完整；C 的尾部不在有效拟合区；F、G 的底部明显偏离球形初始假设。</li>
+<li><strong>支撑的结论：</strong> 对较规则孔隙，这一模型能在已测速度与几何初值约束下解释主体轮廓。作者报告删去瞬态扩散项便无法匹配这些形状，说明在其拟合方案中瞬态项不可省略。即使整体匹配较差，部分孔的端部仍近似服从局部标度。</li>
+<li><strong>局限与读图注意：</strong> A 的 δ 与 ζ 均包含同一拟合参数 R<sub>c</sub>，它们不是两个独立直接测量量；这是模型约束下的相图。正文没有统一残差指标、完整参数置信区间或留出预测检验。六个示例不是总样本数，F/G 也不能被表述为“全轮廓均吻合”。删项后失配支持模型必要性，但不等于实测了瞬态浓度场。</li>
+</ul><p>作者在同一实验、冻结速度 133±10 μm/s 的一组孔隙中报告以下结果（主文第 6 页）：</p><div class="scroll"><table>
+<thead>
+<tr>
+<th>量</th>
+<th>论文报告值</th>
+<th>应怎样理解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>R<sub>c</sub></td>
+<td>5.8±0.7 μm</td>
+<td>通过形状匹配得到的临界尺度</td>
+</tr>
+<tr>
+<td>Δc</td>
+<td>0.76±0.10 g/L</td>
+<td>由 R<sub>c</sub> 换算的有效局部过饱和，不是浓度传感器读数</td>
+</tr>
+<tr>
+<td>R₀</td>
+<td>7.8±1.0 μm</td>
+<td>初始几何半径</td>
+</tr>
+<tr>
+<td>Z₀</td>
+<td>8.2±1.4 μm</td>
+<td>初始几何轴向位置</td>
+</tr>
+<tr>
+<td>T₀=Z₀/v</td>
+<td>60±12 ms</td>
+<td>模型时间映射下的延迟估计</td>
+</tr>
+<tr>
+<td>初始斜率</td>
+<td>−0.06±0.04</td>
+<td>对应接触角偏离 ε₀≈3.4±2.3°，支持近直角近似</td>
+</tr>
+<tr>
+<td>R₀/R<sub>c</sub></td>
+<td>1.33±3×10⁻⁴</td>
+<td>原文所报异常窄范围；需补充数据复核</td>
+</tr>
+</tbody>
+</table></div><p>这里的“±”沿用原文，主文未明确完整统计样本数及每项误差究竟是标准差、标准误还是拟合误差。补充材料未取得，因此不将它们改写为 95% 置信区间。R₀/R<sub>c</sub> 的极窄范围与拟合参数相关性、约束或真正成核选择性之间的关系，尚不能仅靠主文判定。</p><p>0.76 g/L 为 760 mg/L，约为初始总空气浓度 18.3 mg/L 的 42 倍。这是作者据反演得出的前沿富集程度；模型也明确把真实浓度梯度压缩为一个有效参数。<strong>孔形支持该有效参数化，尚未独立验证其局部浓度绝对值。</strong></p><h3>结果 4：长柱状气泡及其平衡半径</h3><p class="credit"><a href="https://doi.org/10.1073/pnas.2415027122">Figure 6：虫状气泡轮廓与作者给出的分岔相图 · 原文</a></p><ul>
+<li><strong>回答的问题：</strong> 虫状气泡能否由同一模型描述，其近恒定宽度是否对应一个稳定半径？</li>
+<li><strong>图中证据或方法：</strong> A 显示三个长气泡；B 将红色模型轮廓与黑色实测边界叠加，蓝色为初始球形部分。对应的 δ、ζ 分别约为（0.14，0.016）、（0.20，0.014）、（0.33，0.017）。C 将测得/反演的尺寸量与作者式（15）的分支比较。</li>
+<li><strong>支撑的结论：</strong> 实验确实存在细长、主体宽度近恒定的孔隙；扩散供气与冻结相平衡是一种可检验解释。作者认为数据支持虫状气泡阈值及稳定半径，但其平衡半径公式需要先通过独立代数核对。</li>
+<li><strong>局限与读图注意：</strong> 图中真实长孔仍有限长；作者拟合时忽略因波动而形成的闭合端。δ、ζ、R<sub>c</sub> 与轮廓匹配有关，不能称为完全独立的预测检验。C 的纵轴写 R₀/R<sub>c</sub>，但方块代表 R∞ 的结果；应区分初值相图背景与平衡半径数据。式（15）与主方程的冲突意味着 C 的定量验证不能直接照单接受。</li>
+</ul></section><section><h2 id="s4">关键机制与公式复核</h2><h3>机制链：能支持到哪一步</h3><p>冻结排气使液侧富集 → 扩散向活动气泡供气；小半径增大 Laplace 压力 → 界面溶解平衡提高、供气减弱甚至反向；前沿推进把活动气体逐步包埋 → 半径取决于净扩散贡献能否补偿 v/2；半径历史被固定为孔隙轮廓。</p><p><strong>直接观察</strong>是形状、前沿速度和生成过程。<strong>作者模型</strong>是半球几何、有效浓度、扩散通量和质量守恒。<strong>作者解释</strong>包括晶界尾部、杂质成核、波动使虫状气泡结束等。<strong>本导读判断</strong>是该模型具有清楚的物理结构，但拟合不等于所有中间场和因果链已经独立测量。</p><h3>式（15）：不是文本提取乱码，而是公式之间不相容</h3><p><strong>独立代数复核：</strong> 令式（10）z→∞、dr/dz=0，则</p><div>
+0 = q(r−1)/r² − 1/2<br>
+r² − 2qr + 2q = 0<br>
+因此 r<sub>±</sub> = q ± √(q²−2q) = q ± √[q(q−2)]。
+</div><p>这也正是式（14）分母的零点。<strong>原文式（15）的根号内少了一个 q 因子，按当前符号定义无法由式（10）或式（14）推出。</strong> 两种写法在 q=2 时都给 r=2，故分岔阈值本身仍可由主方程支持；但 q&gt;2 时半径不同。</p><p>例如 q=10：印刷公式的上支为 12.8284，代回长期半径方程仍有 dr/dz≈0.21875，显然不是平衡；由主方程求出的上支为 18.9443，代回残差为数值零。图 6C 在 q≈10 时的上支约在 13 一带，与印刷公式的趋势接近，因此该问题可能涉及所绘理论分支，<strong>不能只当作对结论无影响的排版笔误</strong>。没有原始拟合代码和补充数据，尚不能确定应怎样重算整张图及其参数。</p><p>对一致的长期方程，f′(r)=q(2−r)/r³：q&gt;2 时下根位于 1 与 2 之间、不稳定，上根大于 2、稳定。有限 z 的瞬态项仍在，因此早期初值是否进入长孔轨迹应积分完整方程，不应仅靠长期下根给所有初始时刻分类。</p><h3>式（16）：可压缩修正的极限也需核对</h3><p>正文第 8 页式（16）第一项的系数印为 δ，括号为 (r−1)/(r−Rχ/R<sub>c</sub>)。令 Rχ/R<sub>c</sub>→0 后，仍缺少式（10）中的 1/ζ，不能恢复作者声称的不可压缩形式。至少系数或符号定义需要澄清。本导读不在缺少作者推导的情况下另造一个“完整正确修正式”。</p><p>作者给出 Rχ≈0.5 μm，认为它小于实验 R<sub>c</sub> 而可忽略压缩性；但临近实际封口 R→0 时，局部 R 也可能降到这一尺度，不能仅凭 Rχ≪R<sub>c</sub> 就把不可压缩端部公式外推到任意小半径。</p></section><section><h2 id="s5">局限与阅读边界</h2><div class="scroll"><table>
+<thead>
+<tr>
+<th>问题</th>
+<th>已有支持</th>
+<th>尚不支持或需补查</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>孔形形成</td>
+<td>原位图像与轮廓；冻结和供气竞争的模型</td>
+<td>仅由冻结速度唯一决定形状</td>
+</tr>
+<tr>
+<td>浓度富集</td>
+<td>由 R<sub>c</sub> 反演的有效 Δc</td>
+<td>独立测得的局部三维浓度场</td>
+</tr>
+<tr>
+<td>端部标度</td>
+<td>选取轮廓的局部立方根拟合</td>
+<td>全孔统一立方根形状、零参数验证、无限小尺度成立</td>
+</tr>
+<tr>
+<td>长孔阈值</td>
+<td>主方程判别式支持 q=2 的长期阈值</td>
+<td>原式（15）及图 6C 的定量平衡半径直接用于预测</td>
+</tr>
+<tr>
+<td>初始条件</td>
+<td>测量几何并假定初始球形</td>
+<td>从化学、晶界和成核位点推导初始条件分布</td>
+</tr>
+<tr>
+<td>单气泡近似</td>
+<td>多数形状可匹配</td>
+<td>强邻泡竞争、空间浓度梯度、强限制空间下普遍适用</td>
+</tr>
+<tr>
+<td>统计精度</td>
+<td>主文列有均值及“±”范围</td>
+<td>明确样本数、误差定义、原始残差、参数可辨识性</td>
+</tr>
+</tbody>
+</table></div></section><footer class="source"><p>Virgile Thiévenaz, Jochem G. Meijer, Detlef Lohse, Alban Sauret · <a href="https://doi.org/10.1073/pnas.2415027122">On the shape of air bubbles trapped in ice</a> · PNAS · 2025</p><a href="./">返回论文精读目录</a></footer></article></main></body></html>

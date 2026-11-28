@@ -1,0 +1,255 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>一个探测器怎样重建整幅图像？ · 论文精读</title><style>*{box-sizing:border-box}html{color-scheme:light;scroll-padding-top:1rem}body{margin:0;background:#f4f6f8;color:#1b2d3c;font:1.05rem/1.86 system-ui,"Microsoft YaHei",sans-serif;overflow-wrap:anywhere}header{background:#173c58;color:white}header div,main{max-width:54rem;margin:auto;padding:0 clamp(1rem,4vw,2.6rem)}header div{display:flex;gap:1.6rem;align-items:center;padding-block:.68rem}header a{color:white}a{color:#155078;text-underline-offset:.2em}main{background:white;padding-block:1.4rem 3rem}h1,h2,h3,h4{line-height:1.45;text-wrap:pretty}h1{font-size:clamp(1.65rem,4vw,2.4rem);margin:.35rem 0 .6rem}h2{color:#193f58;font-size:1.4rem;margin:2.2rem 0 .6rem;border-top:1px solid #d7e1e8;padding-top:1.3rem}h3{font-size:1.13rem;margin:1.4rem 0 .3rem}p{margin:.7rem 0}.meta,figcaption,.credit{color:#506575;font-size:.91rem}.lead{border-left:3px solid #477b92;padding:.5rem .9rem;background:#f1f6f8}details{margin:1rem 0}summary{cursor:pointer;color:#155078;font-weight:650}ul,ol{padding-left:1.5em}li+li{margin-top:.28em}.scroll,pre,math[display=block]{max-width:100%;overflow-x:auto}.scroll{margin:.9rem 0}table{font-size:.94rem;border-collapse:collapse;text-align:left;width:100%;min-width:22rem}td,th{border-bottom:1px solid #d4e0e7;padding:.45rem .6rem;vertical-align:top}th{background:#eef4f6}figure{margin:1.4rem 0}figure>a{display:block}figure img{max-width:100%;height:auto;display:block;margin:auto}figure a span{display:block;text-align:center;font-size:.85rem}figcaption{margin-top:.4rem}code,pre{font-family:ui-monospace,monospace;background:#f2f5f6}pre{padding:.75rem}blockquote{margin-inline:0;padding-left:.85rem;border-left:3px solid #a6bac6}.source{margin-top:2.2rem;border-top:1px solid #cedbe3;padding-top:.8rem}a:focus-visible,summary:focus-visible{outline:3px solid #b77928;outline-offset:2px}@media(max-width:520px){body{font-size:1rem}h2{font-size:1.22rem}header div{gap:1.2rem}}</style></head><body><header><div><a href="../">每日知识</a><a href="./">论文精读目录</a></div></header><main><article><p class="meta">Duarte 等 · IEEE Signal Processing Magazine · 2008</p><h1>一个探测器怎样重建整幅图像？</h1><p class="lead">DMD 依次显示不同编码图案，单像素探测器记录每个图案对应的总光强。图像的可压缩性决定了何时能用较少测量完成重建。</p><p><a href="https://doi.org/10.1109/msp.2007.914730">Single-pixel imaging via compressive sampling</a></p><details><summary>文章目录</summary><ol><li><a href="#s1">研究背景 · 为什么要造只有一个探测器的相机？</a></li><li><a href="#s2">研究方法：The Single-Pixel Camera / Architecture</a></li><li><a href="#s3">知识框一：Spatial Light Modulators</a></li><li><a href="#s4">知识框二：CS in a Nutshell，逐层读懂公式（1）—（3）</a></li><li><a href="#s5">具体结果一：Image Acquisition Examples</a></li><li><a href="#s6">结构光配置：Structured Illumination Configuration</a></li><li><a href="#s7">无快门视频：Shutterless Video Imaging</a></li><li><a href="#s8">性能权衡：Single-Pixel Camera Tradeoffs / Scanning Methodologies</a></li><li><a href="#s9">理论分析：Theoretical Analysis 及其四个子部分</a></li><li><a href="#s10">具体结果二：Experimental Results</a></li><li><a href="#s11">信息可扩展性：Information Scalability and the Smashed Filter</a></li><li><a href="#s12">其他架构：Other Multiplexing Camera Architectures</a></li><li><a href="#s13">关键机制：将硬件、结构先验与证据连起来</a></li><li><a href="#s14">Conclusions：作者最终主张什么</a></li><li><a href="#s15">附录精读：Poisson Photon Counting Calculations</a></li><li><a href="#s16">适用范围与局限：读完仍不能直接认定的事情</a></li></ol></details><section><h2 id="s1">研究背景 · 为什么要造只有一个探测器的相机？</h2><p><strong>对应原文：开篇，p.83–84。</strong></p><p>普通相机把空间图像投到 CCD/CMOS 阵列上，每个像素位置有一个探测单元。硅材料适于可见光探测，所以大规模阵列能够较经济地制造。到了硅不敏感的波段，阵列探测器可能昂贵、笨重或难以获得。作者用当时约 500 美元的可见光相机与约 50,000 美元的红外相机作说明；这是历史性动机，不是严格的产品性价比实验。</p><p>核心问题是：<strong>能否保留很多空间采样位置，却只用一个适合目标波段的光探测器？</strong> 如果只把所有光直接汇聚到探测器，一次只能得到总亮度，位置会丢失。作者增加了一个可编程的 DMD，使不同位置的光按已知图案组合，再重复测量。</p><p>原文随后把硬件与压缩感知连接起来：很多图像可被 JPEG/JPEG2000 压缩，说明像素数据存在可利用的结构。如果在光学测量阶段就提取一组适当的混合信息，有可能省去“先完整采样、再压缩丢弃”的过程。本文依次介绍装置、理论、实例、视频、性能权衡及直接分类。</p><p>这里的贡献是一个完整的“光学测量—数字恢复”思路。它没有声称任意图像都能被任意少的测量恢复，也没有声称能绕开衍射极限。所谓 sub-Nyquist，在这里依赖图像的额外结构条件，不是在传统适用前提下推翻采样定理。</p></section><section><h2 id="s2">研究方法：The Single-Pixel Camera / Architecture</h2><p><strong>对应原文：单像素相机与体系结构，p.84–86。</strong></p><h3>光路如何一步步工作</h3><ol>
+<li><strong>Lens 1 成像：</strong>把被观察场景的光场映射到 DMD 上。DMD 不负责测光，负责选择光路。</li>
+<li><strong>DMD 空间调制：</strong>每个微镜对应一个空间位置。朝向收集透镜的状态记为 1，朝向另一方向的状态记为 0。</li>
+<li><strong>Lens 2 汇聚：</strong>把所有被选中位置的光集中到一个探测器上。</li>
+<li><strong>探测器积分：</strong>在一次测量的积分时间内，输出与所选位置光强总和相关的电信号。</li>
+<li><strong>A/D 数字化：</strong>将电信号变成一个数，记为 y[m]。</li>
+<li><strong>重复与恢复：</strong>依次显示 M 幅已知图案，得到 M 个数，再计算重建图像。</li>
+</ol><p class="credit"><a href="https://doi.org/10.1109/msp.2007.914730">Figure 1：单像素相机原型的光路与主要器件 · 原文</a></p><ul>
+<li><strong>回答的问题：</strong>单个探测器怎样接收经过空间编码的图像信息？</li>
+<li><strong>图中证据或方法：</strong>图中标有目标、照明、Lens 1、DMD/控制板、Lens 2 与光电二极管电路；红线示意光路。它是实际实验台照片。</li>
+<li><strong>支撑的结论：</strong>两片透镜与 DMD 将“空间选择后求和”落实为光学过程，单探测器记录混合测量值。</li>
+<li><strong>局限与读图注意：</strong>装置照片证明硬件构型，不能单独证明重建准确度、速度或光谱适用范围；照片中的光路不应被当成带完整尺寸和标定参数的复现实验图。</li>
+</ul><h3>用一个式子描述探测器读数</h3><div>y[m] = ⟨x, φ<sub>m</sub>⟩ = ∑<sub>n=1</sub><sup>N</sup> x[n] φ<sub>m</sub>[n]</div><p>x[n] 是第 n 个位置的亮度；φ<sub>m</sub>[n] 是第 m 次测量是否接收该位置光的权重。内积就是“对应相乘，再全部相加”。严格把电压读数对应到这个式子，需要把探测增益、曝光时间和光路响应纳入标定；原文用理想线性模型突出原理。</p><p><strong>教学例子：</strong>四个像素亮度为 [2, 5, 1, 4]，图案 [1, 0, 1, 0] 给出 2+1=3；图案 [0, 1, 1, 0] 给出 5+1=6。探测器本身不告诉我们这些光来自哪里，空间信息保存在“每个读数对应哪幅已知图案”里。</p><p>微镜在积分期间切换占空比，可以实现 0 与 1 之间的有效权重。数学上常用 ±1 图案，但光强不能为负。原文通过全开图案估计总光强并扣除均值来中心化测量。若二值掩模为 b、带符号掩模为 s=2b−1，则有：</p><div>s<sup>T</sup>x = 2b<sup>T</sup>x − 1<sup>T</sup>x</div><p>“负权重”因此可以通过两个已知量的相减得到。参考测量也带有噪声和时间成本，附录的噪声分析必须考虑相应处理。原文还提出可以从 Walsh、Hadamard、noiselet 等快速变换中选取图案，降低计算成本。</p><h3>为什么作者强调可换探测器</h3><p>只用一个光探测单元，就有机会采用不易做成大阵列的探测器。例如原文举出光电倍增管、雪崩光电二极管、不同波段的叠层光电二极管及光谱仪。接光谱仪时，每个空间编码可以同时产生多个光谱通道数据；“单像素”主要描述空间探测方式，不能把光谱仪的全部内部结构也理解成一个标量通道。</p><p>作者还提到较高量子效率、DMD 填充因子可达 90% 等潜在硬件优势。这些是文中具体技术背景下的论述。某次掩模大约让一半微镜导光，瞬时收集光通量约为平均单像素的 N/2 倍，但实际每次收集的光子数还要乘积分时间。</p></section><section><h2 id="s3">知识框一：Spatial Light Modulators</h2><p><strong>对应原文：空间光调制器，p.84；其配图 Figure 6 排在 p.89。</strong></p><p>空间光调制器 SLM 的任务，是让光束的不同空间位置具有可控的透过、反射或其他调制效果。原文用透明投影片与 LCD 投影器作直观例子。DMD 是反射式实现：静电驱动小镜面向两个方向偏转，把光送向不同路径。</p><p>文中的 TI DMD 1100 开发套件有 1024×768 个微镜；每个微镜悬于 SRAM 单元上，由所存的位控制，两个状态约为 ±10°。这给出了装置的原生空间编码网格上限，但实际图像分辨率还受成像光学、像差、像素映射与重建质量约束。后面 256×256 的重建图像不等于使用了整块 DMD 的全部原生网格。</p><p class="credit"><a href="https://doi.org/10.1109/msp.2007.914730">Figure 6：DMD 微镜的双稳态结构和阵列尺度 · 原文</a></p><ul>
+<li><strong>回答的问题：</strong>DMD 为什么能够对每个空间位置进行二值导光？</li>
+<li><strong>图中证据或方法：</strong>(a) 显示两种镜面倾角及铰链、支架、落点和 CMOS 基底；(b) 展示微镜阵列与蚂蚁腿的尺寸对比。图由 TI 提供。</li>
+<li><strong>支撑的结论：</strong>每面微镜可改变反射方向，许多微镜组成可编程二维选择图案。</li>
+<li><strong>局限与读图注意：</strong>这不是完整相机的成像结果，也不是微镜切换时间或指定波段效率的测量；蚂蚁腿是尺度示意，不能替代精确标尺。这里提前讲解 Figure 6，使它与原文知识框对应。</li>
+</ul></section><section><h2 id="s4">知识框二：CS in a Nutshell，逐层读懂公式（1）—（3）</h2><p><strong>对应原文：压缩感知简述，p.85。</strong></p><h3>从“先采样再压缩”开始</h3><p>普通变换压缩先获得 N 个像素，随后把图像写成不同基本图案的叠加，最后只保存 K 个显著系数及其位置。原文指出三个代价：首先要测完 N 个数；随后通常要计算 N 个变换系数；最后还需记录保留系数的位置。CS 想直接采集一组足够重建的压缩表示。</p><h3>稀疏的是表示系数，不一定是亮像素</h3><div>x = ∑<sub>i=1</sub><sup>N</sup> α<sub>i</sub>ψ<sub>i</sub> = Ψα</div><p>Ψ 的列是基本图案 ψ<sub>i</sub>，α 是每种图案的权重。原文首先使用正交基，因此 N 个基本图案能够表示 N 维图像。若只有 K 个非零系数，就是 K-稀疏；若大多数系数很小、少量系数很大，就是可压缩。DCT 和小波是常见选择，分别与 JPEG、JPEG2000 的变换思想相关。</p><p>例如一幅完全均匀的图像有很多非零像素，却只需要一个恒定基本图案及其系数。自然图像通常没有这么极端，但平滑区域、边缘等结构可能使某种表示更紧凑。原文的 r-compressible 指把系数绝对值从大到小排列后，按约 i<sup>−r</sup> 的幂律衰减；同样尺度下 r 越大，尾部衰减越快。</p><h3>公式（1）：两次操作的顺序不能混淆</h3><div>y = Φx = ΦΨα　　（原文公式 1）</div><div class="scroll"><table>
+<thead>
+<tr>
+<th>符号</th>
+<th>大小</th>
+<th>作用与是否已知</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x</td>
+<td>N×1</td>
+<td>要恢复的图像，未知</td>
+</tr>
+<tr>
+<td>Ψ</td>
+<td>N×N</td>
+<td>选择的表示基，重建时已知</td>
+</tr>
+<tr>
+<td>α</td>
+<td>N×1</td>
+<td>稀疏或可压缩系数，未知</td>
+</tr>
+<tr>
+<td>Φ</td>
+<td>M×N</td>
+<td>每行是一幅测量图案，已知</td>
+</tr>
+<tr>
+<td>y</td>
+<td>M×1</td>
+<td>实际测得的数据，已知</td>
+</tr>
+</tbody>
+</table></div><p>测量矩阵 Φ 不等于表示矩阵 Ψ。前者在相机里决定怎样混合光，后者在计算中表达图像的结构。M&lt;N 时，y=Φx 单独看通常有无穷多解，恢复必须利用额外结构。非自适应的意思是 Φ 不根据未知场景或前面的测量结果调整；它不等于“恢复时无需先验”。</p><h3>随机为什么有帮助</h3><p>若只测总亮度，很多不同图像都会得到相同读数。若只抽查少数像素，一个局部目标可能完全没被照顾到。多个不同随机混合测量，能让具有不同稀疏结构的候选图像更有机会产生不同读数。</p><p>理论的核心是合适测量对稀疏信号之间差异的保持能力。随机 ±1、高斯矩阵以及某些结构化随机变换在相应条件下可有很高成功概率。这里的“随机”必须被记录并在重建中准确知道；它不是未知噪声。傅里叶等结构化方案的适用性也与表示基的关系有关，不能把任意抽取的一组基向量都看成等价保证。</p><h3>一个可手算的欠定例子（教学补充）</h3><p>假定 x 有四个数，直接在像素域稀疏，即 Ψ=I。测三次：y₁=x₁+x₄，y₂=x₂+x₄，y₃=x₃+x₄。若测得 [0,5,0]，所有符合数据的候选都可写为：</p><div>x(t) = [−t, 5−t, −t, t]</div><p>t 可以任取，说明三条方程并不唯一确定四个数。但 t=0 给出 [0,5,0,0]，只有一个非零项；其他 t 通常需要更多非零项。这里 ∥x(t)∥₁=3|t|+|5−t|，在 t=0 唯一最小。它展示稀疏选择如何解决某个欠定例子；不是一般恢复定理，也不是论文的实验数据。</p><h3>公式（2）：为什么找绝对值之和最小的解</h3><div>α̂ = arg min<sub>α′</sub> ∥α′∥₁，满足 ΦΨα′ = y　　（原文公式 2）<br>∥α′∥₁ = ∑<sub>i</sub> |α′<sub>i</sub>|，最终 x̂ = Ψα̂</div><p>arg min 是“求使目标最小的那组变量”。约束负责让候选解释测量；ℓ₁ 目标倾向于选出稀疏系数。直接最小化非零项个数更贴近稀疏定义，但计算通常困难；ℓ₁ 是可用凸优化求解的替代，在合适条件下与目标稀疏解一致。作者称该形式为 basis pursuit。</p><p>原文对最小二乘失败的表述应这样理解：在欠定系统里，仅最小化残差不能选出唯一真实解；最小 ℓ₂ 范数的选择又倾向分散系数，没有利用这里关键的稀疏结构。这不意味着所有结合先验的最小二乘方法都无效。</p><h3>测量次数怎样随复杂程度增加</h3><div>M 的典型数量级：K log(N/K)</div><p>K 决定主要结构的复杂度，N 是总体维数；log(N/K) 反映还需识别显著系数位置的额外代价。大 O 不是确定的采样次数计算器，实际还涉及常数、矩阵条件、噪声、目标误差和成功概率。图像更复杂、有效 K 更大时，不能仍期待同样的极低测量比例。</p><h3>公式（3）：允许数据有噪声</h3><div>α̂ = arg min<sub>α′</sub> ∥α′∥₁，满足 ∥y−ΦΨα′∥₂ &lt; ε　　（原文公式 3）</div><p>ε 表示测量噪声向量的幅值上界；ℓ₂ 范数是各分量平方和的平方根。允许一定残差是为了不把噪声也强行重建成图像细节。作者把该形式称为带不等式约束的 basis pursuit，即 BPIC。</p><p>原文紧接着写出示意误差界 ∥α̂−α∥₂ &lt; C<sub>N</sub>ε + C<sub>K</sub>σ<sub>K</sub>(x)。第一项是噪声经重建放大的贡献；第二项是图像不严格稀疏、舍弃小系数的代价。原文将 σ<sub>K</sub>(x) 解释为保留 α 的最大 K 项的 ℓ₂ 近似误差，虽然符号写成了 x 的函数。C<sub>N</sub> 是噪声放大常数的名称，不是像素总数 N；不能自动当成所有算法都相同的固定值。这个教程式公式不能替代特定算法和矩阵归一化下的完整定理。</p><h3>知识框最后的三个性质</h3><ul>
+<li><strong>通用性 universality：</strong>适当的随机测量可服务多种表示基，采集时不必预先知道最终采用哪种精细表示；重建依然需要有效结构。</li>
+<li><strong>鲁棒性与渐进性：</strong>信息分散在许多测量里，丢掉少量测量通常不至于损失某个唯一关键系数；在原有数据之外增加同等质量的测量，通常能提高恢复质量。固定总时间再切成更多次，不属于“免费增加数据”。</li>
+<li><strong>计算不对称性：</strong>采集端做线性混合，恢复端承担优化计算，便于把成本从探测硬件转向计算。本文不提供所有分辨率下的实时重建时间保证。</li>
+</ul></section><section><h2 id="s5">具体结果一：Image Acquisition Examples</h2><p><strong>对应原文：图像采集示例，p.86。证据类型：硬件实验。</strong></p><p class="credit"><a href="https://doi.org/10.1109/msp.2007.914730">Figure 2：字母 R 与彩色山魈图像的实际单像素重建 · 原文</a></p><ul>
+<li><strong>回答的问题：</strong>远少于像素数的测量，能否用实际装置得到可识别图像？</li>
+<li><strong>图中证据或方法：</strong>(a) 是 256×256 字母 R 的传统图像；(b) 用约 1,300 次随机测量恢复；(c) 在低光条件下，用光电倍增管和 RGB 滤光片拍摄山魈测试图的打印件，图注给出约 6,500 次测量及 256×256 的重建尺寸。两例都采用总变分最小化。</li>
+<li><strong>支撑的结论：</strong>对于这些测试目标与采集条件，空间混合测量和结构约束能恢复形状或颜色内容，验证了硬件成像可行性。</li>
+<li><strong>局限与读图注意：</strong>R 的边缘和亮度并非无损恢复，彩色图也有明显噪声和细节损失；不代表任意复杂目标都可用 2% 采样率准确重建。正文没有清楚交代 6,500 是每个 RGB 通道还是全颜色合计，此处不擅自换算总曝光次数。</li>
+</ul><p>256×256=65,536；1,300/65,536≈1.98%，6,500/65,536≈9.92%。所以“50 倍 sub-Nyquist”和“N/10”是约数。它们表示测量数相对于重建网格大小的比例，不直接等于相机速度提升倍数。</p><p><strong>为什么这里用总变分 TV？</strong> 教学上可以把 TV 理解成图像相邻位置变化量的总和。以一维 [0,0,5,5] 为例，像素有两个非零值，但一阶差分只在边界处有一次跳变。分段平滑图像的梯度可以很稀疏。TV 重建在符合测量的前提下偏向较少或较弱的空间变化，适合像 R 这样的目标。原文说它与小波系数 ℓ₁ 最小化关系密切，但两者不是完全相同的算法。</p></section><section><h2 id="s6">结构光配置：Structured Illumination Configuration</h2><p><strong>对应原文：p.86。证据类型：配置说明与应用展望。</strong></p><p>图 1 在场景成像以后调制接收光。原文提出一个互易配置：先把随机图案投射到目标上，再用一个探测器收集反射光。只要线性模型和几何条件成立，每个读数同样是目标空间分布与已知图案的内积。</p><p>这适合能够控制照明的场景，作者提到可与三维成像和 dual photography 联系。该小节没有给出独立的结构光三维实验图。对于自行发光、照明不可控、遮挡明显或多次散射很强的场景，不能直接照搬简单反射内积模型；这些属于应用模型需要核验的问题。</p></section><section><h2 id="s7">无快门视频：Shutterless Video Imaging</h2><p><strong>对应原文：p.86–87。证据类型：视频数值模拟。</strong></p><p>传统视频按时间取帧，再用编码算法利用空间和时间冗余。作者让 DMD 连续切换，每次测量发生在不同时间；随后把这些测量作为约束来恢复视频。无快门强调无需传统周期取帧的方式，探测器仍有有限积分时间，运动在积分期间也可能造成信息混合。</p><p>把视频看成“横向位置×纵向位置×时间”的三维数据立方体。最简单做法是在场景近似不变的短时间内把读数分组，逐帧二维恢复，只利用空间结构。更强的做法把整段视频联合恢复，利用相邻时刻物体移动、膨胀等连续关系。原文采用简单的三维张量积 Daubechies-4 小波。</p><p class="credit"><a href="https://doi.org/10.1109/msp.2007.914730">Figure 3：二维测量与三维联合重建的视频模拟对比 · 原文</a></p><ul>
+<li><strong>回答的问题：</strong>硬件每次只能测某一时刻的二维图像，是否仍可利用视频的时间冗余？</li>
+<li><strong>图中证据或方法：</strong>显示 64×64×64 视频的第 32 帧，目标圆盘同时移动与膨胀。上排整段视频用 M=20,000，下排 M=50,000；(a) 原图，(b) 二维测量+逐帧二维恢复，(c) 二维测量+三维联合恢复，(d) 三维测量+三维联合恢复。</li>
+<li><strong>支撑的结论：</strong>相同测量数下，(c) 比 (b) 的形状和背景明显改善，并接近理想比较方案 (d)，说明时间结构可以在恢复端利用。</li>
+<li><strong>局限与读图注意：</strong>是简单圆盘的视频模拟，不是高速实拍。三维中的第三维是时间，不是物体深度；(d) 的跨时空三维测量不能由该单像素装置直接实现。M 是整个视频的测量数，不是每帧测量数。</li>
+</ul><div class="scroll"><table>
+<thead>
+<tr>
+<th>重建方式</th>
+<th>M=20,000 的 MSE</th>
+<th>M=50,000 的 MSE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>二维测量 + 逐帧二维恢复</td>
+<td>3.63</td>
+<td>0.82</td>
+</tr>
+<tr>
+<td>二维测量 + 三维联合恢复</td>
+<td>0.99</td>
+<td>0.24</td>
+</tr>
+<tr>
+<td>三维测量 + 三维联合恢复</td>
+<td>0.76</td>
+<td>0.18</td>
+</tr>
+</tbody>
+</table></div><p>数值来自原文图注。它们适合比较该模拟内部的重建方案，不宜与图 4 的 MSE 直接横比，因为图像尺度、归一化和实验任务不同。该例也没有验证任意复杂运动、遮挡或突然出现的细节都能被相同三维先验恢复。</p></section><section><h2 id="s8">性能权衡：Single-Pixel Camera Tradeoffs / Scanning Methodologies</h2><p><strong>对应原文：p.86–88。</strong></p><p>作者明确说：单像素装置能实现多种扫描，CS 只是其中一种。比较时用总采集时间 T 作为共同预算，区分四种方式。</p><div class="scroll"><table>
+<thead>
+<tr>
+<th>方式</th>
+<th>每次测什么</th>
+<th>探测器数</th>
+<th>测量数与时间</th>
+<th>如何得到图像</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PA，像素阵列</td>
+<td>各像素分别测光</td>
+<td>N</td>
+<td>N 个并行读数；各自积分 T</td>
+<td>直接读出</td>
+</tr>
+<tr>
+<td>RS，逐点扫描</td>
+<td>每次只接收一个位置</td>
+<td>1</td>
+<td>N 次；每次 T/N</td>
+<td>依次填回各像素</td>
+</tr>
+<tr>
+<td>BS，基扫描</td>
+<td>每次测一个基图案对应的组合</td>
+<td>1</td>
+<td>N 次；每次 T/N</td>
+<td>用已知矩阵的逆恢复</td>
+</tr>
+<tr>
+<td>CS，压缩感知</td>
+<td>每次测已知随机组合</td>
+<td>1</td>
+<td>M 次；每次 T/M</td>
+<td>借助稀疏条件优化恢复</td>
+</tr>
+</tbody>
+</table></div><p>RS 的测量矩阵是单位矩阵 I。本文 BS 用 0/1 形式的 Walsh 矩阵 W，x̂=W⁻¹y。CS 的理论比较采用随机抽取并置换的 Walsh 行，排除全为 1 的第一行。全开参考和实际标定的处理需要与理论模型相容，不能把标准 ±1 Hadamard、0/1 Walsh 和任意二值随机图案的噪声常数混用。</p><p><strong>最关键的公平性条件：</strong>PA 的每个像素同时积分 T；RS、BS 和 CS 要分享这段时间。一个 CS 读数汇聚的空间范围大，但不等于每个图像位置都像 PA 那样连续积累完整 T 的光子。硬件数、每次曝光、总时长和后处理必须一起比较。</p></section><section><h2 id="s9">理论分析：Theoretical Analysis 及其四个子部分</h2><p><strong>对应原文：p.87–88；详细噪声计算在 p.91。</strong></p><h3>Dynamic Range：总光更多，探测器也更容易饱和</h3><p>若 PA 每个探测单元允许输入范围为 0 到 D，则 RS 只测一个位置，同样约需范围 D。BS/CS 每次接收约 N/2 个像素的光，总量上限约 ND/2，所以单探测器需要更大的线性动态范围。</p><p>例如 N 很大时，把半幅图像的光都汇到一个探测器，并不会使其容量自动扩大。饱和会破坏线性关系 y=Φx，事后稀疏重建无法弥补所有截断信息。此处 D 是原文的输入范围标度，不是已经换算成 dB 的工程动态范围。</p><h3>Quantization Error：测量数少，每个数却可能需要更多位</h3><p>A/D 把连续电压划分为离散等级。对同样 B 位的转换器，输入范围扩大，一级对应的绝对量更大，量化误差也更大。BS/CS 的混合值还要经过逆变换或优化恢复，其误差会传播。</p><p>原文给出为达到相同最坏量化失真所需的总位数：PA、RS 为 NB；BS 为 N(B+log₂N)；表 1 的 CS 为 M(B+log₂N+log₂C<sub>N</sub>+1)。测量个数减少，不保证总数据位数按同样比例减少。正文引用的 C<sub>N</sub> 约 8–10 只是此前某项经验研究中的范围，不是所有重建的固定参数。</p><div><strong>原文公式核对：</strong>p.87 先定义 MSE=∥x−x̂∥₂²/N，却随后把量化 MSE 写成 √N D 2<sup>−B−1</sup>。后者具有幅值单位，且对应常见的向量 ℓ₂ 误差上界尺度，与前面的均方误差定义不一致。若均匀量化步长 Δ=D/2<sup>B</sup>、没有过载，则每像素 |误差|≤Δ/2，因此 MSE≤Δ²/4；向量 ℓ₂ 误差≤√NΔ/2。这是本次量纲与定义核对，不是作者正式勘误。表 1 的位数规则应视为原文归一化下的保守比较，工程预算需重新推导。</div><h3>Photon Counting Noise：光子本身也会波动</h3><p>即使探测器没有读出误差，到达的光子数仍会有泊松随机性。若平均计数为 λ，方差也为 λ。计数越多，绝对波动的标准差 √λ 越大，但相对波动 1/√λ 越小；不能只看其中一项就决定恢复后的图像 MSE。</p><p class="credit"><a href="https://doi.org/10.1109/msp.2007.914730">Table 1：原文对四种采集方式的理论比较 · 原文</a></p><p><strong>Table 1｜中文解释</strong></p><ul>
+<li><strong>回答的问题：</strong>相同总采集时间下，四种方案的测量数、动态范围、位数与光子噪声如何权衡？</li>
+<li><strong>图中证据或方法：</strong>表中列出 PA、RS、BS、CS 的理论尺度，P 为平均每像素光子率，T 为总采集时间。CS 最后一项是上界，不是实测等式。</li>
+<li><strong>支撑的结论：</strong>减少探测器与测量数量，会对动态范围和量化提出更高要求；仅考虑光子噪声时，阵列并行积光具有优势。</li>
+<li><strong>局限与读图注意：</strong>这是本文特定扫描、归一化和噪声假设下的比较；不含完整的暗电流、读出噪声、镜面切换开销及模型误差。附录与正文另有排印/定义不一致，不能不加核对地照搬常数。</li>
+</ul><p>按原文表 1，光子噪声项为：</p><div>PA：E[MSE] ≈ P/T<br>RS：E[MSE] ≈ NP/T<br>BS：E[MSE] ≈ (3N−2)P/T<br>CS：E[MSE] ≤ 3C<sub>N</sub><sup>2</sup>MP/T</div><p>这解释为什么“混合收光”不必然改善纯光子噪声条件下的图像质量。对原文给出的界比较，若 M&lt;N/(3C<sub>N</sub>²)，CS 的上界低于 RS 的预测值；这是该理论下的充分条件，不是 CS 超过 RS 的必要门槛。较松的上界没有达到门槛，实际算法仍可能表现良好。</p><h3>Summary：理论部分究竟总结了什么</h3><p>单探测器减少阵列成本，却增加动态范围、A/D 位深、计算和部分噪声方面的负担。RS/BS 的 MSE 在该模型中随 N 线性增加；CS 借助 M∼K log(N/K) 可能改善这种尺度。</p><p>“CS 对 N 只有对数依赖”隐含 K 近似固定及噪声常数受控。若提高分辨率时新细节也使 K 明显增加，就不能仅取 log N 来预测噪声。因此理论说明一种可能有利的增长规律，不保证任意高分辨率任务都轻松可行。</p></section><section><h2 id="s10">具体结果二：Experimental Results</h2><p><strong>对应原文：p.88。证据类型：同一硬件的实际测量比较。</strong></p><p>作者在同一个可编程测试台上采集 RS、BS、CS 数据，以减少硬件差异。目标是 128×128 的 R，CS 每幅用 M=N/10，重建采用 Daubechies-4 小波稀疏表示；各方式固定 A/D 位数。横轴是总采集时间，误差包含量化与光子计数等实际影响。</p><p class="credit"><a href="https://doi.org/10.1109/msp.2007.914730">Figure 4：实际装置上采集时间与图像误差的关系 · 原文</a></p><ul>
+<li><strong>回答的问题：</strong>在相同装置与同一测试目标上，CS 能否比逐点或完整基扫描更有效？</li>
+<li><strong>图中证据或方法：</strong>横轴为总采集时间（秒），纵轴为平均平方误差；红虚线 RS、黑点划线 BS、蓝实线 CS。图中蓝线快速接近约 0.01，另外两条更高。</li>
+<li><strong>支撑的结论：</strong>在该测试条件下，CS 可在相同时间得到更低误差，或以更短时间达到一定误差水平；实测 BS 也优于 RS。</li>
+<li><strong>局限与读图注意：</strong>没有 PA 的实测曲线，不能据此宣称优于普通阵列相机。单一 R 目标不能代表所有图像；正文未给出重复次数和误差条。约 0.01 是图上量级，缺少原始数据时不能过度精确读数，也不能从平台值单独识别误差机制。</li>
+</ul><p>实测 BS 优于 RS，与前面纯光子噪声的理论排序不同。<strong>作者解释是推测：</strong>未纳入模型的传感器暗电流可能严重损害 RS。论文没有在这里给出独立暗电流测量或消融实验，所以“差异由暗电流导致”不能作为已证实机制。这个落差反而提醒读者：理论选择了哪些噪声，可能改变方案排名。</p></section><section><h2 id="s11">信息可扩展性：Information Scalability and the Smashed Filter</h2><p><strong>对应原文：p.88–89。</strong></p><h3>为什么不一定要先重建图像</h3><p>成像任务最后有时只需要回答“是什么目标”或“目标在哪里”。恢复所有像素比做一个分类决策要求更多信息。原文提出直接从压缩测量做检测、分类或识别，不经过完整图像恢复。</p><p>matched filter 可以理解成模板匹配：把待测图像与各种候选目标、各种位置或姿态的模板比较，寻找最匹配的那个。smashed filter 把模板与待测目标都用同一个 Φ 投影到较低维空间，再在那里匹配。不是把图像“打碎后丢掉关系”，而是比较同一种已知压缩坐标中的数据。</p><h3>流形是什么，为什么这里的 K 又等于 2</h3><p>以一张固定卡车模板为例，只允许水平与竖直平移。虽然图像有 N 个像素，但这一族图像只受两个参数控制。因此它们在 N 维像素空间里形成一个由两个参数描述的集合，原文称低维图像外观流形。</p><p>这里的 K 表示独立变化参数数量，<strong>不同于 CS 知识框中非零系数个数 K</strong>。原文使用广义似然比检验与流形思想：对每个类别寻找最能解释观测的变换参数，再比较类别。最近模板/流形是直觉；精确的似然或距离选择要与噪声模型一致，泊松条件下不能无条件把欧氏最近邻称为最优检验。</p><p>合适随机投影可在相应条件下以高概率保持平滑低维流形的几何结构，原文概括的测量尺度是 M=O(K log N)。于是模板的压缩表示仍有可能可区分，参数搜索也同时给出平移等估计。作者将其与计算机科学中 Johnson–Lindenstrauss 降维思想联系，但强调了图像变化的内在流形结构。</p><p class="credit"><a href="https://doi.org/10.1109/msp.2007.914730">Figure 5：固定采集时间下，分类准确率不一定随测量次数单调增加 · 原文</a></p><ul>
+<li><strong>回答的问题：</strong>只做分类时，需要多少压缩测量？更多测量是否总是更好？</li>
+<li><strong>图中证据或方法：</strong>模拟 128×128 图像，三类为公交车、卡车、坦克，每类有未知水平/竖直平移，故 K=2；计入泊松光子计数噪声，每个实验平均 10,000 次。曲线比较 T=t、10t、100t、1000t。</li>
+<li><strong>支撑的结论：</strong>时间预算较充足时，少量测量已取得较高分类率；时间有限时，继续增加 M 会缩短每次曝光，分类率可能下降。信息维数与单次信噪比之间存在权衡。</li>
+<li><strong>局限与读图注意：</strong>这是模拟，不是实物车辆识别实验；只有三类与平移变化，不能推广到复杂遮挡、姿态和背景。文中没有把参考时长 t 换算成秒。约 1/3 的水平与等概率三分类随机猜测相当，不表示已获得可靠识别能力。</li>
+</ul><p>固定 T 时，每次积分约为 T/M，单次光子数随 M 增大而减少。它解释了本图与“更多同等质量测量使结果渐进改善”并不冲突：本图的测量质量并没有保持不变。也不应把“分类成功”直接解释成“每个像素已经被准确恢复”。</p></section><section><h2 id="s12">其他架构：Other Multiplexing Camera Architectures</h2><p><strong>对应原文：p.89–90。证据类型：相关工作回顾。</strong></p><p>本节说明单像素 CS 并不是第一次使用空间编码或 DMD。作者讨论几条路线：</p><div class="scroll"><table>
+<thead>
+<tr>
+<th>原文提及路线</th>
+<th>核心做法</th>
+<th>与本文的关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>共焦显微成像 [23,24]</td>
+<td>选择局部位置或控制扫描光路</td>
+<td>与逐点扫描相关，DMD 不必用于压缩感知</td>
+</tr>
+<tr>
+<td>MOEM 系统 [12,25,26]</td>
+<td>在场景与阵列间放置 DMD，进行逐列复用</td>
+<td>可使用完整 Hadamard 图案，便于线性解码</td>
+</tr>
+<tr>
+<td>多光谱光学编码 [27,28]</td>
+<td>光学系统直接形成与光谱或变换系数有关的编码数据</td>
+<td>说明空间与光谱都可在光学端复用</td>
+</tr>
+<tr>
+<td>单/多像素策略比较 [29]</td>
+<td>比较泊松噪声条件下不同架构</td>
+<td>为本文的光子噪声权衡提供相关背景</td>
+</tr>
+<tr>
+<td>随机化透镜 [30]</td>
+<td>用随机编码改进传统相机的分辨与鲁棒性</td>
+<td>CS 思想也可服务阵列相机，并不限于一个探测器</td>
+</tr>
+</tbody>
+</table></div><p>作者没有在此逐一复现实验或统一条件重测这些系统。因此本节是技术谱系说明，不是全面排名。也不能用“用了 Hadamard 图案”就判断采用了压缩感知：完整采 N 个图案后线性求逆属于本文 BS，少于 N 的测量结合额外结构恢复才是本文 CS 的关键情形。</p></section><section><h2 id="s13">关键机制：将硬件、结构先验与证据连起来</h2><p>整篇文章的逻辑链是：已知空间调制让单探测器获得带空间编码的总光强；多幅图案形成线性约束；图像的可压缩结构缩小候选集合；优化重建选出符合数据且结构简单的图像；或者直接在压缩空间完成分类。</p><div class="scroll"><table>
+<thead>
+<tr>
+<th>层次</th>
+<th>论文实际支持什么</th>
+<th>不应扩大成什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>光学方法</td>
+<td>DMD 与透镜能实现空间混合测量</td>
+<td>一个总光强能唯一确定任意图像</td>
+</tr>
+<tr>
+<td>数学理论</td>
+<td>适当稀疏性、测量条件与测量数下可恢复</td>
+<td>任意低采样率、任意图像、任意噪声都可恢复</td>
+</tr>
+<tr>
+<td>硬件证据</td>
+<td>R/山魈成像；同硬件 RS/BS/CS 误差对比</td>
+<td>全场景高保真、已经全面胜过 PA</td>
+</tr>
+<tr>
+<td>视频与分类</td>
+<td>特定模型的模拟展示收益</td>
+<td>已有复杂动态场景的实拍验证</td>
+</tr>
+<tr>
+<td>噪声解释</td>
+<td>纯光子模型给出条件性尺度；作者提出暗电流解释</td>
+<td>暗电流机制已被单独测量证实</td>
+</tr>
+</tbody>
+</table></div></section><section><h2 id="s14">Conclusions：作者最终主张什么</h2><p><strong>对应原文：p.90。</strong></p><p>作者的表述限定在“某些应用”：通过把复杂性从数据采集硬件转移到数字重建或处理，可以降低部署成本并扩展能力。重建计算甚至可以不在传感器所在地完成。</p><p>结论同时承认动态范围、噪声、速度等权衡仍需进一步理解。未来方向包括把单像素思想扩展到 DMD 不适合作调制器的太赫兹或 X 射线波段。这是提出后续研究，不是说文中的现有 DMD 装置已经验证了这些波段。</p><p>对本篇最稳妥的评价是：它清晰展示了“可编程光学混合+结构化恢复”的体系，并通过有限的实验与模拟展示可行性和权衡；它不是一份覆盖所有应用的相机替代方案。</p></section><section><h2 id="s15">附录精读：Poisson Photon Counting Calculations</h2><p><strong>对应原文：p.91。这个附录负责解释表 1 的最后一行。</strong></p><h3>起点：把光子计数与光子率分开</h3><p>设某位置的光子率为 P，单位 photons/s，在 τ 秒内累计计数 p。泊松模型给出：</p><div>p ∼ Poisson(Pτ)<br>E[p] = Var(p) = Pτ<br>P̂ = p/τ，E[P̂] = P，Var(P̂) = P/τ</div><p>这一步很重要：计数方差随时间增加，<strong>估计光子率的方差却随时间减少</strong>，因为计数要除以 τ，方差相应除以 τ²。后续各架构的差异主要来自每个位置或混合测量获得多少积分时间，以及解混如何传播方差。</p><h3>公式（4）：图像 MSE 如何由各像素误差组成</h3><div>E[MSE] = E[∥x̂−x∥₂²/N] = (1/N)∑<sub>n=1</sub><sup>N</sup> Var(x̂[n])　　（原文公式 4，无偏时）</div><p>原文假定估计无偏并相互独立。教学补充：这一平均平方误差的等式本身只需逐像素无偏，并不要求不同像素误差独立，因为没有交叉乘积。如果存在偏差，应加上每个像素的偏差平方。稀疏正则化重建可能有偏，所以不能默认所有 CS 重建都满足此处的无偏假定；作者最后对 CS 使用的是稳定恢复误差界。</p><p>附录为了平均化还假定各像素光子率独立同分布、服从均值 P 的高斯分布。它是简化统计假设，不是自然图像的普适事实；未截断的高斯还允许负值，严格物理建模必须保证光子率非负。对 PA 的核心尺度，直接对非负像素率取空间均值也能说明，不必依赖这一高斯设定。</p><h3>PA：每个像素获得完整 T</h3><p>第 n 个像素计数 p[n]∼Poisson(Tx[n])，估计率 x̂[n]=p[n]/T，因此 Var(x̂[n])=x[n]/T。代入公式（4）：</p><div>E[MSE]<sub>PA</sub> = (1/N)∑<sub>n</sub> x[n]/T ≈ P/T　　（原文公式 5）</div><p>近似号表示用空间平均亮度 P 表示像素率平均。PDF 在这段把归一化估计印为 p[n]T，但其前后“除以时间”的文字和后面的方差都要求 p[n]/T；应按除法理解，不能照乘法代入。</p><h3>RS：单探测器把 T 分给 N 个位置</h3><p>每个位置只有 τ=T/N。于是 Var(x̂[n])=x[n]/(T/N)=Nx[n]/T，平均得到 NP/T。它比 PA 高 N 倍的原因是串行分配曝光，条件是同样总时长、光通量模型及理想探测设定；不是一个普适的实际相机优劣倍数。</p><h3>BS：更多光子先混合，再经过逆矩阵</h3><p>每次收集约 N/2 个像素，总光子率约 NP/2；BS 每次用 T/N，计数均值约 PT/2。除以积分时间后，单个混合光子率读数的方差为 N²P/(2T)。但这仍是测量空间中的误差，必须经过 W⁻¹ 才能得到各像素误差。</p><p>原文给出最终平均结果 (3N−2)P/T。应注意，该结果依赖特定 0/1 Walsh 的构造、全开分量和逆矩阵。若使用另一种调制与参考测量设计，不能直接继承相同的系数 3。</p><h3>CS：测量数少，每个图案积分更久</h3><p>CS 每次用 T/M，同样接收约 NP/2 的光子率，因此根据“率×时间”应有：</p><div>λ<sub>CS</sub> = (NP/2)(T/M) = NPT/(2M)<br>Var(y[m]) = λ<sub>CS</sub>/(T/M)² = NMP/(2T)</div><p>这是未中心化、未矩阵归一化的混合读数尺度。原文将 0/1 读数变为对应 ±1/√M 矩阵的测量，并计入中心化处理，给出测量向量总误差 E[∥ỹ−y∥₂²]=3MNP/T。再用稳定恢复界并除以像素数 N，得到：</p><div>E[MSE]<sub>CS</sub> ≤ (C<sub>N</sub>²/N) × (3MNP/T) = 3C<sub>N</sub>²MP/T</div><p>这一最后推导只显式保留噪声项，相当于忽略或另行控制非严格稀疏造成的近似误差。真实可压缩图像还会有逼近误差、系统标定误差和模型不匹配，不能把它当成总误差的无条件保证。</p><h3>附录中的印刷与一致性问题：哪些能校正，哪些需继续核查</h3><div class="scroll"><table>
+<thead>
+<tr>
+<th>原文位置</th>
+<th>原文呈现或问题</th>
+<th>—</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>p.87 量化段</td>
+<td>MSE 写成 √N D 2<sup>−B−1</sup></td>
+<td>与均方定义和量纲不一致；上文区分每像素 MSE 与向量 ℓ₂ 界</td>
+</tr>
+<tr>
+<td>p.91 PA 归一化</td>
+<td>x̂[n]=p[n]T</td>
+<td>与计数率定义和相邻方差不符，应按 p[n]/T 理解</td>
+</tr>
+<tr>
+<td>p.91 CS 计数均值</td>
+<td>写作 PTM/(2N)</td>
+<td>由率 NP/2 乘时间 T/M 应为 NPT/(2M)；该结果也与下一句方差 NMP/(2T) 一致</td>
+</tr>
+<tr>
+<td>p.91 BS 中间步骤</td>
+<td>逐像素方差写成 2(N+1)P/T，随后平均 MSE 为 (3N−2)P/T</td>
+<td>若前式对所有像素都成立，平均不能直接变成后式；短文缺少足够细节消除此不一致。这里保留表 1 的作者结论，不声称已独立验证该精确常数</td>
+</tr>
+</tbody>
+</table></div><p>以上是针对手中 PDF 的定义、量纲和相邻公式核查，<strong>未检索出版社勘误或重现作者原始代码</strong>。用本文做定性理解时可以辨明趋势；用于自己的定量噪声预算时，应从实际掩模矩阵、积分时间、参考读数和协方差重新计算。</p></section><section><h2 id="s16">适用范围与局限：读完仍不能直接认定的事情</h2><ol>
+<li><strong>不能把少测量等同无损或超分辨。</strong> 图 2 明显有重建损失，网格尺寸不等于有效光学分辨率。</li>
+<li><strong>不能把硬件减少等同总系统成本必然降低。</strong> 调制器、光学、A/D、标定和计算仍有成本，本篇没有完整成本核算。</li>
+<li><strong>不能把探测器收光多等同一切噪声下更好。</strong> 光子噪声与暗电流、读出噪声的相对强弱可能改变排序。</li>
+<li><strong>不能把模拟当成动态实拍验证。</strong> 图 3 和图 5 是模拟；图 4 的实测也只覆盖特定装置与测试图案。</li>
+<li><strong>不能把重建出的细节直接当成测得细节。</strong> 正则化会选择结构，特别是低采样率下，需要独立参照图或任务相关误差验证。</li>
+<li><strong>不能把本文简单模型直接当成定量吸收成像模型。</strong> 本篇测的是光学强度线性混合，浓度、温度、路径长度等反演需要额外光谱与辐射传输模型。</li>
+
+</ol></section><footer class="source"><p>Marco F. Duarte, Mark A. Davenport, Dharmpal Takhar, Jason N. Laska, Ting Sun, Kevin F. Kelly, Richard G. Baraniuk · <a href="https://doi.org/10.1109/msp.2007.914730">Single-pixel imaging via compressive sampling</a> · IEEE Signal Processing Magazine · 2008</p><a href="./">返回论文精读目录</a></footer></article></main></body></html>

@@ -1,0 +1,69 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>活性液滴挤进窄通道时，周围的流场怎样变化？ · 论文精读</title><style>*{box-sizing:border-box}html{color-scheme:light;scroll-padding-top:1rem}body{margin:0;background:#f4f6f8;color:#1b2d3c;font:1.05rem/1.86 system-ui,"Microsoft YaHei",sans-serif;overflow-wrap:anywhere}header{background:#173c58;color:white}header div,main{max-width:54rem;margin:auto;padding:0 clamp(1rem,4vw,2.6rem)}header div{display:flex;gap:1.6rem;align-items:center;padding-block:.68rem}header a{color:white}a{color:#155078;text-underline-offset:.2em}main{background:white;padding-block:1.4rem 3rem}h1,h2,h3,h4{line-height:1.45;text-wrap:pretty}h1{font-size:clamp(1.65rem,4vw,2.4rem);margin:.35rem 0 .6rem}h2{color:#193f58;font-size:1.4rem;margin:2.2rem 0 .6rem;border-top:1px solid #d7e1e8;padding-top:1.3rem}h3{font-size:1.13rem;margin:1.4rem 0 .3rem}p{margin:.7rem 0}.meta,figcaption,.credit{color:#506575;font-size:.91rem}.lead{border-left:3px solid #477b92;padding:.5rem .9rem;background:#f1f6f8}details{margin:1rem 0}summary{cursor:pointer;color:#155078;font-weight:650}ul,ol{padding-left:1.5em}li+li{margin-top:.28em}.scroll,pre,math[display=block]{max-width:100%;overflow-x:auto}.scroll{margin:.9rem 0}table{font-size:.94rem;border-collapse:collapse;text-align:left;width:100%;min-width:22rem}td,th{border-bottom:1px solid #d4e0e7;padding:.45rem .6rem;vertical-align:top}th{background:#eef4f6}figure{margin:1.4rem 0}figure>a{display:block}figure img{max-width:100%;height:auto;display:block;margin:auto}figure a span{display:block;text-align:center;font-size:.85rem}figcaption{margin-top:.4rem}code,pre{font-family:ui-monospace,monospace;background:#f2f5f6}pre{padding:.75rem}blockquote{margin-inline:0;padding-left:.85rem;border-left:3px solid #a6bac6}.source{margin-top:2.2rem;border-top:1px solid #cedbe3;padding-top:.8rem}a:focus-visible,summary:focus-visible{outline:3px solid #b77928;outline-offset:2px}@media(max-width:520px){body{font-size:1rem}h2{font-size:1.22rem}header div{gap:1.2rem}}</style></head><body><header><div><a href="../">每日知识</a><a href="./">论文精读目录</a></div></header><main><article><p class="meta">Guchhait 等 · Physical Review Fluids · 2025</p><h1>活性液滴挤进窄通道时，周围的流场怎样变化？</h1><p class="lead">通道越窄，液滴越接近胶囊形。示踪流场和胶束分布显示，液滴与壁面之间的薄膜改变了前后端的流体交换。</p><p><a href="https://doi.org/10.1103/physrevfluids.10.044202">Flow fields around active droplets squeezing through tight confinements</a></p><details><summary>文章目录</summary><ol><li><a href="#s1">研究背景</a></li><li><a href="#s2">研究方法</a></li><li><a href="#s3">核心结果</a></li><li><a href="#s4">机制与证据</a></li><li><a href="#s5">适用范围与局限</a></li></ol></details><section><h2 id="s1">研究背景</h2><p>作者关心的是一种比被动载体更接近“自驱动微载体”的系统：CB15 油滴在 TTAB 表面活性剂溶液中通过 micellar solubilization 自推进。过去关于微生物和人工 microswimmer 在约束空间里的运动已有大量工作，例如细菌、Euglena、Paramecium、Janus particles 和活性液滴等。但本文指出一个缺口：当活性液滴为了穿过与自身尺度相当甚至更小的通道而显著变形时，它周围的速度场、涡量结构和化学浓度分布怎样一起演化，仍缺少系统实验和机理解释。</p><p>已有背景可以分成三层：</p><ul>
+<li>生物 microswimmer 在土壤孔隙、黏液网络或微通道中会改变运动方式，有些甚至通过变形或近圆柱形姿态穿过强约束。</li>
+<li>人工 microswimmer 中，Janus 粒子依赖材料不对称和 phoretic 机制，活性油滴则可以是各向同性液滴，在表面活性剂溶液中自发破缺界面浓度对称性并产生 Marangoni 推进。</li>
+<li>对活性液滴而言，壁面附近的薄润滑膜不仅改变阻力，还改变化学输运和局部界面应力，因此不能只用“通道越窄阻力越大”的直觉解释。</li>
+</ul><p>本文提出的问题是：当约束比 κ 增大时，液滴形状、流场对称性、filled micelle 尾迹和数值模拟中的表面活性剂浓度场如何相互对应？</p></section><section><h2 id="s2">研究方法</h2><h3>实验系统</h3><p>液滴材料是 slowly solubilizing CB15 oil，外相是 TTAB 水溶液。TTAB 的 critical micelle concentration 为 0.13 wt.%。作者先用 flow-focusing cross-junction 芯片在 0.1 wt.% TTAB 溶液中生成 CB15 液滴，再与 7.5 wt.% TTAB 溶液按 1:2 混合，使液滴处在 supramicellar 环境中并变为自推进状态。</p><p>液滴直径分为四组：</p><ul>
+<li>45.33 +/- 3.01 um</li>
+<li>55.72 +/- 3.89 um</li>
+<li>67.6 +/- 2.86 um</li>
+<li>80.64 +/- 6.39 um</li>
+</ul><p>微通道是 PDMS 矩形通道，宽度 w = 64 um，高度 h = 50 um，水力直径 Dh = 4wh/[2(w+h)] = 56.14 um。约束比 κ 的定义随液滴形态变化：</p><ul>
+<li>对球形或近球形液滴，κ = Dd / Dh。</li>
+<li>对拉长液滴，κ = l / Dh，其中 l 是液滴最大长度。</li>
+</ul><p>形态分区是本文结果组织的基础：</p><ul>
+<li>κ &lt; 1.30：球形或近球形。</li>
+<li>1.30 &lt; κ &lt;= 1.80：stadiumlike 形态。</li>
+<li>κ &gt; 1.80：capsulelike 拉长形态。</li>
+</ul><p>一个重要方法细节是，κ &lt; 1.30 的液滴可自发进入微通道；κ &gt; 1.30 时，较大液滴需要先用外加环境流注入通道，随后等待外流场静止再记录。因此，强约束结果不是“液滴自动进通道”的全流程，而是进入后在静止背景中的自推进和流场结构。</p><h3>轨迹和速度测量</h3><p>作者用 bright-field microscopy 记录液滴轨迹，30x 物镜，25 fps，空间分辨率 0.176 um/pixel。液滴质心由 MATLAB R2020a 的自建图像处理程序追踪。由于文中报告的液滴运动达到 steady-state，瞬时速度被用作稳态游动速度。该 setup 在 30x 和 25 fps 条件下可分辨的最小平移速度约为 2.2 um/s。</p><p>Figure 1 在方法和第一层结果之间起桥梁作用：</p><ul>
+<li>Fig. 1(a) 给出矩形微通道、拉长液滴和显微成像布置，说明观察的是受限通道内的平面投影流场。</li>
+<li>Fig. 1(b) 把荧光微图与 µPIV streamline 放在一起，说明速度场不是只通过液滴轨迹间接推断，而是从示踪粒子图像得到。</li>
+<li>Fig. 1(c) 给出球形与拉长液滴轨迹，颜色编码 ud，支撑后续“不同 κ 下仍有 steady swimming”的前提。</li>
+<li>Fig. 1(d) 是全文的宏观趋势图：ud 随 κ 增大整体下降；对不同黏度比 λ = μi/μe，该趋势定性相似；插图显示 κ 增到约 17 时液滴停止移动。</li>
+</ul><h3>µPIV 流场测量</h3><p>局部速度场通过高分辨荧光显微和 µPIV 获得。示踪粒子是 500 nm carboxylate-modified fluorescent microspheres，激发/发射波长 505/515 nm。PIV 分析使用 PIVlab：</p><ul>
+<li>用 DFT 方法求 cross-correlation matrix。</li>
+<li>第一遍 interrogation area 为 64 x 64 pixels，step size 为 32 x 32 pixels。</li>
+<li>第二遍 interrogation area 为 32 x 32 pixels，step size 为 16 x 16 pixels。</li>
+<li>后处理生成速度等值图、streamlines 和涡量图。</li>
+</ul><p>作者给出一个可用于判断信噪比的量级：κ = 0.85 时，在距液滴界面约 Dd/2 的位置，µPIV 得到的平均 advective velocity 为 7.169 +/- 0.3312 um/s。</p><p>Appendix A 和 Fig. 8 是 µPIV 可信度检查：</p><ul>
+<li>对静止介质中 500 nm 粒子的 Brownian motion 做速度场估计，平均速度接近零，用于排除主要速度结构来自分析噪声。</li>
+<li>对 100 x 50 um^2 通道内的压力驱动流，µPIV 测得的中心平面速度与二次曲线拟合的 Hagen-Poiseuille 型速度分布相符。</li>
+<li>文中估算最大速度 40 um/s 情况下速度测量不确定度约为 +/-0.3225 um/s，即约最大速度的 +/-0.8%。</li>
+<li>压力驱动流验证中平均标准差为 +/-4.59704565 um/s。这个数不小，但用于验证整体速度剖面，而不是单个活性液滴局部速度峰值。</li>
+</ul><h3>Filled micelle 可视化</h3><p>为追踪 filled micelle trail，作者用 Nile Red 染色 CB15 oil，并在相同 TTAB 条件下生成活性液滴。图像记录同样为 25 fps。后处理时，沿液滴界面外侧 14 um 的轮廓提取荧光强度 I，从前端方向 θ = 0 开始顺时针扫描到 2π，θ = π 对应后端。对约 20 s 推进过程绘制 I(θ) 的 kymograph，并用 κ = 3.00 情况的最大界面强度 Imax 归一化。</p><p>这部分很关键，因为它把流场解释中的“表面活性剂/filled micelle 分布”从纯模型量变成可视化证据。需要注意：实验直接看到的是含油 filled micelle 的荧光信号，不等同于数值模拟中的 surfactant monomer concentration C*；两者通过消耗和溶解过程相关，但不是同一物理量。</p><h3>数值模拟</h3><p>数值部分求解的是简化 physicochemical hydrodynamics 模型。外相 surfactant transport 被建模为 advective-diffusive process，液滴界面以固定速率消耗 surfactant。流场满足 incompressibility 和 Navier-Stokes 方程，界面满足速度连续、运动学条件和含 Marangoni 项的应力平衡。表面张力随 surfactant concentration 变化，界面消耗通量为常数 A，壁面速度边界为 no-slip/no-penetration，浓度边界为 no-flux。</p><p>无量纲化尺度包括：</p><ul>
+<li>长度尺度：约束长度 R。</li>
+<li>浓度尺度：AR/D。</li>
+<li>速度尺度：U = AγcR/[D(2μe + 3μi)]。</li>
+<li>压力尺度：μeU/R。</li>
+</ul><p>得到的关键无量纲数包括 Re、Ca、Pe、κ、密度比 ρi/ρe 和黏度比 μi/μe。主文 Fig. 6 的数值参数为 Re = 10^-3, Ca = 10^-3, ρi/ρe = 1, μi/μe = 138, Pe = 10。</p><p>求解器是 COMSOL Multiphysics，使用 laminar flow、convection-diffusion equation 和 moving mesh 模块，moving mesh 采用 ALE 方法与自动 remeshing。计算域是二维轴对称圆柱域，半径 R、长度 30R。为了处理移动和变形界面，作者在随液滴平移的 comoving frame 中求解，液滴速度通过积分约束得到。</p><p>Appendix B 和 Fig. 9 验证数值方法：无约束近似条件 κ = 0.05 下，数值结果能复现已有文献中活性液滴在 Pe = 4 附近从静止到自推进的阈值行为，并与理论/已有模拟趋势一致。</p><p>数值模型的限制也很明确：它是轴对称框架，可以解释 Regime I-III 的对称流场和薄膜输运，但不能直接捕捉 Regime IV 的不对称三维或非轴对称结构。作者对 Regime IV 的解释因此带有明确 speculation 成分。</p></section><section><h2 id="s3">核心结果</h2><h3>结果 1：随 κ 增大，液滴从球形到 stadiumlike 再到 capsulelike，同时游动速度下降</h3><p>从 Fig. 1(d) 看，液滴稳态速度 ud 随 κ 增大总体下降。这个趋势在不同外相黏度 μe 下保持相似，说明在本文参数范围内，约束诱导的几何/薄膜效应比黏度比变化更主导。插图显示 κ 进一步增大到约 17 时，液滴最终停止运动。</p><p>这个结果不应理解为“Marangoni 驱动变弱”。后面的数值模拟显示，在某些强约束 regime，局部界面速度 us* 反而增强；液滴整体速度下降是因为薄润滑膜中黏性耗散大幅增加，几何输运约束压过了局部界面驱动增强。</p><p>Figure 1 的读图重点：</p><ul>
+<li>x 轴是约束比 κ，不是绝对液滴直径。</li>
+<li>κ 越大既意味着通道相对更窄，也意味着液滴形状可能从球形定义 Dd 转为用长度 l 表征。</li>
+<li>速度下降曲线旁边标了 I-IV regime，后续流场图就是围绕这些区间解释。</li>
+</ul><h3>结果 2：Regime I 中近球形液滴产生近对称四极流场</h3><p>Regime I 对应 0.70 &lt; κ &lt; 0.90，代表相对较弱但已明显的约束。Fig. 2(a-c) 显示 κ 约 0.85 时，液滴周围流场仍接近 x 轴对称：前后各有 circulation zones，速度场呈 quadrupolar signature。局部速度 u 在后部界面和通道壁之间较高，因此作者将该 regime 中的液滴 hydrodynamic signature 归为 pusher-like。</p><p>从分量看：</p><ul>
+<li>ux 关于 x 轴近似对称。</li>
+<li>uy 关于 x 轴近似反对称。</li>
+<li>Fig. 4(a) 的涡量图显示前后 circulation zones 的涡量方向成对相反。</li>
+</ul><p>Fig. 5(a) 中 filled micelle trail 主要积累在后端 θ = π 附近，并略偏向邻近壁面。这说明化学尾迹已经有后向非均匀性，但整体流场仍保持较强对称性。</p><h3>结果 3：Regime II 中液滴仍近球形，但前端流动方向反转</h3><p>Regime II 对应 0.90 &lt; κ &lt; 1.30，液滴仍近球形，但通道尺度已接近液滴直径。Fig. 2(d-f) 显示前端区域的速度方向与 Regime I 不同：前端流动不再主要远离液滴，而是朝向液滴。Fig. 4(b) 中前端涡量方向也相对 Regime I 发生反转。后端 circulation zones 仍存在，因此整体仍可归入 quadrupolar flow，但前后流动组织已明显重排。</p><p>这个结果乍看与液滴沿 +x 方向游动相矛盾，因为 Fig. 2(e) 中前端大范围 ux 为负。作者解释说，高分辨 µPIV 仍能观察到前端 apex 附近有正 ux，只是区域很薄、难以在图上显著显示。更重要的是，液滴推进不是由外部流场某一处方向直接决定，而由界面 Marangoni 应力和整体流量连续性共同决定。</p><p>机制上，Regime II 的核心是薄润滑膜出现。液滴要向前推进，前方被排开的液体必须通过液滴和壁面之间的薄膜流向后方。为了满足不可压缩连续性，前端外部流场可以被组织成朝向液滴的形式。这是本文最重要的“反直觉”点之一。</p><h3>结果 4：Regime III 中 stadiumlike 液滴延长了薄膜区，保持对称但增强前后浓度差</h3><p>Regime III 对应 κ 约 1.50，液滴采用 stadiumlike 形态。Fig. 2(g-i) 显示速度场仍与 Regime II 类似：流场保持对称结构，前端流动朝向液滴，后端仍有 circulation zones。但由于液滴形状拉长，薄膜区也变长，前端涡量强度和局部输运结构发生改变。</p><p>Fig. 5(c) 的 kymograph 与 Regime II 相比，后端 filled micelle 信号在视觉上仍相近；作者也谨慎指出，很难仅凭 Regime II 和 III 的 kymograph 判断后端 filled micelle 浓度是否显著增加。不过数值模拟中，Regime III 的 surfactant monomer concentration C* 沿更长薄膜区发生更强耗尽，因而前后浓度差更尖锐。</p><p>这里需要区分实验直接证据和模型推断：</p><ul>
+<li>实验直接看到：速度场仍为对称 quadrupolar-like 结构，kymograph 仍以后端高 filled micelle 信号为主。</li>
+<li>模型支持：更长薄膜区导致 C* 更持续地下降，界面张力 γ* 沿薄膜区近似线性变化。</li>
+<li>推断：更长薄膜区使 Marangoni stress 在薄膜区更均匀，整体速度仍因耗散而降低。</li>
+</ul><h3>结果 5：Regime IV 中 capsulelike 液滴出现不对称流场</h3><p>Regime IV 对应 κ &gt; 1.80，液滴变成显著拉长的 capsulelike 形态。Fig. 3 显示流场不再关于 x 轴对称，主要由前端和后端各一个 dominant circulation zone 表征。这两个 circulation zones 的涡量方向相反。Fig. 4(d,e) 进一步显示，κ = 2.25 和 κ = 3.00 时涡量结构的组织方式已经不同于 Regime I-III。</p><p>Regime IV 还有一个次级特征：有时前端会出现一个较弱的 secondary circulation zone，但作者指出它不稳定，强度随 κ 在 Regime IV 内部变化。若这个 secondary zone 存在，其涡量方向与前端 dominant zone 相反。</p><p>Fig. 3(c,d) 和 Fig. 3(e,f) 的分量图说明：</p><ul>
+<li>ux 由原来的关于 x 轴近似对称变为 skew-symmetric。</li>
+<li>uy 失去原来的 skew-symmetry。</li>
+</ul><p>Fig. 5(d) 中 filled micelle trail 覆盖整个通道宽度，后端附近信号强于其他 regime。作者还认为前端也可能存在非零 filled micelle 浓度，这与前端单一 circulation zone 的回流结构有关。</p><p>这里的 caveat 很重要：作者没有用三维或非轴对称数值模拟直接再现 Regime IV。关于不对称薄膜形状、局部压力变化导致非对称流场的解释，是基于实验观察和 Regime I-III 机制外推的 speculation。</p></section><section><h2 id="s4">机制与证据</h2><h3>链条 1：micellar solubilization -&gt; Marangoni stress -&gt; active droplet propulsion</h3><p>液滴推进的根源是 CB15 oil 在 TTAB micelles 中溶解。empty micelles 从液滴界面带走油分子和 surfactant monomers，形成 filled micelles。任何微小 advective perturbation 都可能打破原本各向同性的 filled/empty micelle 分布，导致界面 surfactant monomer coverage 局部变化。覆盖低的区域对应较高界面张力，沿界面的 surface tension gradient 产生 Marangoni stress，进而驱动界面流动和液滴推进。</p><h3>链条 2：约束增强 -&gt; 薄润滑膜出现 -&gt; 流量连续性要求前端液体经薄膜输运到后端</h3><p>当 κ 接近或超过 1 时，液滴与通道壁之间只有很薄的液膜。液滴向前移动时，前方液体必须被排走；在不可穿透壁面和不可压缩流体条件下，排走路径主要是液滴-壁面之间的薄膜。</p><p>因此，薄膜不只是增加阻力，而是改变整个流场拓扑：</p><ul>
+<li>Regime I 中，前后都可以形成较对称的流出/回流结构。</li>
+<li>Regime II 中，前端流动方向反转，液体被组织成进入薄膜区并向后输运。</li>
+<li>Regime III 中，stadiumlike 形态延长薄膜区，流场仍保持对称，但薄膜输运长度更长。</li>
+<li>Regime IV 中，薄膜区进一步拉长，局部压力和薄膜形状可能变得不对称，实验上出现非对称流场。</li>
+</ul><h3>链条 3：局部界面速度增强并不等于液滴速度增强</h3><p>Fig. 6(b) 显示，从 Regime I 到 Regime II，前半界面上的 nondimensional interfacial velocity us* 可以显著增强，文中说可达到 Regime I 的约 2-3 倍。直觉上这似乎会让液滴更快，但 Fig. 1(d) 和 Fig. 6(a) 都显示整体 swimming velocity 反而下降。</p><p>作者给出的尺度解释是：</p><p>ud* ~ us* (1 - κ)^(1/2)</p><p>其中 (1 - κ) 可理解为与薄膜间隙相关的约束余量。进入强约束后，薄膜厚度从 O(10^-1) 量级下降到可能 O(10^-3) 量级，即使 us* 仍为 O(1) 或局部增强，薄膜黏性耗散也会显著降低整体 ud*。</p><p>这个关系对数值模拟很有启发：如果只看界面 Marangoni stress 或局部 slip/interfacial velocity，可能错误预测“驱动更强所以游得更快”；必须同时解析薄膜厚度和耗散。</p><h3>链条 4：C*、γ* 和 us* 的空间分布解释 Regime I-III</h3><p>Fig. 6 和 Fig. 7 是机制核心图：</p><ul>
+<li>Fig. 6(a) 数值模拟复现 ud* 随 κ 先上升后下降的趋势，并给出 Regime I 的速度等值图和 streamlines。</li>
+<li>Fig. 6(b) 给出沿液滴界面 arc length 的 us*，并用颜色表示 C*。Regime I 中 us* 峰值位于后半部、略过 equator；Regime II 中前半界面的 C* 梯度更强，us* 增大；Regime III 中薄膜区更长，us* 在薄膜区更接近均匀。</li>
+<li>Fig. 6(c) 给出 γ* 沿界面的变化。C* 降低导致 γ* 增加，γ* 梯度即 Marangoni stress 的来源。</li>
+<li>Fig. 7 把 streamlines 叠加在 C* 等值图上，直观显示薄膜区内 C* 的耗尽和前后浓度差。</li>
+</ul><p>Regime II 的细节尤其值得注意：数值模型显示 C* 主要在前半和薄膜区快速下降，后半界面 C* 梯度变弱。因此，kymograph 中看起来像是整个前后方向的 filled micelle 反差，其底层 surfactant monomer 变化并不是简单地沿全长均匀下降，而是集中在前端和薄膜区。</p><h3>链条 5：Regime IV 的机制是实验证据强、模型证据弱</h3><p>对于 capsulelike 液滴，作者提出：随着薄膜区进一步延长，前端 Marangoni stress 驱动的液体通量必须经过更长薄膜；局部压力变化可能造成薄膜形状不对称，从而允许满足 incompressible flow 的非对称速度场。后端单 circulation zone 导致 filled micelle 更强积累，前端 circulation zone 可能解释前端弱 filled micelle 信号。</p></section><section><h2 id="s5">适用范围与局限</h2><ul>
+<li>Regime IV 缺少直接数值复现。论文的轴对称模拟不能捕捉 capsulelike 液滴的不对称流场，相关解释应视为基于实验观察的合理推断。</li>
+<li>实验直接观测的是 filled micelle fluorescence，数值模型给出的是 surfactant monomer concentration C*。二者相关但不是同一个变量，不能把 Fig. 5 的亮度直接等同于 C*。</li>
+<li>κ &gt; 1.30 的大液滴需要外加流注入通道后再等待静止。因而本文主要研究“进入强约束后的自推进流场”，不是完整的自主进入过程。</li>
+<li>微通道为固定矩形截面，w = 64 um, h = 50 um。结果外推到圆管、多孔介质、不规则孔喉或可变形壁面时，需要重新考虑横截面和边界条件。</li>
+<li>数值模型把外相化学输运简化为 surfactant molecules 的 advection-diffusion 和界面固定消耗率，没有显式解析 empty/filled micelle 的多组分反应输运。</li>
+<li>论文的主结果是 2D 显微成像平面上的速度场和强度场。对于真实三维流场、上下壁面附近薄膜厚度和非轴对称界面形变，还需要更直接的测量或 3D 模拟。</li>
+</ul></section><footer class="source"><p>Subhasish Guchhait, Smita S. Sontakke, Shubhadeep Mandal, Ranabir Dey · <a href="https://doi.org/10.1103/physrevfluids.10.044202">Flow fields around active droplets squeezing through tight confinements</a> · Physical Review Fluids · 2025</p><a href="./">返回论文精读目录</a></footer></article></main></body></html>

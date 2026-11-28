@@ -1,0 +1,63 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>液滴撞向热壁时，最薄的一层气膜有多厚？ · 论文精读</title><style>*{box-sizing:border-box}html{color-scheme:light;scroll-padding-top:1rem}body{margin:0;background:#f4f6f8;color:#1b2d3c;font:1.05rem/1.86 system-ui,"Microsoft YaHei",sans-serif;overflow-wrap:anywhere}header{background:#173c58;color:white}header div,main{max-width:54rem;margin:auto;padding:0 clamp(1rem,4vw,2.6rem)}header div{display:flex;gap:1.6rem;align-items:center;padding-block:.68rem}header a{color:white}a{color:#155078;text-underline-offset:.2em}main{background:white;padding-block:1.4rem 3rem}h1,h2,h3,h4{line-height:1.45;text-wrap:pretty}h1{font-size:clamp(1.65rem,4vw,2.4rem);margin:.35rem 0 .6rem}h2{color:#193f58;font-size:1.4rem;margin:2.2rem 0 .6rem;border-top:1px solid #d7e1e8;padding-top:1.3rem}h3{font-size:1.13rem;margin:1.4rem 0 .3rem}p{margin:.7rem 0}.meta,figcaption,.credit{color:#506575;font-size:.91rem}.lead{border-left:3px solid #477b92;padding:.5rem .9rem;background:#f1f6f8}details{margin:1rem 0}summary{cursor:pointer;color:#155078;font-weight:650}ul,ol{padding-left:1.5em}li+li{margin-top:.28em}.scroll,pre,math[display=block]{max-width:100%;overflow-x:auto}.scroll{margin:.9rem 0}table{font-size:.94rem;border-collapse:collapse;text-align:left;width:100%;min-width:22rem}td,th{border-bottom:1px solid #d4e0e7;padding:.45rem .6rem;vertical-align:top}th{background:#eef4f6}figure{margin:1.4rem 0}figure>a{display:block}figure img{max-width:100%;height:auto;display:block;margin:auto}figure a span{display:block;text-align:center;font-size:.85rem}figcaption{margin-top:.4rem}code,pre{font-family:ui-monospace,monospace;background:#f2f5f6}pre{padding:.75rem}blockquote{margin-inline:0;padding-left:.85rem;border-left:3px solid #a6bac6}.source{margin-top:2.2rem;border-top:1px solid #cedbe3;padding-top:.8rem}a:focus-visible,summary:focus-visible{outline:3px solid #b77928;outline-offset:2px}@media(max-width:520px){body{font-size:1rem}h2{font-size:1.22rem}header div{gap:1.2rem}}</style></head><body><header><div><a href="../">每日知识</a><a href="./">论文精读目录</a></div></header><main><article><p class="meta">Gordillo 等 · Journal of Fluid Mechanics · 2022</p><h1>液滴撞向热壁时，最薄的一层气膜有多厚？</h1><p class="lead">作者把颈部液体惯性与气膜内的润滑流相联系，得到最小膜厚在惯性主导和毛细作用显著时的不同标度。</p><p><a href="https://doi.org/10.1017/jfm.2022.280">The initial impact of drops cushioned by an air or vapour layer with applications to the dynamic Leidenfrost regime</a></p><details><summary>文章目录</summary><ol><li><a href="#s1">研究背景</a></li><li><a href="#s2">研究方法</a></li><li><a href="#s3">核心结果</a></li><li><a href="#s4">附录与验证</a></li><li><a href="#s5">适用范围与局限</a></li></ol></details><section><h2 id="s1">研究背景</h2><p>Leidenfrost 效应的典型表现是液滴在足够热的基底上近乎无摩擦滑动，因为液滴与固体之间形成了自身蒸汽层。这个蒸汽层一方面能降低摩擦、可用于 lab-on-chip 操控，另一方面也会隔热，降低喷雾冷却和热管理效率，甚至导致 burnout。</p><p>这篇文章关注的是 dynamic Leidenfrost regime：液滴不是静止放在热基底上，而是以有限速度 <code>U</code> 撞击基底。核心问题是：在初始撞击阶段，空气或蒸汽层何时足够厚，能够阻止液体与固体短时接触？作者把问题缩小为两个可建模对象：</p><ul>
+<li>neck 区域的最小膜厚 <code>hm</code>，它决定液体是否首先在环状 neck 附近接触基底。</li>
+<li>中心 dimple/bubble 的厚度 <code>hd</code> 和蒸汽供给，它决定中心区域能否形成持续增长的蒸汽泡，从而进入 dynamic Leidenfrost 状态。</li>
+</ul></section><section><h2 id="s2">研究方法</h2><h3>基本变量与无量纲数</h3><p>液滴半径 <code>R</code>，撞击速度 <code>U</code>，液体密度 <code>rho_l</code>、黏度 <code>eta_l</code>、表面张力 <code>gamma</code>、汽化潜热 <code>L</code>。周围空气和蒸汽用下标 <code>a</code>、<code>v</code> 区分，尤其是气体黏度 <code>eta_a</code> 与蒸汽黏度 <code>eta_v</code>。</p><p>作者用 <code>R</code>、<code>U</code>、<code>rho_l U^2</code> 作尺度，并定义</p><pre><code>tau = t U / R
+Re = U R / nu_l
+St = rho_l U R / eta_a
+We = rho_l U^2 R / gamma
+Pr = nu_l / alpha_l
+</code></pre><p>对超热基底还定义</p><pre><code>beta = k_v (T_s - T_b) / (eta_v L)
+beta_a = k_v (T_b - T_a) / (eta_v L)
+</code></pre><p>其中 <code>T_s</code> 是基底温度，<code>T_b</code> 是沸点，<code>T_a</code> 是环境温度。</p><h3>物理模型的核心位置：不是整个气膜，而是 neck 附近最大压力区</h3><p>作者强调，<code>hm</code> 在液体压力最大、气膜最薄的 spatio-temporal region 达到最小。这个位置是液滴底部 dimple 边缘附近的 neck，而不是中心轴线。</p><figure><a href="figures/gordillo-2022-reading-note/fig-01.png"><picture><source type="image/webp" srcset="figures/gordillo-2022-reading-note/fig-01-preview.webp"><img src="figures/gordillo-2022-reading-note/fig-01.png" width="1191" height="600" loading="eager" decoding="async" alt="图 1　撞击初期的液滴、气膜凹陷与颈部"></picture><span>查看高清原图</span></a><figcaption>图 1　撞击初期的液滴、气膜凹陷与颈部</figcaption></figure><p>Figure 1 是模型图：</p><ul>
+<li>Figure 1(a) 显示液滴接近基底、中心 dimple 和环状 neck 的整体几何。压力峰值约在 neck 处。</li>
+<li>Figure 1(b) 放大 neck 区域：在随 neck 速度 <code>V_m</code> 移动的参考系中，基底相对运动造成 Couette 流，压力梯度造成 Poiseuille 流，两者共同决定最小膜厚。</li>
+<li>Figure 1(c) 显示中心气泡几何：中心厚度 <code>hd</code> 远大于 neck 厚度 <code>hm</code>，二者在同一个初始撞击事件中扮演不同角色。</li>
+</ul><h3>使用 Riboux &amp; Gordillo 的 Wagner 撞击框架</h3><p>作者沿用 Riboux &amp; Gordillo 2014/2017 的初始撞击理论。关键结果：</p><pre><code>a(t) = sqrt(3 U R t) = R sqrt(3 tau)
+V(t) = da/dt = U * sqrt(3) / (2 tau^{1/2})
+</code></pre><p>其中 <code>a(t)</code> 是 wetted radius 或等效 neck 位置，<code>V(t)</code> 是 neck 径向外移速度。液体薄片厚度标度为</p><pre><code>h_a(t) = R * sqrt(12/(3 pi)) * tau^{3/2}
+</code></pre><p>在 neck 上游约 <code>h_a</code> 的位置有 stagnation point，液体压力最大。压力跳跃为</p><pre><code>Delta p(t) = 1/2 rho_l V(t)^2 = (3/8) rho_l U^2 tau^{-1}
+</code></pre><p>因为压力随 <code>tau -&gt; 0</code> 发散，真正的最小膜厚发生在 dimple 形成时间附近。作者用已有实验/理论给出</p><pre><code>hd ~= 2.8 R St^{-2/3}
+tau_m ~= C_tau St^{-2/3},  C_tau ~= 12.4
+</code></pre><p>于是 neck 初始速度、最大压力和压力变化长度为</p><pre><code>V_m ~ U St^{1/3}
+Delta p_m ~ rho_l U^2 St^{2/3}
+h_{a,m} ~ R St^{-1}
+</code></pre><p>这些结果是后面气膜厚度标度的输入。</p></section><section><h2 id="s3">核心结果</h2><h3>1. 等温基底：惯性主导气膜厚度 <code>hm/R ~ St^{-7/6}</code></h3><p>等温基底没有蒸发供给时，液滴能否被空气层缓冲，取决于 neck 区域的 Couette 流与 Poiseuille 流是否能平衡。作者在随 neck 移动的参考系中写出量级平衡：</p><pre><code>V_m h_m / 2 ~ (h_m^3 / (12 eta_a)) * (rho_l V_m^2 / (2 h_{a,m}))
+</code></pre><p>由此得到惯性主导 regime 的最小空气膜厚度：</p><pre><code>h_m / R ~= 4 C_tau sqrt(pi) St^{-7/6}
+</code></pre><p>这个结果的物理含义是：气膜越薄，Poiseuille 排气能力越弱；撞击越快或 <code>St</code> 越大，neck 速度和压力越高，但最终最小膜厚按 <code>St^{-7/6}</code> 下降。</p><p>作者还验证了润滑假设：</p><ul>
+<li><code>h_m / h_{a,m} ~ St^{-1/6} &lt;&lt; 1</code>，几何是 slender。</li>
+<li>气体惯性相对黏性小，量级约由 <code>rho_a/rho_l &lt;&lt; 1</code> 保证。</li>
+</ul><h3>2. 毛细效应何时不可忽略：过渡条件 <code>We St^{-1/6} ~ 1</code></h3><p>上面的推导忽略了液-气界面曲率造成的毛细压力。作者定义一个局部毛细长度 <code>ell_c</code>，令</p><pre><code>gamma h_m / ell_c^2 ~ Delta p_m
+</code></pre><p>如果 pressure variation 的长度 <code>h_{a,m}</code> 大于或可比 <code>ell_c</code>，毛细效应不可忽略。结合惯性标度可得到过渡条件：</p><pre><code>h_{a,m} / ell_c ~ We^{1/2} St^{-1/12}
+capillary relevant if We St^{-1/6} &lt;= O(1)
+</code></pre><p>在毛细主导 regime 中，压力变化长度不再是 <code>h_{a,m}</code>，而是 <code>ell_c</code>，得到</p><pre><code>h_m / R ~= 8 C_tau^{2/3} We^{-1/3} St^{-10/9}
+</code></pre><p>Figure 2 把这两条理论曲线与 de Ruiter et al. 2012 的水和乙醇等温撞击实验比较。图中黑/橙竖线表示各液体的 <code>We St^{-1/6}=1</code> 速度。作者强调，连续/虚线分别为惯性/毛细 regime，没有额外拟合常数，整体与实验相符。</p><h3>3. 气体平均自由程与 slip 是潜在误差，但本文先忽略</h3><p>Figure 2 中 <code>hm</code> 可以接近空气的平均自由程，常压空气约 <code>100 nm</code>。因此严格说，经典 Couette/Poiseuille 流率中对 wall 和 gas-liquid interface 的 no-slip 条件应有滑移修正。作者承认这会让表达式依赖 mean free path，但基于 Figure 2 的合理一致性，本文先取 slip length 为零。</p><p>这是一个重要 caveat：当你模拟或实验进入纳米级气膜时，连续介质 no-slip 润滑模型可能需要 Knudsen/slip 修正。</p><h3>4. 超热基底：蒸发供给改变 <code>hm</code> 的代数方程</h3><p>对 Leidenfrost 条件，neck 区域不仅有原来的 Couette/Poiseuille 气体流，还要考虑蒸发产生的蒸汽流。作者假设高导热基底温度在初始撞击中近似恒定，壁面到蒸发界面的热通量为</p><pre><code>k_v Delta T / h_m
+</code></pre><p>沿 <code>h_{a,m}</code> 长度产生的蒸汽体积流率为</p><pre><code>q_v = k_v Delta T h_{a,m} / (rho_v L h_m)
+</code></pre><p>在 neck 下游的蒸汽流仍可用黏性润滑描述，条件由 <code>beta &lt; 1</code> 支持。质量守恒变为</p><pre><code>Couette inflow + pressure-driven flow ~= evaporative vapour flow
+</code></pre><p>推导后作者得到关于 <code>h_m/R</code> 的代数方程，以变量 <code>y</code> 表示：</p><pre><code>y [1 + y eta_a/(6 eta_v)] = beta*
+beta* = beta (rho_l/rho_v)(eta_v/eta_a)
+</code></pre><p>其解给出超热基底下的 <code>hm/R</code>，并允许 <code>C_tau</code> 通过蒸汽生成修正：</p><pre><code>C_tau^{5/2} = 12.4^{3/2} (C_tau + beta* St^{-1/3})
+</code></pre><p>Figure 3 用 Chantelot &amp; Lohse 2021 的超热基底数据检验模型：纵轴是实验测得 <code>h_CL</code> 与理论 <code>h_th</code> 的比值，数据在不同 <code>T_s</code> 下集中在 1 附近，说明 (2.27)-(2.29) 预测的 neck 膜厚与实验量级一致。</p><h3>5. 短时接触边界对 <code>hm</code>/表面杂质尺度极其敏感</h3><p>Figure 4 把理论计算的基底温度曲线与 Chantelot &amp; Lohse 2021、Lee et al. 2020 的短时接触实验比较。图中三条曲线对应 <code>hm = 250 nm</code>、<code>300 nm</code>、<code>360 nm</code>。红/黑实验点表示 short-time contact。</p><p>主要结论：</p><ul>
+<li>对给定撞击速度 <code>U</code>，低于曲线的温度倾向于发生短时接触；高于曲线则预期无接触/Leidenfrost。</li>
+<li><code>hm</code> 增大，即表面 asperities 或 interfacial contaminants 尺度增大时，需要更高基底温度才能避免接触。</li>
+<li>预测对 <code>hm</code> 非常敏感，因此动态 Leidenfrost 温度不仅是液体/基底材料参数，也受表面污染物和粗糙度尺度控制。</li>
+</ul><p>这对热液滴模拟很关键：如果把基底完全光滑处理，模型可能低估真实实验中的 <code>T_L</code>，因为真实 asperities 会更容易刺穿蒸汽膜。</p><h3>6. 中央蒸汽泡质量守恒给出 dynamic Leidenfrost 温度估算</h3><p>除了 neck 处短时接触，作者还考虑中心区域是否能形成持续增长的 cylindrical vapour bubble。中心泡厚度取</p><pre><code>hd/R ~= 2.8 St^{-2/3}
+</code></pre><p>蒸汽泡半径按 <code>R sqrt(3 tau)</code> 增长。作者比较两类蒸汽来源：</p><ul>
+<li>dimple 中央区域产生的蒸汽质量流率。</li>
+<li>neck 区域产生的蒸汽质量流率。</li>
+</ul><p>他们认为 neck 产生的蒸汽远小于 dimple 产生的蒸汽，因此可忽略 neck 对中心泡供给的贡献。由中心蒸汽泡增长率与蒸汽生成率平衡，得到 minimum superheat：</p><pre><code>Delta T_L = 2.8 (rho_v0/rho_l) [(273 + T_b)/(273 + T)]
+            (eta_a/eta_v) Pr_v (L/Cp_v) St^{1/3}
+</code></pre><p>其中蒸汽密度按平均温度 <code>T=(T_b+T_s)/2</code> 修正。Figure 5 用乙醇实验数据检验该式：理论曲线与 Shirota et al. 2016 的 dynamic Leidenfrost temperature 数据吻合较好。作者指出：</p><ul>
+<li><code>U &lt;= 3 m/s</code> 时差异较小。</li>
+<li>更大速度下误差可达约 <code>20 °C</code>，相对误差约 <code>15%</code>。</li>
+<li>误差来源包括无拟合常数、<code>hd</code> 前因子来自较低速度实验、气体性质按平均温度估算、<code>St</code> 中使用空气黏度而中心泡中实际是空气-蒸汽混合物。</li>
+</ul><h3>7. 等温基底与超热基底的中心气泡几何不同</h3><p>作者最后强调，类似 (2.33) 的质量守恒不能用于等温基底。原因是等温撞击中没有足够蒸汽生成，空气通过 neck 的相对流量总是小于“恒定厚度 <code>hd</code>、半径增长为 <code>R sqrt(3 tau)</code> 的圆柱气泡”所需流量。因此等温基底和超热基底中的 entrapped gas bubble/neck geometry 会显著不同。</p></section><section><h2 id="s4">附录与验证</h2><h3>Appendix A：Wagner 框架支撑 <code>a(t)=sqrt(3URt)</code></h3><p>Figure 6 展示线性化边界条件下的势流速度场。作者回顾了 Riboux &amp; Gordillo 2014 的推导：早期撞击 <code>tau &lt;&lt; 1</code> 中，液体外部主流可看作不可压势流，在 <code>z=0</code> 上满足内侧不可穿透、外侧势函数为零的边界条件。Wagner 条件给出</p><pre><code>a(tau) = sqrt(3 tau)
+</code></pre><p>并说明若忽略局部速度修正 <code>u</code>，会得到 <code>sqrt(2 tau)</code>，因此前因子的差别来自更精细的势流解。局部切向速度有 <code>sqrt(a/x)</code> 奇性，在随 <code>a_dot</code> 移动的参考系中 stagnation point 距离满足</p><pre><code>x_s ~ a / a_dot^2 ~ tau^{3/2}
+</code></pre><p>这支持正文中把压力变化长度取为 <code>h_a ~ tau^{3/2}</code>。</p><h3>Appendix B：为什么过渡取 <code>We St^{-1/6} ~= 1</code></h3><p>Figure 7 测试了另一种可能：如果所有 de Ruiter 数据都落在毛细 regime 中，能否用毛细标度乘一个常数拟合水和乙醇？图中把毛细公式乘了 <code>K=0.65</code>。作者认为这种处理不如 Figure 2 中“按 <code>We St^{-1/6} ~= 1</code> 分惯性/毛细 regime 且无拟合常数”的解释自然，因此支持正文的过渡判据。</p><h3>Appendix C：忽略液体热边界层热通量的条件</h3><p>作者估算撞击早期液体热边界层厚度：</p><pre><code>lambda_theta ~ R Pr^{-1/2} Re^{-1/2} tau_m^{1/2}
+</code></pre><p>热通量修正项可写成一个参数，随 <code>beta_a beta^{-3/4} St^{-1/3}</code> 等因素变化。对 Chantelot &amp; Lohse 2021 的参数范围，该参数较小，支持正文忽略液体内部热通量的近似。但作者也指出，当撞击速度较小或 superheat 较小时，液体热边界层热通量的重要性会上升。</p><h3>Appendix D：乙醇/空气/乙醇蒸汽物性</h3><p>Table 1 给出乙醇相关物性：<code>R=1.4 mm</code>、<code>rho_l=789 kg/m^3</code>、<code>eta_l=1.07 mPa s</code>、<code>gamma=22 mN/m</code>、<code>L=853 kJ/kg</code>、<code>T_b=78 °C</code>、<code>Pr_v=0.96</code>、<code>rho_v0=1.43 kg/m^3</code>、<code>eta_v0=0.0103 mPa s</code>、<code>eta_a0=0.01846 mPa s</code>。附录还按平均温度拟合 <code>Cp_v</code>、<code>eta_v</code>、<code>eta_a</code>。</p></section><section><h2 id="s5">适用范围与局限</h2><ul>
+<li>模型是 early-time、axisymmetric、smooth-substrate、high-conductivity substrate 的简化理论；粗糙度只在讨论中作为 <code>hm</code>/asperity 尺度进入，并未完整建模。</li>
+<li>气膜最薄可接近常压空气 mean free path，严格需要 slip/Knudsen 修正；本文为保持简洁取 no-slip。</li>
+<li>超热基底推导忽略液体热边界层吸热，Appendix C 说明这在较低速度或较小 superheat 时可能不再安全。</li>
+<li><code>Delta T_L</code> 公式使用平均温度估算气体物性，且中心泡内实际是空气-蒸汽混合物；高速度下误差可到约 <code>20 °C</code>。</li>
+<li>公式 (2.33) 要求表面杂质或 corrugation 尺寸小于 <code>hd ~= 2.8 R St^{-2/3}</code>；若 asperities 与 <code>hd</code> 可比，会破坏蒸汽层并提高 Leidenfrost 温度。</li>
+
+</ul></section><footer class="source"><p>José M. Gordillo, Guillaume Riboux · <a href="https://doi.org/10.1017/jfm.2022.280">The initial impact of drops cushioned by an air or vapour layer with applications to the dynamic Leidenfrost regime</a> · Journal of Fluid Mechanics · 2022</p><p>配图取自上述作者的论文。<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>。网页按图版展示，并提供缩放预览。</p><a href="./">返回论文精读目录</a></footer></article></main></body></html>

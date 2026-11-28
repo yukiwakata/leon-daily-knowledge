@@ -1,0 +1,67 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>胶体液滴干燥后，裂纹间距为什么会变？ · 论文精读</title><style>*{box-sizing:border-box}html{color-scheme:light;scroll-padding-top:1rem}body{margin:0;background:#f4f6f8;color:#1b2d3c;font:1.05rem/1.86 system-ui,"Microsoft YaHei",sans-serif;overflow-wrap:anywhere}header{background:#173c58;color:white}header div,main{max-width:54rem;margin:auto;padding:0 clamp(1rem,4vw,2.6rem)}header div{display:flex;gap:1.6rem;align-items:center;padding-block:.68rem}header a{color:white}a{color:#155078;text-underline-offset:.2em}main{background:white;padding-block:1.4rem 3rem}h1,h2,h3,h4{line-height:1.45;text-wrap:pretty}h1{font-size:clamp(1.65rem,4vw,2.4rem);margin:.35rem 0 .6rem}h2{color:#193f58;font-size:1.4rem;margin:2.2rem 0 .6rem;border-top:1px solid #d7e1e8;padding-top:1.3rem}h3{font-size:1.13rem;margin:1.4rem 0 .3rem}p{margin:.7rem 0}.meta,figcaption,.credit{color:#506575;font-size:.91rem}.lead{border-left:3px solid #477b92;padding:.5rem .9rem;background:#f1f6f8}details{margin:1rem 0}summary{cursor:pointer;color:#155078;font-weight:650}ul,ol{padding-left:1.5em}li+li{margin-top:.28em}.scroll,pre,math[display=block]{max-width:100%;overflow-x:auto}.scroll{margin:.9rem 0}table{font-size:.94rem;border-collapse:collapse;text-align:left;width:100%;min-width:22rem}td,th{border-bottom:1px solid #d4e0e7;padding:.45rem .6rem;vertical-align:top}th{background:#eef4f6}figure{margin:1.4rem 0}figure>a{display:block}figure img{max-width:100%;height:auto;display:block;margin:auto}figure a span{display:block;text-align:center;font-size:.85rem}figcaption{margin-top:.4rem}code,pre{font-family:ui-monospace,monospace;background:#f2f5f6}pre{padding:.75rem}blockquote{margin-inline:0;padding-left:.85rem;border-left:3px solid #a6bac6}.source{margin-top:2.2rem;border-top:1px solid #cedbe3;padding-top:.8rem}a:focus-visible,summary:focus-visible{outline:3px solid #b77928;outline-offset:2px}@media(max-width:520px){body{font-size:1rem}h2{font-size:1.22rem}header div{gap:1.2rem}}</style></head><body><header><div><a href="../">每日知识</a><a href="./">论文精读目录</a></div></header><main><article><p class="meta">Bourrianne 等 · Soft Matter · 2021</p><h1>胶体液滴干燥后，裂纹间距为什么会变？</h1><p class="lead">初始颗粒体积分数改变沉积层的厚度分布，进而影响裂纹形态与间距。局部脱层与裂纹的突发推进相伴。</p><p><a href="https://doi.org/10.1039/d1sm00832c">Crack morphologies in drying suspension drops</a></p><details><summary>文章目录</summary><ol><li><a href="#s1">研究背景</a></li><li><a href="#s2">研究方法</a></li><li><a href="#s3">具体结果</a></li><li><a href="#s4">关键机制</a></li><li><a href="#s5">适用范围与局限</a></li></ol></details><section><h2 id="s1">研究背景</h2><p>干燥胶体液滴有两个常见失败模式：稀悬浮液受接触线钉扎和蒸发驱动外流影响，颗粒聚集成不均匀的咖啡环；浓悬浮液则形成覆盖整个润湿区的固体沉积，但干燥应力会使其开裂。本文追问的不是这两个端点本身，而是随着初始粒子体积分数 <code>φ</code> 连续增加，沉积形状和裂纹形貌如何在二者之间过渡。</p><p>作者提出两条相连但需要分开理解的证据链：</p><ol>
+<li><code>φ → 径向沉积厚度分布 → 裂纹长度、分支方式和裂纹数</code>；</li>
+<li><code>已有裂纹 → 邻近沉积层脱层抬升 → 下一条裂纹成核 → 环向雪崩式推进</code>。</li>
+</ol><p>第一条解释“形成哪一类裂纹图案”，第二条解释“裂纹为什么像雪崩一样依次传播”。</p></section><section><h2 id="s2">研究方法</h2><ul>
+<li><strong>体系</strong>：水中 22 nm 二氧化硅颗粒 Ludox-AS40；通过稀释将初始粒子体积分数从 <code>φ = 0.04%</code> 调到 <code>22%</code>。</li>
+<li><strong>基准环境</strong>：<code>T = 22 ± 2 °C</code>，<code>RH = 27 ± 6%</code>；洁净玻璃基底；高浓度样品的前进接触角约 <code>20 ± 3°</code>。</li>
+<li><strong>液滴尺度</strong>：示意侧视序列使用 <code>2 μL</code>；主要底视裂纹实验使用 <code>0.3 μL</code>；典型初始半径 <code>R₀ = 1.5 mm</code>，小于水的毛细长度约 <code>2.7 mm</code>，初始形状可近似球冠。</li>
+<li><strong>观测</strong>：倒置显微镜记录裂纹图案；激光扫描共聚焦显微镜在开裂和弯曲前重建径向高度 <code>z(l)</code>；<code>λ = 534 nm</code> 的高速干涉显微镜识别沉积层与玻璃之间的空气层和脱层距离 <code>δ</code>。</li>
+<li><strong>量化量</strong>：裂纹长度 <code>w/R₀</code>、外环裂纹数 <code>N_c</code>、最大沉积高度 <code>h</code>、脱层尺度 <code>δ</code>。</li>
+
+</ul><figure><a href="figures/bourrianne-2021-reading-note/fig-01.png"><picture><source type="image/webp" srcset="figures/bourrianne-2021-reading-note/fig-01-preview.webp"><img src="figures/bourrianne-2021-reading-note/fig-01.png" width="1805" height="500" loading="eager" decoding="async" alt="Figure 1：高浓度胶体液滴干燥、沉积、开裂与弯曲的时间序列"></picture><span>查看高清原图</span></a><figcaption>Figure 1：高浓度胶体液滴干燥、沉积、开裂与弯曲的时间序列</figcaption></figure><ul>
+<li><strong>回答的问题：</strong> 高浓度悬浮液滴从蒸发到形成花瓣状裂纹沉积，时序上经历了什么？</li>
+<li><strong>图中证据或方法：</strong> <code>φ = 22%</code> 时，侧视图显示球冠液体逐步回缩、固体沉积“脚”由外缘向中心生长，最终沉积层开裂并向上弯曲；底视图显示径向裂纹不是同时出现，而是沿圆周相继推进。侧视总时长约 <code>300 s</code>，比例尺为 <code>1 mm</code>。</li>
+<li><strong>支撑的结论：</strong> 颗粒不是在液滴完全干燥后才整体沉积；回缩液帽与多孔沉积区并存，裂纹和弯曲发生在干燥后期。该时序为“沉积内的孔弹性应力积累—释放”提供场景证据。</li>
+<li><strong>局限与读图注意：</strong> 这是代表性序列，不给出重复次数或应力测量；仅凭时间先后不能证明脱层导致开裂，真正的脱层证据来自 Figure 4。</li>
+</ul></section><section><h2 id="s3">具体结果</h2><h3>结果 1：体积分数将沉积划分为四个形貌区间</h3><p>作者观察到随 <code>φ</code> 增大依次出现：</p><div class="scroll"><table>
+<thead>
+<tr>
+<th>代表性 <code>φ</code></th>
+<th>沉积与裂纹形态</th>
+<th>关键特征</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0.04%</code></td>
+<td>咖啡环</td>
+<td>颗粒集中在外缘，几乎不见清晰裂纹</td>
+</tr>
+<tr>
+<td><code>0.75%</code></td>
+<td>环形裂纹</td>
+<td>外环出现大量径向裂纹，中心仍近乎无颗粒</td>
+</tr>
+<tr>
+<td><code>1.7%</code></td>
+<td>双裂纹区</td>
+<td>外环主裂纹向内传播后分支为更密的次级裂纹</td>
+</tr>
+<tr>
+<td><code>22%</code></td>
+<td>单裂纹区</td>
+<td>沉积覆盖整个润湿区，主裂纹不再分支并抵达中心</td>
+</tr>
+</tbody>
+</table></div><figure><a href="figures/bourrianne-2021-reading-note/fig-02.png"><picture><source type="image/webp" srcset="figures/bourrianne-2021-reading-note/fig-02-preview.webp"><img src="figures/bourrianne-2021-reading-note/fig-02.png" width="1805" height="1095" loading="lazy" decoding="async" alt="Figure 2：粒子体积分数控制沉积形态、裂纹长度和裂纹数量"></picture><span>查看高清原图</span></a><figcaption>Figure 2：粒子体积分数控制沉积形态、裂纹长度和裂纹数量</figcaption></figure><ul>
+<li><strong>回答的问题：</strong> 是否存在可量化的形貌转变阈值，裂纹长度与数量怎样随 <code>φ</code> 改变？</li>
+<li><strong>图中证据或方法：</strong> a-d 给出四种代表性终态。e 显示在环形裂纹与双裂纹区，<code>w/R₀ = 0.16√φ</code>；到临界体积分数 <code>φ* = 6.3 ± 0.4%</code> 附近，<code>w/R₀</code> 不连续跃迁到 <code>1</code>，即裂纹贯穿半径。f 显示 <code>N_c</code> 总体随 <code>φ</code> 增大而下降，且阈值附近双裂纹样品的 <code>N_c</code> 低于单裂纹样品。</li>
+<li><strong>支撑的结论：</strong> <code>φ</code> 不只是连续改变裂纹多少，还通过改变沉积是“外环集中”还是“近似全盘覆盖”，触发分支裂纹到不分支裂纹的形貌切换。</li>
+<li><strong>局限与读图注意：</strong> <code>φ*</code> 是本体系中的经验阈值，不应直接当作其他颗粒、粒径或基底的普适常数；主文没有明确给出各点样本量和误差条定义。阈值区 <code>5.9%-6.7%</code> 两种形貌并存，说明转变存在样本间波动，并非确定性的锐利相变。</li>
+</ul><h3>结果 2：真正连接体积分数与裂纹形态的是厚度分布</h3><p>对于 <code>φ &lt; φ*</code>，颗粒主要留在外环，环宽与最大高度都随 <code>φ</code> 增大；双裂纹区中，主裂纹转为次级分支的位置恰好对应沉积厚度明显下降的位置。对于 <code>φ &gt; φ*</code>，厚度由边缘向内增加后进入近似平台，沉积趋于盘状均匀覆盖。</p><p>质量守恒给出两种标度：环形/双裂纹区有 <code>w/R₀ ∝ √φ</code> 且 <code>h ∝ √φ</code>；单裂纹区近似均匀覆盖，因此 <code>h ∝ φ</code>。作者用单裂纹区线性拟合反推出颗粒堆积分数 <code>φ_p = 53.7%</code>，再把同一 <code>φ_p</code> 放回低浓度标度，能较好描述 Figure 3b 的厚度数据。</p><figure><a href="figures/bourrianne-2021-reading-note/fig-03.png"><picture><source type="image/webp" srcset="figures/bourrianne-2021-reading-note/fig-03-preview.webp"><img src="figures/bourrianne-2021-reading-note/fig-03.png" width="1805" height="635" loading="lazy" decoding="async" alt="Figure 3：径向沉积厚度剖面揭示环状到盘状覆盖的转变"></picture><span>查看高清原图</span></a><figcaption>Figure 3：径向沉积厚度剖面揭示环状到盘状覆盖的转变</figcaption></figure><ul>
+<li><strong>回答的问题：</strong> Figure 2 的裂纹形貌变化是否能由开裂前的沉积厚度分布解释？</li>
+<li><strong>图中证据或方法：</strong> a 是开裂/弯曲前的径向高度 <code>z(l)</code>。低 <code>φ</code> 曲线在外缘出现峰值后很快降至零；高 <code>φ</code> 曲线升高后形成宽平台。b 显示低于 <code>φ*</code> 的最大高度近似随 <code>√φ</code> 增长，高于 <code>φ*</code> 则近似随 <code>φ</code> 线性增长，二者对应环状与盘状质量守恒模型。</li>
+<li><strong>支撑的结论：</strong> 初始浓度通过沉积几何发挥作用：更高 <code>φ</code> 使沉积更厚、覆盖更完整；较薄区域更容易形成密集或分支裂纹，较厚且较均匀的盘状沉积形成更少、更长的不分支裂纹。</li>
+<li><strong>局限与读图注意：</strong> 作者以最大高度 <code>h</code> 近似整体厚度，会高估沉积体积，因此拟合得到的 <code>φ_p = 53.7%</code> 低于随机致密堆积并不奇怪。低浓度“不再开裂”的 <code>h_c ≈ 1 μm</code> 与 <code>φ ≈ 0.03%</code> 对应关系来自外推和既有文献，而非本文在该极限的直接厚度测量。</li>
+</ul></section><section><h2 id="s4">关键机制</h2><h3>机制 A：厚度控制裂纹数量与分支</h3><p>作者采用经典断裂能量观点：沉积层越薄，形成新裂纹所需的临界拉应力越高；如果这一阈值超过颗粒间液桥毛细压力可产生的拉应力，空气会先侵入而不是发生裂纹。达到可开裂厚度后，较薄膜层倾向形成间距更小、数量更多的裂纹。本文并未建立完整的应力演化模型，但 Figure 2 与 Figure 3 给出了厚度和裂纹数量共同随 <code>φ</code> 改变的实验对应关系。</p><h3>机制 B：脱层介导雪崩式传播</h3><figure><a href="figures/bourrianne-2021-reading-note/fig-04.png"><picture><source type="image/webp" srcset="figures/bourrianne-2021-reading-note/fig-04-preview.webp"><img src="figures/bourrianne-2021-reading-note/fig-04.png" width="1805" height="610" loading="lazy" decoding="async" alt="Figure 4：干涉条纹显示裂纹邻近区域先脱层，再成核下一条裂纹"></picture><span>查看高清原图</span></a><figcaption>Figure 4：干涉条纹显示裂纹邻近区域先脱层，再成核下一条裂纹</figcaption></figure><ul>
+<li><strong>回答的问题：</strong> 为什么一条裂纹形成后，下一条裂纹会在邻近位置出现，从而产生环向雪崩式传播？</li>
+<li><strong>图中证据或方法：</strong> a 给出 <code>λ = 534 nm</code> 干涉测量原理；b-c 中的白色干涉条纹表明沉积层已离开玻璃并形成空气隙。时间间隔 <code>600 ms</code> 的序列显示脱层区从现有裂纹侧向扩展，达到距离 <code>δ</code> 时出现下一条裂纹。d 显示在单裂纹区中，<code>δ</code> 随沉积厚度 <code>h</code> 总体增大，二者数量级相同。</li>
+<li><strong>支撑的结论：</strong> 新裂纹不是在未受扰动的膜上随机独立成核；已有裂纹释放和重新分配应力，同时伴随邻近沉积层脱粘、抬升，给下一条裂纹提供特征间距。作者据此把脱层视为雪崩式裂纹传播的中介过程。</li>
+<li><strong>局限与读图注意：</strong> Figure 4d 数据点不多、误差较大，作者没有给出 <code>δ(h)</code> 的定量标度或因果干预；因此“脱层介导”有直接成像支持，但“脱层是唯一原因”仍强于现有证据。</li>
+</ul><h3>整体机制链</h3><p><code>更高初始 φ</code> → <code>单位润湿面积内可沉积颗粒更多</code> → <code>外环加宽并最终转为近似盘状覆盖</code> → <code>沉积厚度增加、薄弱内区消失</code> → <code>裂纹数量下降、分支受抑制、主裂纹贯穿中心</code>。</p><p>与此同时：<code>第一条裂纹出现</code> → <code>邻近沉积层脱层并向侧方扩展</code> → <code>应力与界面边界条件被重新组织</code> → <code>在距离 δ 处出现下一条裂纹</code> → <code>裂纹沿圆周逐条雪崩式传播</code>。</p><p>前一条机制链的前三个箭头由质量守恒与形貌/轮廓数据直接支持，厚度到裂纹选择的箭头依赖断裂理论和关联证据；后一条链有干涉成像和时序支持，但没有通过抑制脱层的对照实验完成严格因果验证。</p></section><section><h2 id="s5">适用范围与局限</h2><ul>
+<li><strong>“仅由体积分数控制”措辞偏强。</strong> 作者确实改变了若干条件并称形貌保持稳健，但主文只系统展示 <code>φ</code> 这一轴；颗粒尺寸、粒子-基底作用、离子强度、悬浮液流变性与基底力学性质并未被全面扫描。</li>
+<li><strong>重复性信息不足。</strong> 主文图给出部分误差条，却没有清楚报告各数据点的样本量、误差条定义或统计模型；<code>φ* = 6.3 ± 0.4%</code> 更适合作为该实验体系的过渡带概括。</li>
+<li><strong>厚度与裂纹数之间主要是关联加理论支持。</strong> 论文没有独立控制 <code>h</code> 而保持 <code>φ</code> 不变，也没有给出能预测 <code>N_c(h)</code> 的完整断裂模型。</li>
+<li><strong>脱层机制是强时序证据，不是排他性因果证明。</strong> 干涉图直接看到空气层增长，但缺少改变黏附能或抑制脱层的对照来验证裂纹雪崩是否随之消失。</li>
+
+</ul></section><footer class="source"><p>Philippe Bourrianne, Paul Lilin, Guillaume Sintès, Traian Nîrca, Gareth H. McKinley, Irmgard Bischofberger · <a href="https://doi.org/10.1039/d1sm00832c">Crack morphologies in drying suspension drops</a> · Soft Matter · 2021</p><p>配图取自上述作者的论文。<a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>。网页按图版展示，并提供缩放预览。</p><a href="./">返回论文精读目录</a></footer></article></main></body></html>
